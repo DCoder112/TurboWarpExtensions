@@ -1,10 +1,10 @@
 (function (Scratch) {
   "use strict";
-  
+
     if (!Scratch.extensions.unsandboxed) {
     throw new Error('The mobile keyboard extension mut run unsandboxed');
     }
-  
+
   class mobilekeyboard {
     constructor() {
       this.typedText = "";
