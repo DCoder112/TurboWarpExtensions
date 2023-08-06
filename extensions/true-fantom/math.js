@@ -1,11 +1,12 @@
-(Scratch => {
+((Scratch) => {
   'use strict';
 
-  const icon = 'data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIyMjUuMzU0OCIgaGVpZ2h0PSIyMjUuMzU0OCIgdmlld0JveD0iMCwwLDIyNS4zNTQ4LDIyNS4zNTQ4Ij48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMjA3LjMyMjgsLTY3LjMyMjYpIj48ZyBkYXRhLXBhcGVyLWRhdGE9InsmcXVvdDtpc1BhaW50aW5nTGF5ZXImcXVvdDs6dHJ1ZX0iIGZpbGwtcnVsZT0ibm9uemVybyIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLWRhc2hhcnJheT0iIiBzdHJva2UtZGFzaG9mZnNldD0iMCIgc3R5bGU9Im1peC1ibGVuZC1tb2RlOiBub3JtYWwiPjxwYXRoIGQ9Ik0yMDcuMzIyODEsMTgwYzAsLTYyLjIzMDAxIDUwLjQ0NzM5LC0xMTIuNjc3NCAxMTIuNjc3NCwtMTEyLjY3NzRjNjIuMjMwMDEsMCAxMTIuNjc3NCw1MC40NDczOSAxMTIuNjc3NCwxMTIuNjc3NGMwLDYyLjIzMDAxIC01MC40NDczOSwxMTIuNjc3NCAtMTEyLjY3NzQsMTEyLjY3NzRjLTYyLjIzMDAxLDAgLTExMi42Nzc0LC01MC40NDczOSAtMTEyLjY3NzQsLTExMi42Nzc0eiIgZmlsbD0iIzU5YzA1OSIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjAiLz48cGF0aCBkPSJNMzk0LjEzMDk3LDEzMi41MDkyN2wtMzUuMjQ3NTIsLTAuMDQ5MjNjLTAuOTQyMDgsNDEuNDQ4ODkgLTIxLjE1OTAxLDk0LjU5NzU0IDcuNDYwMzgsOTQuMjEzMzljMTAuNTAwMTgsLTAuNDQ4MTggMTEuMDYzNDgsLTE2LjA2MTEgMTAuODI1NjgsLTI2LjMwNTE4bDE5LjIyODE0LDEzLjM2NjY3YzAsMTIuNDIwOTQgLTEwLjE0MTgxLDM0Ljg1MjU0IC0zNS4xMTE3NCwzNC4wMjAyYy0xNS4xNzQwMywtMC4xMjgwNSAtMjkuNDQ4NjIsLTExLjI0NDA4IC0yOS44MzI3OCwtMzAuMTk1NjJjMC41MTIyLC0yOC40OTEzMyA2LjMwODAyLC01Ni4zMDg4OSA3Ljk3MjY3LC04NS4zNzY0NWwtMjYuMDA4NDUsLTAuNTY0MjhjLTcuNTU1LDgyLjQ2NDggLTEwLjI2NjU3LDExNS40OTYxIC0zNC41MzIyMiwxMTYuMzI4NDNjLTcuNjgzMDYsLTAuMzIwMTIgLTE0Ljc4OTg4LC01LjgyNjMyIC0xNS41NTgxOSwtMTQuNzg5ODhjLTIuMTEyODQsLTE1LjgxNDI5IDMwLjY5MjYxLC0yNS4xNTk4MSAzMS44NDUwNiwtMTAyLjI0NjQ3Yy0zMS42OTI2MSwtMy41MjE0IC0zMS44MDU0NSwxNS42ODQwMyAtMzcuMTgzNTgsMjEuNzY2NDVsLTE0LjM4NjA2LC0xLjU4NDE1YzE4Ljc2NTU4LC00NC45NDMyNiA5LjQ1ODI5LC0zOS4xMTU4NCAxNTAuNzY1MTIsLTM4LjQzMTM1eiIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjNTljMDU5IiBzdHJva2Utd2lkdGg9IjIuNSIvPjwvZz48L2c+PC9zdmc+PCEtLXJvdGF0aW9uQ2VudGVyOjExMi42NzcxOTQ5OTk5OTk5ODoxMTIuNjc3NDA1LS0+';
+  const icon =
+    'data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIyMjUuMzU0OCIgaGVpZ2h0PSIyMjUuMzU0OCIgdmlld0JveD0iMCwwLDIyNS4zNTQ4LDIyNS4zNTQ4Ij48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMjA3LjMyMjgsLTY3LjMyMjYpIj48ZyBkYXRhLXBhcGVyLWRhdGE9InsmcXVvdDtpc1BhaW50aW5nTGF5ZXImcXVvdDs6dHJ1ZX0iIGZpbGwtcnVsZT0ibm9uemVybyIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLWRhc2hhcnJheT0iIiBzdHJva2UtZGFzaG9mZnNldD0iMCIgc3R5bGU9Im1peC1ibGVuZC1tb2RlOiBub3JtYWwiPjxwYXRoIGQ9Ik0yMDcuMzIyODEsMTgwYzAsLTYyLjIzMDAxIDUwLjQ0NzM5LC0xMTIuNjc3NCAxMTIuNjc3NCwtMTEyLjY3NzRjNjIuMjMwMDEsMCAxMTIuNjc3NCw1MC40NDczOSAxMTIuNjc3NCwxMTIuNjc3NGMwLDYyLjIzMDAxIC01MC40NDczOSwxMTIuNjc3NCAtMTEyLjY3NzQsMTEyLjY3NzRjLTYyLjIzMDAxLDAgLTExMi42Nzc0LC01MC40NDczOSAtMTEyLjY3NzQsLTExMi42Nzc0eiIgZmlsbD0iIzU5YzA1OSIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjAiLz48cGF0aCBkPSJNMzk0LjEzMDk3LDEzMi41MDkyN2wtMzUuMjQ3NTIsLTAuMDQ5MjNjLTAuOTQyMDgsNDEuNDQ4ODkgLTIxLjE1OTAxLDk0LjU5NzU0IDcuNDYwMzgsOTQuMjEzMzljMTAuNTAwMTgsLTAuNDQ4MTggMTEuMDYzNDgsLTE2LjA2MTEgMTAuODI1NjgsLTI2LjMwNTE4bDE5LjIyODE0LDEzLjM2NjY3YzAsMTIuNDIwOTQgLTEwLjE0MTgxLDM0Ljg1MjU0IC0zNS4xMTE3NCwzNC4wMjAyYy0xNS4xNzQwMywtMC4xMjgwNSAtMjkuNDQ4NjIsLTExLjI0NDA4IC0yOS44MzI3OCwtMzAuMTk1NjJjMC41MTIyLC0yOC40OTEzMyA2LjMwODAyLC01Ni4zMDg4OSA3Ljk3MjY3LC04NS4zNzY0NWwtMjYuMDA4NDUsLTAuNTY0MjhjLTcuNTU1LDgyLjQ2NDggLTEwLjI2NjU3LDExNS40OTYxIC0zNC41MzIyMiwxMTYuMzI4NDNjLTcuNjgzMDYsLTAuMzIwMTIgLTE0Ljc4OTg4LC01LjgyNjMyIC0xNS41NTgxOSwtMTQuNzg5ODhjLTIuMTEyODQsLTE1LjgxNDI5IDMwLjY5MjYxLC0yNS4xNTk4MSAzMS44NDUwNiwtMTAyLjI0NjQ3Yy0zMS42OTI2MSwtMy41MjE0IC0zMS44MDU0NSwxNS42ODQwMyAtMzcuMTgzNTgsMjEuNzY2NDVsLTE0LjM4NjA2LC0xLjU4NDE1YzE4Ljc2NTU4LC00NC45NDMyNiA5LjQ1ODI5LC0zOS4xMTU4NCAxNTAuNzY1MTIsLTM4LjQzMTM1eiIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjNTljMDU5IiBzdHJva2Utd2lkdGg9IjIuNSIvPjwvZz48L2c+PC9zdmc+PCEtLXJvdGF0aW9uQ2VudGVyOjExMi42NzcxOTQ5OTk5OTk5ODoxMTIuNjc3NDA1LS0+';
 
   const cast = Scratch.Cast;
 
-  const isNotActuallyZero = val => {
+  const isNotActuallyZero = (val) => {
     if (typeof val !== 'string') return false;
     for (let i = 0; i < val.length; i++) {
       const code = val.charCodeAt(i);
@@ -52,7 +53,7 @@
     return n1 - n2;
   };
 
-  const toNaNNumber = value => {
+  const toNaNNumber = (value) => {
     // If value is already a number we don't need to coerce it with
     // Number().
     if (typeof value === 'number') {
@@ -61,15 +62,16 @@
       return value;
     }
     const n = Number(value);
-      // Scratch treats NaN as 0, when needed as a number, but it shouldn't be here
-      // E.g., 0 + NaN -> 0.
+    // Scratch treats NaN as 0, when needed as a number, but it shouldn't be here
+    // E.g., 0 + NaN -> 0.
     return n;
   };
 
-  const isTrueInt = val => {
+  const isTrueInt = (val) => {
     // Values that are already numbers.
     if (typeof val === 'number') {
-      if (isNaN(val)) { // NaN is considered an integer.
+      if (isNaN(val)) {
+        // NaN is considered an integer.
         return true;
       }
       // True if it's "round" (e.g., 2.0 and 2).
@@ -80,7 +82,8 @@
     } else if (typeof val === 'string') {
       // If it contains a decimal point, don't consider it an int, but it shouldn't be here
       const n = Number(val);
-      if (isNaN(n)) { // NaN is considered an integer.
+      if (isNaN(n)) {
+        // NaN is considered an integer.
         return true;
       }
       // True if it's "round" (e.g., 2.0 and 2).
@@ -90,10 +93,8 @@
   };
 
   class ScratchMath {
-
     getInfo() {
       return {
-
         id: 'truefantommath',
         name: 'Math',
 
@@ -109,13 +110,13 @@
             arguments: {
               A: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '\n'
+                defaultValue: '\n',
               },
               B: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '\n'
-              }
-            }
+                defaultValue: '\n',
+              },
+            },
           },
           {
             opcode: 'root_block',
@@ -124,13 +125,13 @@
             arguments: {
               A: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '\n'
+                defaultValue: '\n',
               },
               B: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '\n'
-              }
-            }
+                defaultValue: '\n',
+              },
+            },
           },
           {
             opcode: 'negative_block',
@@ -139,9 +140,9 @@
             arguments: {
               A: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '\n'
-              }
-            }
+                defaultValue: '\n',
+              },
+            },
           },
           '---',
           {
@@ -151,13 +152,13 @@
             arguments: {
               A: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: '\n'
+                defaultValue: '\n',
               },
               B: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 50
-              }
-            }
+                defaultValue: 50,
+              },
+            },
           },
           {
             opcode: 'less_or_equal_block',
@@ -166,13 +167,13 @@
             arguments: {
               A: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: '\n'
+                defaultValue: '\n',
               },
               B: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 50
-              }
-            }
+                defaultValue: 50,
+              },
+            },
           },
           {
             opcode: 'not_equal_block',
@@ -181,13 +182,13 @@
             arguments: {
               A: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: '\n'
+                defaultValue: '\n',
               },
               B: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 50
-              }
-            }
+                defaultValue: 50,
+              },
+            },
           },
           {
             opcode: 'exactly_equal_block',
@@ -196,13 +197,13 @@
             arguments: {
               A: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: '\n'
+                defaultValue: '\n',
               },
               B: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 50
-              }
-            }
+                defaultValue: 50,
+              },
+            },
           },
           {
             opcode: 'not_exactly_equal_block',
@@ -211,13 +212,13 @@
             arguments: {
               A: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: '\n'
+                defaultValue: '\n',
               },
               B: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 50
-              }
-            }
+                defaultValue: 50,
+              },
+            },
           },
           {
             opcode: 'almost_equal_block',
@@ -226,13 +227,13 @@
             arguments: {
               A: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: '\n'
+                defaultValue: '\n',
               },
               B: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 50
-              }
-            }
+                defaultValue: 50,
+              },
+            },
           },
           {
             opcode: 'not_almost_equal_block',
@@ -241,13 +242,13 @@
             arguments: {
               A: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: '\n'
+                defaultValue: '\n',
               },
               B: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 50
-              }
-            }
+                defaultValue: 50,
+              },
+            },
           },
           '---',
           {
@@ -260,8 +261,8 @@
               },
               B: {
                 type: Scratch.ArgumentType.BOOLEAN,
-              }
-            }
+              },
+            },
           },
           {
             opcode: 'nor_block',
@@ -273,8 +274,8 @@
               },
               B: {
                 type: Scratch.ArgumentType.BOOLEAN,
-              }
-            }
+              },
+            },
           },
           {
             opcode: 'xor_block',
@@ -286,8 +287,8 @@
               },
               B: {
                 type: Scratch.ArgumentType.BOOLEAN,
-              }
-            }
+              },
+            },
           },
           {
             opcode: 'xnor_block',
@@ -299,8 +300,8 @@
               },
               B: {
                 type: Scratch.ArgumentType.BOOLEAN,
-              }
-            }
+              },
+            },
           },
           '---',
           {
@@ -310,13 +311,13 @@
             arguments: {
               A: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'apple'
+                defaultValue: 'apple',
               },
               B: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'a'
-              }
-            }
+                defaultValue: 'a',
+              },
+            },
           },
           '---',
           {
@@ -326,13 +327,13 @@
             arguments: {
               A: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '\n'
+                defaultValue: '\n',
               },
               B: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '1'
-              }
-            }
+                defaultValue: '1',
+              },
+            },
           },
           {
             opcode: 'trunc_block',
@@ -341,9 +342,9 @@
             arguments: {
               A: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '\n'
-              }
-            }
+                defaultValue: '\n',
+              },
+            },
           },
           '---',
           {
@@ -353,13 +354,13 @@
             arguments: {
               A: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '\n'
+                defaultValue: '\n',
               },
               B: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '\n'
-              }
-            }
+                defaultValue: '\n',
+              },
+            },
           },
           '---',
           {
@@ -369,29 +370,29 @@
             arguments: {
               A: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '\n'
+                defaultValue: '\n',
               },
               B: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: 10
-              }
-            }
+                defaultValue: 10,
+              },
+            },
           },
           '---',
           {
             opcode: 'pi_block',
             blockType: Scratch.BlockType.REPORTER,
-            text: '𝜋'
+            text: '𝜋',
           },
           {
             opcode: 'e_block',
             blockType: Scratch.BlockType.REPORTER,
-            text: '𝘦'
+            text: '𝘦',
           },
           {
             opcode: 'infinity_block',
             blockType: Scratch.BlockType.REPORTER,
-            text: '∞'
+            text: '∞',
           },
           '---',
           {
@@ -401,9 +402,9 @@
             arguments: {
               A: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '\n'
-              }
-            }
+                defaultValue: '\n',
+              },
+            },
           },
           '---',
           {
@@ -413,9 +414,9 @@
             arguments: {
               A: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '\n'
-              }
-            }
+                defaultValue: '\n',
+              },
+            },
           },
           {
             opcode: 'is_int_block',
@@ -424,9 +425,9 @@
             arguments: {
               A: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '\n'
-              }
-            }
+                defaultValue: '\n',
+              },
+            },
           },
           {
             opcode: 'is_float_block',
@@ -435,62 +436,62 @@
             arguments: {
               A: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '\n'
-              }
-            }
-          }
-        ]
+                defaultValue: '\n',
+              },
+            },
+          },
+        ],
       };
     }
 
-    exponent_block({A, B}) {
+    exponent_block({ A, B }) {
       return Math.pow(cast.toNumber(A), cast.toNumber(B));
     }
-    root_block({A, B}) {
-      return Math.pow(cast.toNumber(B), (1 / cast.toNumber(A)));
+    root_block({ A, B }) {
+      return Math.pow(cast.toNumber(B), 1 / cast.toNumber(A));
     }
-    negative_block({A}) {
+    negative_block({ A }) {
       return 0 - cast.toNumber(A);
     }
-    more_or_equal_block({A, B}) {
+    more_or_equal_block({ A, B }) {
       return cast.compare(A, B) >= 0;
     }
-    less_or_equal_block({A, B}) {
+    less_or_equal_block({ A, B }) {
       return cast.compare(A, B) <= 0;
     }
-    not_equal_block({A, B}) {
+    not_equal_block({ A, B }) {
       return cast.compare(A, B) !== 0;
     }
-    exactly_equal_block({A, B}) {
+    exactly_equal_block({ A, B }) {
       return exactlyCompare(A, B) === 0;
     }
-    not_exactly_equal_block({A, B}) {
+    not_exactly_equal_block({ A, B }) {
       return exactlyCompare(A, B) !== 0;
     }
-    almost_equal_block({A, B}) {
+    almost_equal_block({ A, B }) {
       const c = cast.compare(A, B);
       return c <= 0.5 && c >= -0.5;
     }
-    not_almost_equal_block({A, B}) {
+    not_almost_equal_block({ A, B }) {
       const c = cast.compare(A, B);
       return !(c <= 0.5 && c >= -0.5);
     }
-    nand_block({A, B}) {
+    nand_block({ A, B }) {
       return !(cast.toBoolean(A) && cast.toBoolean(B));
     }
-    nor_block({A, B}) {
+    nor_block({ A, B }) {
       return !(cast.toBoolean(A) || cast.toBoolean(B));
     }
-    xor_block({A, B}) {
+    xor_block({ A, B }) {
       return cast.toBoolean(A) !== cast.toBoolean(B);
     }
-    xnor_block({A, B}) {
+    xnor_block({ A, B }) {
       return cast.toBoolean(A) === cast.toBoolean(B);
     }
-    exactly_cont_block({A, B}) {
+    exactly_cont_block({ A, B }) {
       return cast.toString(A).includes(cast.toString(B));
     }
-    trunc2_block({A, B}) {
+    trunc2_block({ A, B }) {
       let n = Math.floor(cast.toNumber(B));
       if (n >= 1) {
         n = 10 ** n;
@@ -501,13 +502,13 @@
       }
       return Math.trunc(cast.toNumber(A));
     }
-    trunc_block({A}) {
+    trunc_block({ A }) {
       return Math.trunc(cast.toNumber(A));
     }
-    is_multiple_of_block({A, B}) {
+    is_multiple_of_block({ A, B }) {
       return cast.toNumber(A) % cast.toNumber(B) === 0;
     }
-    log_with_base_block({A, B}) {
+    log_with_base_block({ A, B }) {
       return Math.log(cast.toNumber(A)) / Math.log(cast.toNumber(B));
     }
     pi_block() {
@@ -519,16 +520,16 @@
     infinity_block() {
       return Infinity;
     }
-    is_safe_number_block({A}) {
+    is_safe_number_block({ A }) {
       return Number.isSafeInteger(cast.toNumber(A));
     }
-    is_number_block({A}) {
+    is_number_block({ A }) {
       return !Number.isNaN(toNaNNumber(A));
     }
-    is_int_block({A}) {
+    is_int_block({ A }) {
       return isTrueInt(A) && !Number.isNaN(toNaNNumber(A));
     }
-    is_float_block({A}) {
+    is_float_block({ A }) {
       return !isTrueInt(A) && !Number.isNaN(toNaNNumber(A));
     }
   }

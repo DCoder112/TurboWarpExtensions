@@ -1,4 +1,4 @@
-(function(Scratch) {
+(function (Scratch) {
   'use strict';
   let dictionaries = new Map();
   class DictionaryExtension {
@@ -13,7 +13,7 @@
           {
             opcode: 'dict_list',
             blockType: Scratch.BlockType.REPORTER,
-            text: 'list of dictionaries'
+            text: 'list of dictionaries',
           },
           {
             opcode: 'dict_stringify',
@@ -22,18 +22,21 @@
             arguments: {
               DICT: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'foo'
-              }
-            }
+                defaultValue: 'foo',
+              },
+            },
           },
           {
             opcode: 'dict_parse',
             blockType: Scratch.BlockType.COMMAND,
             text: 'parse JSON [OBJ] into dictionary [DICT]',
             arguments: {
-              OBJ: { type: Scratch.ArgumentType.STRING, defaultValue: '{"bar": "baz"}' },
-              DICT: { type: Scratch.ArgumentType.STRING, defaultValue: 'foo' }
-            }
+              OBJ: {
+                type: Scratch.ArgumentType.STRING,
+                defaultValue: '{"bar": "baz"}',
+              },
+              DICT: { type: Scratch.ArgumentType.STRING, defaultValue: 'foo' },
+            },
           },
 
           '---',
@@ -45,7 +48,7 @@
             arguments: {
               KEY: { type: Scratch.ArgumentType.STRING, defaultValue: 'bar' },
               DICT: { type: Scratch.ArgumentType.STRING, defaultValue: 'foo' },
-            }
+            },
           },
           {
             opcode: 'dict_property_defined',
@@ -54,7 +57,7 @@
             arguments: {
               KEY: { type: Scratch.ArgumentType.STRING, defaultValue: 'bar' },
               DICT: { type: Scratch.ArgumentType.STRING, defaultValue: 'foo' },
-            }
+            },
           },
           {
             opcode: 'dict_property_null',
@@ -63,7 +66,7 @@
             arguments: {
               KEY: { type: Scratch.ArgumentType.STRING, defaultValue: 'bar' },
               DICT: { type: Scratch.ArgumentType.STRING, defaultValue: 'foo' },
-            }
+            },
           },
 
           '---',
@@ -75,18 +78,21 @@
             arguments: {
               KEY: { type: Scratch.ArgumentType.STRING, defaultValue: 'bar' },
               DICT: { type: Scratch.ArgumentType.STRING, defaultValue: 'foo' },
-              VAL: { type: Scratch.ArgumentType.STRING, defaultValue: 'baz' }
-            }
+              VAL: { type: Scratch.ArgumentType.STRING, defaultValue: 'baz' },
+            },
           },
           {
             opcode: 'dict_change',
             blockType: Scratch.BlockType.COMMAND,
             text: 'change key [KEY] in dictionary [DICT] by [BY]',
             arguments: {
-              KEY: { type: Scratch.ArgumentType.STRING, defaultValue: 'number' },
+              KEY: {
+                type: Scratch.ArgumentType.STRING,
+                defaultValue: 'number',
+              },
               DICT: { type: Scratch.ArgumentType.STRING, defaultValue: 'foo' },
-              BY: { type: Scratch.ArgumentType.NUMBER, defaultValue: '1' }
-            }
+              BY: { type: Scratch.ArgumentType.NUMBER, defaultValue: '1' },
+            },
           },
 
           '---',
@@ -97,7 +103,7 @@
             text: 'remove dictionary [DICT]',
             arguments: {
               DICT: { type: Scratch.ArgumentType.STRING, defaultValue: 'foo' },
-            }
+            },
           },
           {
             opcode: 'dict_delete_key',
@@ -106,24 +112,24 @@
             arguments: {
               KEY: { type: Scratch.ArgumentType.STRING, defaultValue: 'bar' },
               DICT: { type: Scratch.ArgumentType.STRING, defaultValue: 'foo' },
-            }
+            },
           },
-        ]
+        ],
       };
     }
 
     dict_list() {
-      return Array.from(dictionaries.keys()).join(" ");
+      return Array.from(dictionaries.keys()).join(' ');
     }
 
     dict_stringify({ DICT }) {
-      const mapToObj = m => {
+      const mapToObj = (m) => {
         return Array.from(m).reduce((obj, [key, value]) => {
           obj[key] = value;
           return obj;
         }, {});
       };
-      if (!dictionaries.get(DICT)) return "{}";
+      if (!dictionaries.get(DICT)) return '{}';
       return JSON.stringify(mapToObj(dictionaries.get(DICT)));
     }
 
@@ -132,16 +138,20 @@
       try {
         dict = JSON.parse(OBJ);
       } catch (e) {
-        dict = {"error": String(e)};
+        dict = { error: String(e) };
       }
       dictionaries.set(DICT, new Map(Object.entries(dict)));
     }
 
     dict_get({ KEY, DICT }) {
-      if (!dictionaries.get(DICT)) return "null";
+      if (!dictionaries.get(DICT)) return 'null';
       let dict = dictionaries.get(DICT);
       let value = dict.get(KEY);
-      if (typeof value === 'number' || typeof value === 'string' || typeof value === 'boolean') {
+      if (
+        typeof value === 'number' ||
+        typeof value === 'string' ||
+        typeof value === 'boolean'
+      ) {
         return value;
       }
       if (value === undefined) {

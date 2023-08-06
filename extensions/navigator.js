@@ -1,8 +1,8 @@
-(function(Scratch) {
+(function (Scratch) {
   'use strict';
 
   class NavigatorInfo {
-    getInfo () {
+    getInfo() {
       return {
         id: 'navigatorinfo',
         name: 'Navigator Info',
@@ -10,29 +10,33 @@
           {
             opcode: 'getOS',
             blockType: Scratch.BlockType.REPORTER,
-            text: 'operating system'
+            text: 'operating system',
           },
           {
             opcode: 'getBrowser',
             blockType: Scratch.BlockType.REPORTER,
-            text: 'browser'
+            text: 'browser',
           },
           {
             opcode: 'getMemory',
             blockType: Scratch.BlockType.REPORTER,
-            text: 'device memory in GB'
-          }
-        ]
+            text: 'device memory in GB',
+          },
+        ],
       };
     }
 
-    getOS () {
+    getOS() {
       const userAgent = navigator.userAgent;
       if (userAgent.includes('Windows')) {
         return 'Windows';
       } else if (userAgent.includes('Android')) {
         return 'Android';
-      } else if (userAgent.includes('iPhone') || userAgent.includes('iPod') || userAgent.includes('iPad')) {
+      } else if (
+        userAgent.includes('iPhone') ||
+        userAgent.includes('iPod') ||
+        userAgent.includes('iPad')
+      ) {
         return 'iOS';
       } else if (userAgent.includes('Linux')) {
         return 'Linux';
@@ -44,7 +48,7 @@
       return 'Other';
     }
 
-    getBrowser () {
+    getBrowser() {
       const userAgent = navigator.userAgent;
       if (userAgent.includes('Chrome')) {
         return 'Chrome';
@@ -56,7 +60,7 @@
       return 'Other';
     }
 
-    getMemory () {
+    getMemory() {
       // @ts-expect-error
       if (navigator.deviceMemory == undefined) {
         return 'Unsupported';
@@ -68,4 +72,4 @@
   }
 
   Scratch.extensions.register(new NavigatorInfo());
-}(Scratch));
+})(Scratch);

@@ -1,14 +1,14 @@
 (function (Scratch) {
-  "use strict";
+  'use strict';
   const QueryImage = {
-    WIDTH: "width",
-    HEIGHT: "height",
-    TOP: "top",
-    BOTTOM: "bottom",
-    LEFT: "left",
-    RIGHT: "right",
-    ROTATION_CENTER_X: "rotation center x",
-    ROTATION_CENTER_Y: "rotation center y",
+    WIDTH: 'width',
+    HEIGHT: 'height',
+    TOP: 'top',
+    BOTTOM: 'bottom',
+    LEFT: 'left',
+    RIGHT: 'right',
+    ROTATION_CENTER_X: 'rotation center x',
+    ROTATION_CENTER_Y: 'rotation center y',
   };
 
   class ImagesExt {
@@ -23,17 +23,17 @@
 
     getInfo() {
       return {
-        id: "images",
-        name: "Images",
+        id: 'images',
+        name: 'Images',
         blocks: [
           {
-            opcode: "getImage",
+            opcode: 'getImage',
             blockType: Scratch.BlockType.REPORTER,
-            text: "new image from URL [IMAGEURL]",
+            text: 'new image from URL [IMAGEURL]',
             arguments: {
               IMAGEURL: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "https://extensions.turbowarp.org/robot.png",
+                defaultValue: 'https://extensions.turbowarp.org/robot.png',
               },
             },
             disableMonitor: true,
@@ -41,27 +41,27 @@
 
           // hidden because of bugs
           {
-            opcode: "penTrailsImage",
+            opcode: 'penTrailsImage',
             blockType: Scratch.BlockType.REPORTER,
-            text: "pen trails as image",
+            text: 'pen trails as image',
             arguments: {},
             hideFromPalette: true,
           },
 
           {
-            opcode: "queryImage",
+            opcode: 'queryImage',
             blockType: Scratch.BlockType.REPORTER,
-            text: "[QUERY] of image [IMG]",
+            text: '[QUERY] of image [IMG]',
             arguments: {
               QUERY: {
                 type: Scratch.ArgumentType.STRING,
-                menu: "queryImage",
-                defaultValue: "width",
+                menu: 'queryImage',
+                defaultValue: 'width',
               },
               IMG: {
                 // Intentional null input to require dropping a block in
                 type: null,
-                defaultValue: "",
+                defaultValue: '',
               },
             },
             disableMonitor: true,
@@ -69,14 +69,14 @@
           // legacy block, for compatiblity with projects that
           // used images v1
           {
-            opcode: "drawImage",
+            opcode: 'drawImage',
             blockType: Scratch.BlockType.COMMAND,
-            text: "stamp image [IMG] at x: [X] y: [Y] x scale: [XSCALE] y scale: [YSCALE]",
+            text: 'stamp image [IMG] at x: [X] y: [Y] x scale: [XSCALE] y scale: [YSCALE]',
             arguments: {
               IMG: {
                 // Intentional null input to require dropping a block in
                 type: null,
-                defaultValue: "",
+                defaultValue: '',
               },
               X: {
                 type: Scratch.ArgumentType.NUMBER,
@@ -98,45 +98,45 @@
             hideFromPalette: true,
           },
           {
-            opcode: "switchToImage",
+            opcode: 'switchToImage',
             blockType: Scratch.BlockType.COMMAND,
-            text: "switch costume to image [IMG]",
+            text: 'switch costume to image [IMG]',
             arguments: {
               IMG: {
                 // Intentional null input to require dropping a block in
                 type: null,
-                defaultValue: "",
+                defaultValue: '',
               },
             },
           },
           {
-            opcode: "imageID",
+            opcode: 'imageID',
             blockType: Scratch.BlockType.REPORTER,
-            text: "current image ID",
+            text: 'current image ID',
             arguments: {},
             disableMonitor: true,
           },
           {
-            opcode: "resetCostume",
+            opcode: 'resetCostume',
             blockType: Scratch.BlockType.COMMAND,
-            text: "switch back to costume",
+            text: 'switch back to costume',
             arguments: {},
           },
           {
-            opcode: "deleteImage",
+            opcode: 'deleteImage',
             blockType: Scratch.BlockType.COMMAND,
-            text: "delete image [IMG]",
+            text: 'delete image [IMG]',
             arguments: {
               IMG: {
                 type: null,
-                defaultValue: "",
+                defaultValue: '',
               },
             },
           },
           {
-            opcode: "deleteAllImages",
+            opcode: 'deleteAllImages',
             blockType: Scratch.BlockType.COMMAND,
-            text: "delete all images",
+            text: 'delete all images',
             arguments: {},
           },
         ],
@@ -152,20 +152,20 @@
     _queryImageMenu() {
       const get = (param) => QueryImage[param];
       return [
-        get("WIDTH"),
-        get("HEIGHT"),
-        get("TOP"),
-        get("BOTTOM"),
-        get("LEFT"),
-        get("RIGHT"),
-        get("ROTATION_CENTER_X"),
-        get("ROTATION_CENTER_Y"),
+        get('WIDTH'),
+        get('HEIGHT'),
+        get('TOP'),
+        get('BOTTOM'),
+        get('LEFT'),
+        get('RIGHT'),
+        get('ROTATION_CENTER_X'),
+        get('ROTATION_CENTER_Y'),
       ];
     }
 
     _createdImage(id) {
       if (!this.render || id === undefined || !this.render._allSkins[id])
-        return "";
+        return '';
       this.createdImages.add(id);
       this.validImages.add(id);
       return id;
@@ -177,7 +177,7 @@
     }
     _gotImage(id) {
       if (!this.render || id === undefined || !this.render._allSkins[id])
-        return "";
+        return '';
       this.validImages.add(id);
       return id;
     }
@@ -186,41 +186,41 @@
       IMAGEURL = Scratch.Cast.toString(IMAGEURL);
       try {
         const resp = await Scratch.fetch(IMAGEURL);
-        const type = resp.headers.get("Content-Type");
+        const type = resp.headers.get('Content-Type');
 
         if (!resp.ok) {
-          return "";
+          return '';
         }
 
         let skinId;
         switch (type) {
-          case "image/svg+xml":
-          case "image/svg":
+          case 'image/svg+xml':
+          case 'image/svg':
             skinId = this.render.createSVGSkin(await resp.text());
             break;
-          case "image/png":
-          case "image/bmp":
-          case "image/jpeg":
+          case 'image/png':
+          case 'image/bmp':
+          case 'image/jpeg':
             {
-              if (!await Scratch.canFetch(IMAGEURL)) return;
+              if (!(await Scratch.canFetch(IMAGEURL))) return;
               // eslint-disable-next-line no-restricted-syntax
               const image = new Image();
-              image.crossOrigin = "anonymous";
+              image.crossOrigin = 'anonymous';
               image.src = IMAGEURL;
               await image.decode();
               skinId = this.render.createBitmapSkin(image, 1);
             }
             break;
           default:
-            return "";
+            return '';
         }
 
         this._createdImage(skinId);
         return skinId;
       } catch (e) {
-        console.error("Error creating image:", e);
+        console.error('Error creating image:', e);
       }
-      return "";
+      return '';
     }
 
     penTrailsImage() {
@@ -237,7 +237,7 @@
         if (!this.render._allSkins[IMG] || !this.validImages.has(IMG)) return;
 
         // Create a temporary drawable to stamp the image
-        drawableID = this.render.createDrawable("sprite");
+        drawableID = this.render.createDrawable('sprite');
         const img = this.render._allDrawables[drawableID];
         img.updateVisible(false);
         img.skin = this.render._allSkins[IMG];
@@ -246,11 +246,11 @@
         img.updateScale([Number(XSCALE) || 0, Number(YSCALE) || 0]);
         this.render.penStamp(this.render._penSkinId, drawableID);
       } catch (e) {
-        console.error("Error drawing image:", e);
+        console.error('Error drawing image:', e);
       } finally {
         // Delete the temporary drawable
         if (drawableID !== null) {
-          this.render.destroyDrawable(drawableID, "sprite");
+          this.render.destroyDrawable(drawableID, 'sprite');
         }
       }
     }
@@ -275,7 +275,7 @@
           target.updateAllDrawableProperties();
         }
       } catch (e) {
-        console.error("Error deleting image:", e);
+        console.error('Error deleting image:', e);
       }
     }
     deleteAllImages() {
@@ -288,7 +288,7 @@
           target.updateAllDrawableProperties();
         }
       } catch (e) {
-        console.error("Error deleting all images:", e);
+        console.error('Error deleting all images:', e);
       }
     }
     _deleteImage(skinId) {
@@ -296,7 +296,7 @@
       try {
         this.render._allSkins[skinId].dispose();
       } catch (e) {
-        console.error("Error _deleting image:", e);
+        console.error('Error _deleting image:', e);
       }
     }
 
@@ -313,15 +313,15 @@
 
     imageID(_args, util) {
       const drawable = this.render._allDrawables[util.target.drawableID];
-      if (!drawable || !drawable.skin) return "";
+      if (!drawable || !drawable.skin) return '';
 
       const skinID = drawable.skin.id;
-      if (!this.validImages.has(skinID)) return "";
+      if (!this.validImages.has(skinID)) return '';
       return skinID;
     }
 
     queryImage({ QUERY, IMG }) {
-      if (!this.render._allSkins[IMG] || !this.validImages.has(IMG)) return "";
+      if (!this.render._allSkins[IMG] || !this.validImages.has(IMG)) return '';
 
       IMG = Scratch.Cast.toNumber(IMG);
 
@@ -329,7 +329,7 @@
       let drawableID = null;
       try {
         // Create a temporary drawable to query the image
-        drawableID = this.render.createDrawable("sprite");
+        drawableID = this.render.createDrawable('sprite');
         const img = this.render._allDrawables[drawableID];
         img.updateVisible(false);
         img.skin = this.render._allSkins[IMG];
@@ -366,7 +366,7 @@
             returnValue = 0;
         }
       } catch (e) {
-        console.error("Error querying image:", e);
+        console.error('Error querying image:', e);
       } finally {
         // Delete the temporary drawable
         if (drawableID !== null) {
@@ -377,6 +377,7 @@
     }
   }
 
-  if (!Scratch.extensions.unsandboxed) throw new Error("This extension cannot run in sandboxed mode.");
+  if (!Scratch.extensions.unsandboxed)
+    throw new Error('This extension cannot run in sandboxed mode.');
   Scratch.extensions.register(new ImagesExt(Scratch.vm));
 })(globalThis.Scratch);

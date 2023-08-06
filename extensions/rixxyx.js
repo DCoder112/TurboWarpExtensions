@@ -3,7 +3,7 @@
  * This file is available under an informal "use with credit" license.
  */
 
-(function() {
+(function () {
   'use strict';
 
   var count = 0;
@@ -13,10 +13,10 @@
   class RixxyX {
     getInfo() {
       return {
-        color1: "#773c00",
-        color2: "#5f3000",
-        id: "RixxyX",
-        name: "RixxyX",
+        color1: '#773c00',
+        color2: '#5f3000',
+        id: 'RixxyX',
+        name: 'RixxyX',
         blocks: [
           {
             opcode: 'notEquals',
@@ -25,13 +25,13 @@
             arguments: {
               TEXT_1: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'RixxyX'
+                defaultValue: 'RixxyX',
               },
               TEXT_2: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'TyruntX'
-              }
-            }
+                defaultValue: 'TyruntX',
+              },
+            },
           },
           {
             opcode: 'color',
@@ -40,21 +40,21 @@
             arguments: {
               COLOR: {
                 type: Scratch.ArgumentType.COLOR,
-                defaultValue: '#ff0000'
-              }
-            }
+                defaultValue: '#ff0000',
+              },
+            },
           },
           {
             opcode: 'returnTrue',
             blockType: Scratch.BlockType.BOOLEAN,
             text: 'true',
-            arguments: {}
+            arguments: {},
           },
           {
             opcode: 'returnFalse',
             blockType: Scratch.BlockType.BOOLEAN,
             text: 'false',
-            arguments: {}
+            arguments: {},
           },
           {
             opcode: 'ifElseString',
@@ -63,17 +63,17 @@
             arguments: {
               BOOL: {
                 type: Scratch.ArgumentType.BOOLEAN,
-                defaultValue: ''
+                defaultValue: '',
               },
               TEXT_1: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'RixxyX'
+                defaultValue: 'RixxyX',
               },
               TEXT_2: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'TyruntX'
-              }
-            }
+                defaultValue: 'TyruntX',
+              },
+            },
           },
           {
             opcode: 'ifString',
@@ -82,13 +82,13 @@
             arguments: {
               BOOL: {
                 type: Scratch.ArgumentType.BOOLEAN,
-                defaultValue: ''
+                defaultValue: '',
               },
               TEXT: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'RixxyX'
-              }
-            }
+                defaultValue: 'RixxyX',
+              },
+            },
           },
           {
             opcode: 'extractTextBetweenToCharacters',
@@ -97,17 +97,17 @@
             arguments: {
               TEXT: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'RixxyX is cool, right?'
+                defaultValue: 'RixxyX is cool, right?',
               },
               NUM_1: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: 1
+                defaultValue: 1,
               },
               NUM_2: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: 6
-              }
-            }
+                defaultValue: 6,
+              },
+            },
           },
           {
             opcode: 'returnString',
@@ -116,9 +116,9 @@
             arguments: {
               TEXT: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'RixxyX is cool, right?'
-              }
-            }
+                defaultValue: 'RixxyX is cool, right?',
+              },
+            },
           },
           {
             opcode: 'isTheSameTypeAs',
@@ -127,13 +127,13 @@
             arguments: {
               TEXT_1: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'RixxyX is cool, right?'
+                defaultValue: 'RixxyX is cool, right?',
               },
               TEXT_2: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'RixxyX is cool, right?'
-              }
-            }
+                defaultValue: 'RixxyX is cool, right?',
+              },
+            },
           },
           {
             opcode: 'reverseTxt',
@@ -142,15 +142,15 @@
             arguments: {
               TEXT: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'XyxxiR'
-              }
-            }
+                defaultValue: 'XyxxiR',
+              },
+            },
           },
           {
             opcode: 'returnCount',
             blockType: Scratch.BlockType.REPORTER,
             text: 'counter',
-            arguments: {}
+            arguments: {},
           },
           {
             opcode: 'incrementCountByNum',
@@ -159,9 +159,9 @@
             arguments: {
               NUM: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: 1
-              }
-            }
+                defaultValue: 1,
+              },
+            },
           },
           {
             opcode: 'decrementCountByNum',
@@ -170,9 +170,9 @@
             arguments: {
               NUM: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: 1
-              }
-            }
+                defaultValue: 1,
+              },
+            },
           },
           {
             opcode: 'setCount',
@@ -181,9 +181,9 @@
             arguments: {
               NUM: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: 0
-              }
-            }
+                defaultValue: 0,
+              },
+            },
           },
           {
             opcode: 'toUppercase',
@@ -192,9 +192,9 @@
             arguments: {
               TEXT: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'rixxyx'
-              }
-            }
+                defaultValue: 'rixxyx',
+              },
+            },
           },
           {
             opcode: 'toLowercase',
@@ -203,9 +203,9 @@
             arguments: {
               TEXT: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'RIXXYX'
-              }
-            }
+                defaultValue: 'RIXXYX',
+              },
+            },
           },
           {
             opcode: 'toCapitalize',
@@ -214,9 +214,9 @@
             arguments: {
               TEXT: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'rixxyX is cool, right?'
-              }
-            }
+                defaultValue: 'rixxyX is cool, right?',
+              },
+            },
           },
           {
             opcode: 'isJsNan',
@@ -225,9 +225,9 @@
             arguments: {
               OBJ: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: NaN
-              }
-            }
+                defaultValue: NaN,
+              },
+            },
           },
           {
             opcode: 'returnNum',
@@ -236,9 +236,9 @@
             arguments: {
               NUM: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: 1
-              }
-            }
+                defaultValue: 1,
+              },
+            },
           },
           {
             opcode: 'returnBool',
@@ -247,9 +247,9 @@
             arguments: {
               BOOL: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'true'
-              }
-            }
+                defaultValue: 'true',
+              },
+            },
           },
           {
             opcode: 'binToTxt',
@@ -258,9 +258,10 @@
             arguments: {
               BIN: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: '01010010 01101001 01111000 01111000 01111001 01011000'
-              }
-            }
+                defaultValue:
+                  '01010010 01101001 01111000 01111000 01111001 01011000',
+              },
+            },
           },
           {
             opcode: 'txtToBin',
@@ -269,9 +270,9 @@
             arguments: {
               TEXT: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'RixxyX'
-              }
-            }
+                defaultValue: 'RixxyX',
+              },
+            },
           },
           {
             opcode: 'repeatTxtTimes',
@@ -280,13 +281,13 @@
             arguments: {
               TEXT: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'x'
+                defaultValue: 'x',
               },
               NUM: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: 2
-              }
-            }
+                defaultValue: 2,
+              },
+            },
           },
           {
             opcode: 'jsonParse',
@@ -295,35 +296,35 @@
             arguments: {
               TEXT: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: '"RixxyX"'
-              }
-            }
+                defaultValue: '"RixxyX"',
+              },
+            },
           },
           {
             opcode: 'returnENum',
             blockType: Scratch.BlockType.REPORTER,
             text: 'e', // e
-            arguments: {}
+            arguments: {},
           },
           {
             opcode: 'startTime',
             blockType: Scratch.BlockType.COMMAND,
             text: 'start measuring time',
-            arguments: {}
+            arguments: {},
           },
           {
             opcode: 'endTime',
             blockType: Scratch.BlockType.COMMAND,
             text: 'end measuring time',
-            arguments: {}
+            arguments: {},
           },
           {
             opcode: 'returnTime',
             blockType: Scratch.BlockType.REPORTER,
             text: 'time',
-            arguments: {}
-          }
-        ]
+            arguments: {},
+          },
+        ],
       };
     }
     notEquals(args) {
@@ -350,7 +351,7 @@
       if (args.BOOL) {
         return args.TEXT;
       } else {
-        return "";
+        return '';
       }
     }
     extractTextBetweenToCharacters(args) {
@@ -363,10 +364,10 @@
       return args.TEXT.toString();
     }
     isTheSameTypeAs(args) {
-      return (typeof args.TEXT_1 == typeof args.TEXT_2);
+      return typeof args.TEXT_1 == typeof args.TEXT_2;
     }
     reverseTxt(args) {
-      var emptyStr = "";
+      var emptyStr = '';
       var txt = args.TEXT.toString();
       var localCount = txt.length - 1;
       while (localCount != -1) {
@@ -379,21 +380,27 @@
       return count;
     }
     incrementCountByNum(args) {
-      if ((count.toString().indexOf("-") == -1) || (args.NUM.toString().indexOf("-") == -1)) {
+      if (
+        count.toString().indexOf('-') == -1 ||
+        args.NUM.toString().indexOf('-') == -1
+      ) {
         count += Math.floor(args.NUM);
       } else {
         count = 0;
       }
     }
     decrementCountByNum(args) {
-      if ((count - Math.floor(args.NUM)).toString().indexOf("-") == -1) {
+      if ((count - Math.floor(args.NUM)).toString().indexOf('-') == -1) {
         count -= Math.floor(args.NUM);
       } else {
         count = 0;
       }
     }
     setCount(args) {
-      if ((count.toString().indexOf("-") == -1) && (args.NUM.toString().indexOf("-") == -1)) {
+      if (
+        count.toString().indexOf('-') == -1 &&
+        args.NUM.toString().indexOf('-') == -1
+      ) {
         count = Math.floor(args.NUM);
       } else {
         count = 0;
@@ -422,11 +429,16 @@
     }
     binToTxt(args) {
       var binary = args.BIN.toString();
-      return binary.split(" ").map((x) => x = String.fromCharCode(parseInt(x, 2))).join("");
+      return binary
+        .split(' ')
+        .map((x) => (x = String.fromCharCode(parseInt(x, 2))))
+        .join('');
     }
     txtToBin(args) {
       var text = args.TEXT.toString();
-      return Array.from(text).map((each)=>each.charCodeAt(0).toString(2)).join(" ");
+      return Array.from(text)
+        .map((each) => each.charCodeAt(0).toString(2))
+        .join(' ');
     }
     repeatTxtTimes(args) {
       return Scratch.Cast.toString(args.TEXT).repeat(Math.floor(args.NUM));
@@ -434,7 +446,11 @@
     jsonParse(args) {
       try {
         const parsed = JSON.parse(args.TEXT);
-        if (typeof parsed === 'string' || typeof parsed === 'number' || typeof parsed === 'boolean') {
+        if (
+          typeof parsed === 'string' ||
+          typeof parsed === 'number' ||
+          typeof parsed === 'boolean'
+        ) {
           return parsed;
         }
         return Scratch.Cast.toString(parsed);

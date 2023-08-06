@@ -18,9 +18,9 @@
             arguments: {
               COMMENT: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'comment'
-              }
-            }
+                defaultValue: 'comment',
+              },
+            },
           },
           {
             opcode: 'commentCommand',
@@ -29,9 +29,9 @@
             arguments: {
               COMMENT: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'comment'
-              }
-            }
+                defaultValue: 'comment',
+              },
+            },
           },
           {
             opcode: 'commentReporter',
@@ -40,13 +40,13 @@
             arguments: {
               COMMENT: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'comment'
+                defaultValue: 'comment',
               },
               INPUT: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
-              }
-            }
+                defaultValue: '',
+              },
+            },
           },
           {
             opcode: 'commentBoolean',
@@ -55,30 +55,30 @@
             arguments: {
               COMMENT: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'comment'
+                defaultValue: 'comment',
               },
               INPUT: {
-                type: Scratch.ArgumentType.BOOLEAN
-              }
-            }
-          }
-        ]
+                type: Scratch.ArgumentType.BOOLEAN,
+              },
+            },
+          },
+        ],
       };
     }
 
-    commentHat () {
+    commentHat() {
       // no-op
     }
 
-    commentCommand () {
+    commentCommand() {
       // no-op
     }
 
-    commentReporter (args) {
+    commentReporter(args) {
       return args.INPUT;
     }
 
-    commentBoolean (args) {
+    commentBoolean(args) {
       return args.INPUT || false;
     }
   }

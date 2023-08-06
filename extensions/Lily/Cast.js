@@ -18,13 +18,13 @@
             arguments: {
               INPUT: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'apple'
+                defaultValue: 'apple',
               },
               TYPE: {
                 type: Scratch.ArgumentType.STRING,
-                menu: 'type'
-              }
-            }
+                menu: 'type',
+              },
+            },
           },
           {
             opcode: 'typeOf',
@@ -34,37 +34,45 @@
             arguments: {
               INPUT: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'apple'
-              }
-            }
-          }
+                defaultValue: 'apple',
+              },
+            },
+          },
         ],
         menus: {
           type: {
             acceptReporters: true,
-            items: ['number', 'string', 'boolean', 'default']
-          }
-        }
+            items: ['number', 'string', 'boolean', 'default'],
+          },
+        },
       };
     }
 
     toType(args) {
       const input = args.INPUT;
       switch (args.TYPE) {
-        case ('number'): return Cast.toNumber(input);
-        case ('string'): return Cast.toString(input);
-        case ('boolean'): return Cast.toBoolean(input);
-        default: return input;
+        case 'number':
+          return Cast.toNumber(input);
+        case 'string':
+          return Cast.toString(input);
+        case 'boolean':
+          return Cast.toBoolean(input);
+        default:
+          return input;
       }
     }
 
     typeOf(args) {
       const input = args.INPUT;
       switch (typeof input) {
-        case ('number'): return 'number';
-        case ('string'): return 'string';
-        case ('boolean'): return 'boolean';
-        default: return '';
+        case 'number':
+          return 'number';
+        case 'string':
+          return 'string';
+        case 'boolean':
+          return 'boolean';
+        default:
+          return '';
       }
     }
   }

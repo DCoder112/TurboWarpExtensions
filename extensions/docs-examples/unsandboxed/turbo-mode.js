@@ -1,4 +1,4 @@
-(function(Scratch) {
+(function (Scratch) {
   'use strict';
 
   // highlight-start
@@ -21,17 +21,17 @@
             arguments: {
               ENABLED: {
                 type: Scratch.ArgumentType.STRING,
-                menu: 'ENABLED_MENU'
-              }
-            }
-          }
+                menu: 'ENABLED_MENU',
+              },
+            },
+          },
         ],
         menus: {
           ENABLED_MENU: {
             acceptReporters: true,
-            items: ['on', 'off']
-          }
-        }
+            items: ['on', 'off'],
+          },
+        },
       };
     }
     // highlight-start

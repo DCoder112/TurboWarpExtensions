@@ -1,5 +1,5 @@
 (function (Scratch) {
-  "use strict";
+  'use strict';
 
   /**
    * @typedef CacheEntry
@@ -17,10 +17,10 @@
    * @returns {Promise<CacheEntry>}
    */
   const pingWebSocket = async (uri) => {
-    if (!await Scratch.canFetch(uri)) {
+    if (!(await Scratch.canFetch(uri))) {
       return {
         expires: 0,
-        value: false
+        value: false,
       };
     }
 
@@ -33,7 +33,7 @@
     } catch (e) {
       return {
         expires: 0,
-        value: false
+        value: false,
       };
     }
 
@@ -60,7 +60,7 @@
 
     return {
       expires: Date.now() + 60000,
-      value: isUp
+      value: isUp,
     };
   };
 
@@ -91,17 +91,17 @@
   class PingUtil {
     getInfo() {
       return {
-        id: "clouddataping",
-        name: "Ping Cloud Data",
+        id: 'clouddataping',
+        name: 'Ping Cloud Data',
         blocks: [
           {
-            opcode: "ping",
+            opcode: 'ping',
             blockType: Scratch.BlockType.BOOLEAN,
-            text: "is cloud data server [SERVER] up?",
+            text: 'is cloud data server [SERVER] up?',
             arguments: {
               SERVER: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "wss://clouddata.turbowarp.org",
+                defaultValue: 'wss://clouddata.turbowarp.org',
               },
             },
           },

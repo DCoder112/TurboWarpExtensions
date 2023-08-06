@@ -53,7 +53,11 @@
     const colorData = silhouette._colorData;
     const width = silhouette._width;
     const height = silhouette._height;
-    const imageData = new ImageData(colorData, silhouette._width, silhouette._height);
+    const imageData = new ImageData(
+      colorData,
+      silhouette._width,
+      silhouette._height
+    );
     const [canvas, ctx] = getRawSkinCanvas(width, height);
     ctx.putImageData(imageData, 0, 0);
     return canvas.toDataURL();
@@ -98,7 +102,7 @@
     return {
       uri: svgURI,
       width,
-      height
+      height,
     };
   };
 
@@ -119,7 +123,7 @@
   // scratch-gui will sometimes reset the cursor when resizing the window or going in/out of fullscreen
   new MutationObserver(updateCanvasCursor).observe(canvas, {
     attributeFilter: ['style'],
-    attributes: true
+    attributes: true,
   });
 
   /**
@@ -129,20 +133,44 @@
    */
   const parseTuple = (string) => {
     const [a, b] = ('' + string).split(/[ ,x]/);
-    return [
-      +a || 0,
-      +b || 0
-    ];
+    return [+a || 0, +b || 0];
   };
 
   const cursors = [
-    'default', 'pointer', 'move', 'grab', 'grabbing', 'text',
-    'vertical-text', 'wait', 'progress', 'help', 'context-menu',
-    'zoom-in', 'zoom-out', 'crosshair', 'cell', 'not-allowed',
-    'copy', 'alias', 'no-drop', 'all-scroll', 'col-resize',
-    'row-resize', 'n-resize', 'e-resize', 's-resize', 'w-resize',
-    'ne-resize', 'nw-resize', 'se-resize', 'sw-resize',
-    'ew-resize', 'ns-resize', 'nesw-resize', 'nwse-resize'
+    'default',
+    'pointer',
+    'move',
+    'grab',
+    'grabbing',
+    'text',
+    'vertical-text',
+    'wait',
+    'progress',
+    'help',
+    'context-menu',
+    'zoom-in',
+    'zoom-out',
+    'crosshair',
+    'cell',
+    'not-allowed',
+    'copy',
+    'alias',
+    'no-drop',
+    'all-scroll',
+    'col-resize',
+    'row-resize',
+    'n-resize',
+    'e-resize',
+    's-resize',
+    'w-resize',
+    'ne-resize',
+    'nw-resize',
+    'se-resize',
+    'sw-resize',
+    'ew-resize',
+    'ns-resize',
+    'nesw-resize',
+    'nwse-resize',
   ];
 
   class MouseCursor {
@@ -166,19 +194,19 @@
           {
             opcode: 'setCursorImage',
             blockType: Scratch.BlockType.COMMAND,
-            text: "set cursor to current costume center: [position] max size: [size]",
+            text: 'set cursor to current costume center: [position] max size: [size]',
             arguments: {
               position: {
                 type: Scratch.ArgumentType.STRING,
                 defaultValue: '0,0',
-                menu: 'imagePositions'
+                menu: 'imagePositions',
               },
               size: {
                 type: Scratch.ArgumentType.STRING,
                 defaultValue: '32x32',
-                menu: 'imageSizes'
-              }
-            }
+                menu: 'imageSizes',
+              },
+            },
           },
           {
             opcode: 'hideCur',
@@ -205,7 +233,7 @@
               { text: 'bottom left', value: '0,100' },
               { text: 'bottom right', value: '100,100' },
               { text: 'center', value: '50,50' },
-            ]
+            ],
           },
           imageSizes: {
             acceptReporters: true,
@@ -221,8 +249,8 @@
               { text: '48x48 (unreliable)', value: '48x48' },
               { text: '64x64 (unreliable)', value: '64x64' },
               { text: '128x128 (unreliable)', value: '128x128' },
-            ]
-          }
+            ],
+          },
         },
       };
     }
@@ -239,9 +267,12 @@
     }
 
     setCursorImage(args, util) {
-      const [maxWidth, maxHeight] = parseTuple(args.size).map(i => Math.max(0, i));
+      const [maxWidth, maxHeight] = parseTuple(args.size).map((i) =>
+        Math.max(0, i)
+      );
 
-      const currentCostume = util.target.getCostumes()[util.target.currentCostume];
+      const currentCostume =
+        util.target.getCostumes()[util.target.currentCostume];
       const costumeName = currentCostume.name;
 
       let encodedCostume;
@@ -253,7 +284,9 @@
       }
 
       if (encodedCostume) {
-        const [percentX, percentY] = parseTuple(args.position).map(i => Math.max(0, Math.min(100, i)) / 100);
+        const [percentX, percentY] = parseTuple(args.position).map(
+          (i) => Math.max(0, Math.min(100, i)) / 100
+        );
         const x = percentX * encodedCostume.width;
         const y = percentY * encodedCostume.height;
 
@@ -270,7 +303,7 @@
 
     hideCur() {
       this.setCur({
-        cur: 'none'
+        cur: 'none',
       });
     }
 

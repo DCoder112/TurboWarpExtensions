@@ -1,4 +1,4 @@
-(function(Scratch) {
+(function (Scratch) {
   'use strict';
 
   const menuIconURI = '';
@@ -22,13 +22,13 @@
             arguments: {
               INPUTA: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'my variable'
+                defaultValue: 'my variable',
               },
               INPUTB: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: '0'
-              }
-            }
+                defaultValue: '0',
+              },
+            },
           },
           {
             opcode: 'changeVariableBy',
@@ -37,13 +37,13 @@
             arguments: {
               INPUTA: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'my variable'
+                defaultValue: 'my variable',
               },
               INPUTB: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: '1'
-              }
-            }
+                defaultValue: '1',
+              },
+            },
           },
           {
             opcode: 'getVariable',
@@ -53,9 +53,9 @@
             arguments: {
               INPUT: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'my variable'
-              }
-            }
+                defaultValue: 'my variable',
+              },
+            },
           },
 
           '---',
@@ -67,9 +67,9 @@
             arguments: {
               INPUT: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'my variable'
-              }
-            }
+                defaultValue: 'my variable',
+              },
+            },
           },
           {
             opcode: 'deleteAllVariables',
@@ -81,42 +81,42 @@
             blockType: Scratch.BlockType.REPORTER,
             text: 'list active variables',
             disableMonitor: true,
-          }
-        ]
+          },
+        ],
       };
     }
 
-    getVariable (args) {
+    getVariable(args) {
       if (args.INPUT in variables) {
-        return (variables[args.INPUT]);
+        return variables[args.INPUT];
       } else {
         return '';
       }
     }
 
-    setVariableTo (args) {
+    setVariableTo(args) {
       variables[args.INPUTA] = args.INPUTB;
     }
 
-    changeVariableBy (args) {
+    changeVariableBy(args) {
       if (args.INPUTA in variables) {
         const prev = Scratch.Cast.toNumber(variables[args.INPUTA]);
         const next = Scratch.Cast.toNumber(args.INPUTB);
-        variables[args.INPUTA] = (prev + next);
+        variables[args.INPUTA] = prev + next;
       } else {
         variables[args.INPUTA] = args.INPUTB;
       }
     }
 
-    listVariables (args, util) {
+    listVariables(args, util) {
       return Object.keys(variables).join(',');
     }
 
-    deleteVariable (args) {
+    deleteVariable(args) {
       Reflect.deleteProperty(variables, args.INPUT);
     }
 
-    deleteAllVariables () {
+    deleteAllVariables() {
       variables = Object.create(null);
     }
   }

@@ -1,6 +1,7 @@
-(function(Scratch) {
+(function (Scratch) {
   'use strict';
-  const quadrilateral = "data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSI3Ny4wMjc4MSIgaGVpZ2h0PSI1NC44MDY1NCIgdmlld0JveD0iMCwwLDc3LjAyNzgxLDU0LjgwNjU0Ij48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMjAxLjUwNDMsLTE1Mi4yMTk3MykiPjxnIGRhdGEtcGFwZXItZGF0YT0ieyZxdW90O2lzUGFpbnRpbmdMYXllciZxdW90Ozp0cnVlfSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJub256ZXJvIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IiIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjAiIHN0eWxlPSJtaXgtYmxlbmQtbW9kZTogbm9ybWFsIj48cGF0aCBkPSJNMjI4LjE3ODc4LDE1NS40NzM3NGw0Ni40MDEwMywxOS44ODYxNmwtMjIuNTM3NjQsMjkuMTY2MzZoLTQ2LjYyMTk5eiIvPjwvZz48L2c+PC9zdmc+";
+  const quadrilateral =
+    'data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSI3Ny4wMjc4MSIgaGVpZ2h0PSI1NC44MDY1NCIgdmlld0JveD0iMCwwLDc3LjAyNzgxLDU0LjgwNjU0Ij48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMjAxLjUwNDMsLTE1Mi4yMTk3MykiPjxnIGRhdGEtcGFwZXItZGF0YT0ieyZxdW90O2lzUGFpbnRpbmdMYXllciZxdW90Ozp0cnVlfSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJub256ZXJvIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IiIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjAiIHN0eWxlPSJtaXgtYmxlbmQtbW9kZTogbm9ybWFsIj48cGF0aCBkPSJNMjI4LjE3ODc4LDE1NS40NzM3NGw0Ni40MDEwMywxOS44ODYxNmwtMjIuNTM3NjQsMjkuMTY2MzZoLTQ2LjYyMTk5eiIvPjwvZz48L2c+PC9zdmc+';
   class MoreComparisons {
     getInfo() {
       return {
@@ -14,7 +15,7 @@
             opcode: 'true',
             blockType: Scratch.BlockType.BOOLEAN,
             text: 'true',
-            arguments: {}
+            arguments: {},
           },
           {
             opcode: 'false',
@@ -29,9 +30,9 @@
             arguments: {
               a: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
+                defaultValue: '',
               },
-            }
+            },
           },
           {
             opcode: 'booleanToInt',
@@ -41,7 +42,7 @@
               a: {
                 type: Scratch.ArgumentType.BOOLEAN,
               },
-            }
+            },
           },
           '---',
           {
@@ -51,13 +52,13 @@
             arguments: {
               a: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'A'
+                defaultValue: 'A',
               },
               b: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'a'
+                defaultValue: 'a',
               },
-            }
+            },
           },
           {
             opcode: 'equalNegative',
@@ -66,13 +67,13 @@
             arguments: {
               a: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '5'
+                defaultValue: '5',
               },
               b: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '-5'
+                defaultValue: '-5',
               },
-            }
+            },
           },
           {
             opcode: 'equalPlusMinus',
@@ -81,13 +82,13 @@
             arguments: {
               a: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '5'
+                defaultValue: '5',
               },
               b: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '-5'
+                defaultValue: '-5',
               },
-            }
+            },
           },
           {
             opcode: 'notEqual',
@@ -96,13 +97,13 @@
             arguments: {
               a: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: '\n'
+                defaultValue: '\n',
               },
               b: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: '\n'
+                defaultValue: '\n',
               },
-            }
+            },
           },
           {
             opcode: 'almostEqual2n',
@@ -111,13 +112,13 @@
             arguments: {
               a: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '5.5'
+                defaultValue: '5.5',
               },
               b: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '6'
+                defaultValue: '6',
               },
-            }
+            },
           },
           {
             opcode: 'almostEqual3n',
@@ -126,17 +127,17 @@
             arguments: {
               a: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '5'
+                defaultValue: '5',
               },
               b: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '6'
+                defaultValue: '6',
               },
               c: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '1'
+                defaultValue: '1',
               },
-            }
+            },
           },
           {
             opcode: 'xor',
@@ -149,7 +150,7 @@
               b: {
                 type: Scratch.ArgumentType.BOOLEAN,
               },
-            }
+            },
           },
           '---',
           {
@@ -159,13 +160,13 @@
             arguments: {
               a: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '\n'
+                defaultValue: '\n',
               },
               b: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '50'
+                defaultValue: '50',
               },
-            }
+            },
           },
           {
             opcode: 'equalOrLess',
@@ -174,13 +175,13 @@
             arguments: {
               a: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '\n'
+                defaultValue: '\n',
               },
               b: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '50'
+                defaultValue: '50',
               },
-            }
+            },
           },
           {
             opcode: 'between',
@@ -189,17 +190,17 @@
             arguments: {
               a: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '\n'
+                defaultValue: '\n',
               },
               b: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '\n'
+                defaultValue: '\n',
               },
               c: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '\n'
+                defaultValue: '\n',
               },
-            }
+            },
           },
           {
             opcode: 'betweenEqual',
@@ -208,17 +209,17 @@
             arguments: {
               a: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '\n'
+                defaultValue: '\n',
               },
               b: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '\n'
+                defaultValue: '\n',
               },
               c: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '\n'
+                defaultValue: '\n',
               },
-            }
+            },
           },
           '---',
           {
@@ -228,13 +229,13 @@
             arguments: {
               a: {
                 type: Scratch.ArgumentType.ANGLE,
-                defaultValue: '0'
+                defaultValue: '0',
               },
               b: {
                 type: Scratch.ArgumentType.ANGLE,
-                defaultValue: '90'
+                defaultValue: '90',
               },
-            }
+            },
           },
           {
             opcode: 'segment_one',
@@ -243,26 +244,26 @@
             arguments: {
               x1: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '-100'
+                defaultValue: '-100',
               },
               y1: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
+                defaultValue: '0',
               },
               x2: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
+                defaultValue: '0',
               },
               y2: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
+                defaultValue: '0',
               },
 
               n: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '100'
+                defaultValue: '100',
               },
-            }
+            },
           },
           {
             opcode: 'segment_two',
@@ -271,38 +272,38 @@
             arguments: {
               x11: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '-100'
+                defaultValue: '-100',
               },
               y11: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
+                defaultValue: '0',
               },
               x12: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
+                defaultValue: '0',
               },
               y12: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '-100'
+                defaultValue: '-100',
               },
 
               x21: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '100'
+                defaultValue: '100',
               },
               y21: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
+                defaultValue: '0',
               },
               x22: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
+                defaultValue: '0',
               },
               y22: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '100'
+                defaultValue: '100',
               },
-            }
+            },
           },
           {
             opcode: 'segment',
@@ -311,21 +312,21 @@
             arguments: {
               x1: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '-100'
+                defaultValue: '-100',
               },
               y1: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
+                defaultValue: '0',
               },
               x2: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
+                defaultValue: '0',
               },
               y2: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
+                defaultValue: '0',
               },
-            }
+            },
           },
           '---',
           {
@@ -335,47 +336,47 @@
             arguments: {
               x1: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
+                defaultValue: '0',
               },
               y1: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '10'
+                defaultValue: '10',
               },
               x2: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '10'
+                defaultValue: '10',
               },
               y2: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '10'
+                defaultValue: '10',
               },
               x3: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '10'
+                defaultValue: '10',
               },
               y3: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
+                defaultValue: '0',
               },
               x4: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
+                defaultValue: '0',
               },
               y4: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
+                defaultValue: '0',
               },
 
               n: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '100'
+                defaultValue: '100',
               },
 
               IMAGE: {
                 type: Scratch.ArgumentType.IMAGE,
                 dataURI: quadrilateral,
-                flipRTL: true
-              }
+                flipRTL: true,
+              },
             },
           },
           {
@@ -385,122 +386,145 @@
             arguments: {
               x1: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
+                defaultValue: '0',
               },
               y1: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '10'
+                defaultValue: '10',
               },
               x2: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '10'
+                defaultValue: '10',
               },
               y2: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '10'
+                defaultValue: '10',
               },
               x3: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '10'
+                defaultValue: '10',
               },
               y3: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
+                defaultValue: '0',
               },
               x4: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
+                defaultValue: '0',
               },
               y4: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
+                defaultValue: '0',
               },
 
               IMAGE: {
                 type: Scratch.ArgumentType.IMAGE,
                 dataURI: quadrilateral,
-                flipRTL: true
-              }
+                flipRTL: true,
+              },
             },
-          }
-        ]
+          },
+        ],
       };
     }
-    true(){
+    true() {
       return true;
     }
-    false(){
+    false() {
       return false;
     }
-    boolean(args){
+    boolean(args) {
       return Scratch.Cast.toBoolean(args.a);
     }
-    booleanToInt(args){
+    booleanToInt(args) {
       if (Scratch.Cast.toBoolean(args.a)) {
         return 1;
       }
       return 0;
     }
     equal(args) {
-      return (args.a == args.b);
+      return args.a == args.b;
     }
     equalNegative(args) {
-      if (isNaN(args.a) || isNaN(args.b)){
+      if (isNaN(args.a) || isNaN(args.b)) {
         return false;
       } else {
-        return (args.a == (0 - args.b));
+        return args.a == 0 - args.b;
       }
     }
     equalPlusMinus(args) {
-      if (isNaN(args.a) || isNaN(args.b)){
+      if (isNaN(args.a) || isNaN(args.b)) {
         return false;
       } else {
-        return (args.a == (0 - args.b)) || (args.a == args.b);
+        return args.a == 0 - args.b || args.a == args.b;
       }
     }
     almostEqual2n(args) {
-      return (Math.round(args.a) == Math.round(args.b));
+      return Math.round(args.a) == Math.round(args.b);
     }
     almostEqual3n(args) {
-      return (Math.abs(args.a - args.b) <= args.c);
+      return Math.abs(args.a - args.b) <= args.c;
     }
     between(args) {
-      return (args.a < args.b) && (args.b < args.c);
+      return args.a < args.b && args.b < args.c;
     }
     betweenEqual(args) {
-      return (args.a <= args.b) && (args.b <= args.c);
+      return args.a <= args.b && args.b <= args.c;
     }
-    notEqual(args){
-      return (args.a != args.b);
+    notEqual(args) {
+      return args.a != args.b;
     }
-    xor(args){
+    xor(args) {
       return Scratch.Cast.toBoolean(args.a) !== Scratch.Cast.toBoolean(args.b);
     }
     equalOrGreater(args) {
-      return (args.a >= args.b);
+      return args.a >= args.b;
     }
     equalOrLess(args) {
-      return (args.a <= args.b);
+      return args.a <= args.b;
     }
     vertical(args) {
-      if (isNaN(args.a) || isNaN(args.b)){
+      if (isNaN(args.a) || isNaN(args.b)) {
         return false;
       } else {
-        return ((args.a - (args.b - 90)) % 180) == 0;
+        return (args.a - (args.b - 90)) % 180 == 0;
       }
     }
     segment_one(args) {
-      return Math.round(Math.sqrt(Math.pow(args.x1 - args.x2, 2) + Math.pow(args.y1 - args.y2, 2))) == args.n;
+      return (
+        Math.round(
+          Math.sqrt(
+            Math.pow(args.x1 - args.x2, 2) + Math.pow(args.y1 - args.y2, 2)
+          )
+        ) == args.n
+      );
     }
     segment_two(args) {
-      return Math.round(Math.sqrt(Math.pow(args.x11 - args.x12, 2) + Math.pow(args.y11 - args.y12, 2)))
-      == Math.round(Math.sqrt(Math.pow(args.x21 - args.x22, 2) + Math.pow(args.y21 - args.y22, 2)));
+      return (
+        Math.round(
+          Math.sqrt(
+            Math.pow(args.x11 - args.x12, 2) + Math.pow(args.y11 - args.y12, 2)
+          )
+        ) ==
+        Math.round(
+          Math.sqrt(
+            Math.pow(args.x21 - args.x22, 2) + Math.pow(args.y21 - args.y22, 2)
+          )
+        )
+      );
     }
     segment(args) {
-      return Math.sqrt(Math.pow(args.x1 - args.x2, 2) + Math.pow(args.y1 - args.y2, 2));
+      return Math.sqrt(
+        Math.pow(args.x1 - args.x2, 2) + Math.pow(args.y1 - args.y2, 2)
+      );
     }
     Squadrilateral_one(args) {
-      let points = [[args.x1,args.y1], [args.x2,args.y2], [args.x3,args.y3], [args.x4,args.y4]];
+      let points = [
+        [args.x1, args.y1],
+        [args.x2, args.y2],
+        [args.x3, args.y3],
+        [args.x4, args.y4],
+      ];
       let area = 0;
       let n = points.length;
       for (let i = 0; i < n; i++) {
@@ -515,7 +539,12 @@
       return Math.round(area) == args.n;
     }
     Squadrilateral(args) {
-      let points = [[args.x1,args.y1], [args.x2,args.y2], [args.x3,args.y3], [args.x4,args.y4]];
+      let points = [
+        [args.x1, args.y1],
+        [args.x2, args.y2],
+        [args.x3, args.y3],
+        [args.x4, args.y4],
+      ];
       let area = 0;
       let n = points.length;
       for (let i = 0; i < n; i++) {
@@ -527,7 +556,7 @@
         area -= x2 * y1;
       }
       area = Math.abs(area) / 2;
-      return (area);
+      return area;
     }
   }
   Scratch.extensions.register(new MoreComparisons());

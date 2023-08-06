@@ -1,4 +1,4 @@
-(function(Scratch) {
+(function (Scratch) {
   'use strict';
 
   const parseEnglish = (text) => {
@@ -11,8 +11,8 @@
   const parseChinese = (text) => {
     const words = text.match(/[^\u4e00-\u9fa5]+|[\u4e00-\u9fa5]+/g);
     const uniques = Array.from(new Set(words));
-    uniques.sort(function(a, b) {
-      return a.localeCompare(b, 'zh-Hans-CN', {sensitivity: 'accent'});
+    uniques.sort(function (a, b) {
+      return a.localeCompare(b, 'zh-Hans-CN', { sensitivity: 'accent' });
     });
     return uniques;
   };
@@ -41,14 +41,14 @@
             arguments: {
               text: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'movie dog restaurant book school'
+                defaultValue: 'movie dog restaurant book school',
               },
               language: {
                 type: Scratch.ArgumentType.STRING,
-                menu: 'language'
-              }
-            }
-          }
+                menu: 'language',
+              },
+            },
+          },
         ],
         menus: {
           language: {
@@ -56,15 +56,15 @@
             items: [
               {
                 text: 'English (en)',
-                value: 'en'
+                value: 'en',
               },
               {
                 text: 'Chinese (zh)',
-                value: 'zh'
-              }
-            ]
-          }
-        }
+                value: 'zh',
+              },
+            ],
+          },
+        },
       };
     }
     words(args) {

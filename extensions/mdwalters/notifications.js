@@ -1,4 +1,4 @@
-(function(Scratch) {
+(function (Scratch) {
   'use strict';
 
   let denied = false;
@@ -44,12 +44,12 @@
           {
             opcode: 'requestPermission',
             blockType: Scratch.BlockType.COMMAND,
-            text: 'request notification permission'
+            text: 'request notification permission',
           },
           {
             opcode: 'hasPermission',
             blockType: Scratch.BlockType.BOOLEAN,
-            text: 'has notification permission'
+            text: 'has notification permission',
           },
           {
             opcode: 'showNotification',
@@ -58,16 +58,16 @@
             arguments: {
               text: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'Hello, world!'
-              }
-            }
+                defaultValue: 'Hello, world!',
+              },
+            },
           },
           {
             opcode: 'closeNotification',
             blockType: Scratch.BlockType.COMMAND,
-            text: 'close notification'
-          }
-        ]
+            text: 'close notification',
+          },
+        ],
       };
     }
 
@@ -86,7 +86,7 @@
       if (await this.hasPermission()) {
         const title = 'Notification from project';
         const options = {
-          body: text
+          body: text,
         };
         try {
           notification = new Notification(title, options);

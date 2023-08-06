@@ -17,8 +17,11 @@
    * @param {Timer} timer
    * @return {number}
    */
-  const timerValue = timer => {
-    return ((timer.paused ? 0 : (Date.now() - timer.startTime)) + timer.pauseTime) / 1000;
+  const timerValue = (timer) => {
+    return (
+      ((timer.paused ? 0 : Date.now() - timer.startTime) + timer.pauseTime) /
+      1000
+    );
   };
 
   class Timers {
@@ -44,17 +47,17 @@
             arguments: {
               TIMER: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'timer'
+                defaultValue: 'timer',
               },
               OP: {
                 type: Scratch.ArgumentType.STRING,
-                menu: 'operation'
+                menu: 'operation',
               },
               NUM: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '5'
-              }
-            }
+                defaultValue: '5',
+              },
+            },
           },
 
           '---',
@@ -67,9 +70,9 @@
             arguments: {
               TIMER: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'timer'
-              }
-            }
+                defaultValue: 'timer',
+              },
+            },
           },
           {
             opcode: 'valueOfTimer',
@@ -79,9 +82,9 @@
             arguments: {
               TIMER: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'timer'
-              }
-            }
+                defaultValue: 'timer',
+              },
+            },
           },
 
           '---',
@@ -94,9 +97,9 @@
             arguments: {
               TIMER: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'timer'
-              }
-            }
+                defaultValue: 'timer',
+              },
+            },
           },
           {
             opcode: 'resumeTimer',
@@ -106,9 +109,9 @@
             arguments: {
               TIMER: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'timer'
-              }
-            }
+                defaultValue: 'timer',
+              },
+            },
           },
 
           '---',
@@ -121,13 +124,13 @@
             arguments: {
               TIMER: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'timer'
+                defaultValue: 'timer',
               },
               NUM: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '10'
-              }
-            }
+                defaultValue: '10',
+              },
+            },
           },
           {
             opcode: 'changeTimer',
@@ -137,13 +140,13 @@
             arguments: {
               TIMER: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'timer'
+                defaultValue: 'timer',
               },
               NUM: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '10'
-              }
-            }
+                defaultValue: '10',
+              },
+            },
           },
 
           '---',
@@ -156,15 +159,15 @@
             arguments: {
               TIMER: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'timer'
+                defaultValue: 'timer',
               },
-            }
+            },
           },
           {
             opcode: 'removeTimers',
             blockType: Scratch.BlockType.COMMAND,
             extensions: ['colours_sensing'],
-            text: 'remove all timers'
+            text: 'remove all timers',
           },
           {
             opcode: 'timerExists',
@@ -174,25 +177,25 @@
             arguments: {
               TIMER: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'timer'
+                defaultValue: 'timer',
               },
-            }
+            },
           },
           {
             opcode: 'listExistingTimers',
             blockType: Scratch.BlockType.REPORTER,
             extensions: ['colours_sensing'],
             text: 'list existing timers',
-            disableMonitor: false
-          }
+            disableMonitor: false,
+          },
         ],
         menus: {
           operation: {
             // false for Scratch parity
             acceptReporters: false,
-            items: ['>','<']
-          }
-        }
+            items: ['>', '<'],
+          },
+        },
       };
     }
 
@@ -208,7 +211,7 @@
       timers[args.TIMER] = {
         startTime: Date.now(),
         pauseTime: 0,
-        paused: false
+        paused: false,
       };
     }
 
@@ -236,7 +239,7 @@
       timers[args.TIMER] = {
         paused: false,
         startTime: Date.now(),
-        pauseTime: Scratch.Cast.toNumber(args.NUM) * 1000
+        pauseTime: Scratch.Cast.toNumber(args.NUM) * 1000,
       };
     }
 

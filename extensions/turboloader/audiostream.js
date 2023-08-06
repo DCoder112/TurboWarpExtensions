@@ -27,9 +27,9 @@
             arguments: {
               SRC: {
                 type: Scratch.ArgumentType.STRING,
-                menu: 'audAssetList'
-              }
-            }
+                menu: 'audAssetList',
+              },
+            },
           },
           {
             opcode: 'am_playfromurl',
@@ -38,9 +38,9 @@
             arguments: {
               URL: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'https://extensions.turbowarp.org/meow.mp3'
-              }
-            }
+                defaultValue: 'https://extensions.turbowarp.org/meow.mp3',
+              },
+            },
           },
           {
             opcode: 'am_playnew',
@@ -49,80 +49,82 @@
             arguments: {
               SRC: {
                 type: Scratch.ArgumentType.STRING,
-                menu: 'audAssetList'
-              }
-            }
+                menu: 'audAssetList',
+              },
+            },
           },
           '---',
           {
             opcode: 'am_usecontext',
             blockType: Scratch.BlockType.COMMAND,
-            text: 'use [SPRITE]\'s context in this sprite',
+            text: "use [SPRITE]'s context in this sprite",
             arguments: {
-              SPRITE: {type: Scratch.ArgumentType.STRING,menu: 'spriteList'}
-            }
+              SPRITE: { type: Scratch.ArgumentType.STRING, menu: 'spriteList' },
+            },
           },
           '---',
           {
             opcode: 'am_play',
             blockType: Scratch.BlockType.COMMAND,
             text: 'play',
-            arguments: {}
+            arguments: {},
           },
           {
             opcode: 'am_playandwait',
             blockType: Scratch.BlockType.COMMAND,
             text: 'play and wait till the end',
-            arguments: {}
+            arguments: {},
           },
           {
             opcode: 'am_resume',
             blockType: Scratch.BlockType.COMMAND,
             text: 'resume',
-            arguments: {}
+            arguments: {},
           },
           {
             opcode: 'am_pause',
             blockType: Scratch.BlockType.COMMAND,
             text: 'pause',
-            arguments: {}
+            arguments: {},
           },
           {
             opcode: 'am_stopthis',
             blockType: Scratch.BlockType.COMMAND,
             text: 'stop (this context)',
-            arguments: {}
+            arguments: {},
           },
           {
             opcode: 'am_stophim',
             blockType: Scratch.BlockType.COMMAND,
             text: 'stop sounds of [SPRITE]',
-            arguments: {SPRITE: {type: Scratch.ArgumentType.STRING, menu: 'spriteList'}}
+            arguments: {
+              SPRITE: { type: Scratch.ArgumentType.STRING, menu: 'spriteList' },
+            },
           },
           {
             opcode: 'am_stop',
             blockType: Scratch.BlockType.COMMAND,
             text: 'stop all sounds',
-            arguments: {}
+            arguments: {},
           },
           {
             opcode: 'am_hasStopped',
             blockType: Scratch.BlockType.BOOLEAN,
             text: 'has stopped',
-            arguments: {}
+            arguments: {},
           },
           {
             opcode: 'am_isPaused',
             blockType: Scratch.BlockType.BOOLEAN,
             text: 'is paused',
-            arguments: {}
+            arguments: {},
           },
           '---',
           {
             opcode: 'am_getanalyser',
             blockType: Scratch.BlockType.REPORTER,
             text: 'get all visualizer data (slow)',
-            arguments: {}
+            arguments: {},
           },
           {
             opcode: 'am_getanalyserindex',
@@ -130,9 +132,9 @@
             text: 'get visualizer data at [INDEX]',
             arguments: {
               INDEX: {
-                type: Scratch.ArgumentType.NUMBER
-              }
-            }
+                type: Scratch.ArgumentType.NUMBER,
+              },
+            },
           },
           {
             opcode: 'am_analyserfft',
@@ -141,9 +143,9 @@
             arguments: {
               VAL: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '256'
-              }
-            }
+                defaultValue: '256',
+              },
+            },
           },
           '---',
           {
@@ -153,15 +155,15 @@
             arguments: {
               VAL: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '1.0'
-              }
-            }
+                defaultValue: '1.0',
+              },
+            },
           },
           {
             opcode: 'am_getvolume',
             blockType: Scratch.BlockType.REPORTER,
             text: 'volume',
-            arguments: {}
+            arguments: {},
           },
           '---',
           {
@@ -171,21 +173,21 @@
             arguments: {
               VAL: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
-              }
-            }
+                defaultValue: '0',
+              },
+            },
           },
           {
             opcode: 'am_songDuration',
             blockType: Scratch.BlockType.REPORTER,
             text: 'sound duration',
-            arguments: {}
+            arguments: {},
           },
           {
             opcode: 'am_songCurrent',
             blockType: Scratch.BlockType.REPORTER,
             text: 'current time',
-            arguments: {}
+            arguments: {},
           },
           '---',
           {
@@ -195,9 +197,9 @@
             arguments: {
               VAL: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
-              }
-            }
+                defaultValue: '0',
+              },
+            },
           },
           {
             opcode: 'am_setppitch',
@@ -206,9 +208,9 @@
             arguments: {
               VAL: {
                 type: Scratch.ArgumentType.BOOLEAN,
-                defaultValue: 'false'
-              }
-            }
+                defaultValue: 'false',
+              },
+            },
           },
           {
             opcode: 'am_setstereo',
@@ -217,9 +219,9 @@
             arguments: {
               VAL: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
-              }
-            }
+                defaultValue: '0',
+              },
+            },
           },
           {
             opcode: 'am_setfilter',
@@ -230,17 +232,17 @@
               FIL: {
                 type: Scratch.ArgumentType.STRING,
                 defaultValue: 'lowpass',
-                menu: 'filtersmenu'
+                menu: 'filtersmenu',
               },
               Q: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
+                defaultValue: '0',
               },
               FQ: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '440'
-              }
-            }
+                defaultValue: '440',
+              },
+            },
           },
           {
             opcode: 'am_toglefilter',
@@ -251,21 +253,21 @@
               FIL: {
                 type: Scratch.ArgumentType.STRING,
                 defaultValue: 'lowpass',
-                menu: 'filtersmenu'
+                menu: 'filtersmenu',
               },
               STATE: {
                 type: Scratch.ArgumentType.STRING,
                 defaultValue: 'connect',
-                menu: 'connectOrDisconnect'
-              }
-            }
+                menu: 'connectOrDisconnect',
+              },
+            },
           },
           {
             opcode: 'am_freset',
             blockType: Scratch.BlockType.COMMAND,
             text: '(broken) reset all filters',
             hideFromPalette: true,
-            arguments: {}
+            arguments: {},
           },
           {
             opcode: 'am_connect',
@@ -275,13 +277,13 @@
             arguments: {
               STRING: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'filter1'
+                defaultValue: 'filter1',
               },
               TRACK: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'track'
-              }
-            }
+                defaultValue: 'track',
+              },
+            },
           },
           {
             opcode: 'am_disconnect',
@@ -291,89 +293,91 @@
             arguments: {
               STRING: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'filter1'
+                defaultValue: 'filter1',
               },
               TRACK: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'track'
-              }
-            }
+                defaultValue: 'track',
+              },
+            },
           },
         ],
         menus: {
           filtersmenu: [
             {
               text: 'lowpass',
-              value: 'lowpass'
+              value: 'lowpass',
             },
             {
               text: 'highpass',
-              value: 'highpass'
+              value: 'highpass',
             },
             {
               text: 'bandpass',
-              value: 'bandpass'
+              value: 'bandpass',
             },
             {
               text: 'lowshelf',
-              value: 'lowshelf'
+              value: 'lowshelf',
             },
             {
               text: 'highshelf',
-              value: 'highshelf'
+              value: 'highshelf',
             },
             {
               text: 'peaking',
-              value: 'peaking'
+              value: 'peaking',
             },
             {
               text: 'notch',
-              value: 'notch'
+              value: 'notch',
             },
             {
               text: 'allpass',
-              value: 'allpass'
-            }
+              value: 'allpass',
+            },
           ],
           connectOrDisconnect: [
             {
               text: 'connect',
-              value: 'connect'
+              value: 'connect',
             },
             {
               text: 'disconnect',
-              value: 'disconnect'
-            }
+              value: 'disconnect',
+            },
           ],
           audAssetList: {
             acceptReporters: true,
-            items: 'getProjectSounds'
+            items: 'getProjectSounds',
           },
           spriteList: {
             acceptReporters: true,
-            items: 'getSprites'
-          }
-        }
+            items: 'getSprites',
+          },
+        },
       };
     }
 
     getProjectSounds() {
       const sounds = Scratch.vm.runtime.targets
-        .filter(s => s.isOriginal)
-        .map(s => s.sprite.sounds.map(snd => ({
-          text: `${s.sprite.name} - ${snd.name}`,
-          value: snd.assetId
-        })))
+        .filter((s) => s.isOriginal)
+        .map((s) =>
+          s.sprite.sounds.map((snd) => ({
+            text: `${s.sprite.name} - ${snd.name}`,
+            value: snd.assetId,
+          }))
+        )
         .flat();
       return sounds.length ? sounds : [{ text: 'empty', value: 'empty' }];
     }
 
     getSprites() {
       return Scratch.vm.runtime.targets
-        .filter(s => s.isOriginal)
-        .map(s => ({
+        .filter((s) => s.isOriginal)
+        .map((s) => ({
           text: s.sprite.name,
-          value: s.id
+          value: s.id,
         }));
     }
 
@@ -384,7 +388,7 @@
       if (contextBindings[id] && id !== contextBindings[id]) {
         return this.getContext(contextBindings[id], opt);
       }
-      const foundContext = contexList.find(c => c.id === id);
+      const foundContext = contexList.find((c) => c.id === id);
       if (foundContext) {
         return foundContext;
       }
@@ -399,7 +403,7 @@
         source: document.createElement('audio'),
         effects: {},
         filters: {},
-        volume: 1
+        volume: 1,
       };
       if (opt?.src) ctx.source.src = opt.src;
       ctx.source.crossOrigin = 'anonymous';
@@ -410,8 +414,17 @@
         ctx.audio = new AudioContext();
         ctx.track = ctx.audio.createMediaElementSource(ctx.source);
         ctx.effects.gain = ctx.audio.createGain();
-        ctx.effects.panner = new StereoPannerNode(ctx.audio, {pan: 0});
-        ['lowpass', 'highpass', 'bandpass', 'lowshelf', 'highshelf', 'peaking', 'notch', 'allpass'].forEach(f => {
+        ctx.effects.panner = new StereoPannerNode(ctx.audio, { pan: 0 });
+        [
+          'lowpass',
+          'highpass',
+          'bandpass',
+          'lowshelf',
+          'highshelf',
+          'peaking',
+          'notch',
+          'allpass',
+        ].forEach((f) => {
           let bf = ctx.audio.createBiquadFilter();
           bf.type = f;
           ctx.filters[f] = bf;
@@ -419,33 +432,39 @@
         ctx.analyser = ctx.audio.createAnalyser();
         ctx.analyser.fftSize = 2048;
         ctx.dataArray = new Uint8Array(ctx.analyser.frequencyBinCount);
-        ctx.track.connect(ctx.effects.gain).connect(ctx.effects.panner).connect(ctx.analyser).connect(ctx.audio.destination);
+        ctx.track
+          .connect(ctx.effects.gain)
+          .connect(ctx.effects.panner)
+          .connect(ctx.analyser)
+          .connect(ctx.audio.destination);
       }
       contexList.push(ctx);
       return ctx;
     }
 
-    am_usecontext({SPRITE},util) {
+    am_usecontext({ SPRITE }, util) {
       contextBindings[util.target.id] = SPRITE;
     }
 
-    am_loadasset({SRC}, util) {
-      let ctx = (!util?.source?.id) ? this.getContext(util.target.id) : util;
+    am_loadasset({ SRC }, util) {
+      let ctx = !util?.source?.id ? this.getContext(util.target.id) : util;
       if (assetSourceList[SRC]) {
         ctx.source.src = assetSourceList[SRC];
         return;
       }
-      let asset = Scratch.vm.assets.find(e => e.assetId === SRC);
+      let asset = Scratch.vm.assets.find((e) => e.assetId === SRC);
       if (!asset) {
-        console.error('[AudioStream] Media error: ',asset);
+        console.error('[AudioStream] Media error: ', asset);
         return;
       }
-      let src = URL.createObjectURL(new Blob([asset.data], {type: asset.assetType.contentType}));
+      let src = URL.createObjectURL(
+        new Blob([asset.data], { type: asset.assetType.contentType })
+      );
       ctx.source.src = src;
       assetSourceList[SRC] = src;
     }
 
-    async am_playfromurl({URL}, util) {
+    async am_playfromurl({ URL }, util) {
       let ctx = this.getContext(util.target.id);
       if (await Scratch.canFetch(URL)) {
         ctx.source.src = URL;
@@ -457,13 +476,13 @@
       ctx.source.currentTime = 9e20;
     }
 
-    am_stophim({SPRITE}) {
+    am_stophim({ SPRITE }) {
       let ctx = this.getContext(SPRITE);
       ctx.source.currentTime = 9e20;
     }
 
     am_stop() {
-      contexList.forEach(ctx=>{
+      contexList.forEach((ctx) => {
         ctx.source.currentTime = 9e20;
       });
     }
@@ -476,22 +495,22 @@
 
     am_playandwait(args, util) {
       let ctx = this.getContext(util.target.id);
-      return new Promise(r => {
+      return new Promise((r) => {
         ctx.source.currentTime = 0.001;
         ctx.source.play();
         ctx.source.addEventListener('ended', r);
       });
     }
 
-    am_playnew({SRC}) {
+    am_playnew({ SRC }) {
       let id = btoa((Math.random() * 1e17).toString());
-      let ctx = this.newContext(id, {simple: true});
-      this.am_loadasset({SRC: SRC},ctx);
+      let ctx = this.newContext(id, { simple: true });
+      this.am_loadasset({ SRC: SRC }, ctx);
       ctx.source.currentTime = 0;
       ctx.source.play();
       ctx.source.addEventListener('ended', () => {
         ctx.source.remove();
-        contexList = contexList.filter(c => c.id != id);
+        contexList = contexList.filter((c) => c.id != id);
       });
     }
 
@@ -505,18 +524,25 @@
       ctx.source.pause();
     }
 
-    am_skipToTime({VAL}, util) {
+    am_skipToTime({ VAL }, util) {
       let ctx = this.getContext(util.target.id);
       ctx.source.currentTime = VAL;
     }
 
-    am_setpitch({VAL}, util) {
+    am_setpitch({ VAL }, util) {
       let ctx = this.getContext(util.target.id);
       // Calculate the pitch value to be closer to original Scratch
-      ctx.source.playbackRate = ctx.source.defaultPlaybackRate = VAL < 0 ? VAL < -659 ? 0.1 : Math.abs(VAL) / 700 : VAL > 700 ? 15 : VAL / 50 + 1;
+      ctx.source.playbackRate = ctx.source.defaultPlaybackRate =
+        VAL < 0
+          ? VAL < -659
+            ? 0.1
+            : Math.abs(VAL) / 700
+          : VAL > 700
+          ? 15
+          : VAL / 50 + 1;
     }
 
-    am_setvolume({VAL}, util) {
+    am_setvolume({ VAL }, util) {
       let ctx = this.getContext(util.target.id);
       ctx.volume = +VAL;
       if (ctx.volume > 1) {
@@ -533,37 +559,37 @@
       return ctx.volume;
     }
 
-    am_setstereo({VAL}, util) {
+    am_setstereo({ VAL }, util) {
       let ctx = this.getContext(util.target.id);
       ctx.effects.panner.pan.value = VAL;
     }
 
-    am_setppitch({VAL}, util) {
+    am_setppitch({ VAL }, util) {
       let ctx = this.getContext(util.target.id);
       ctx.source.preservesPitch = VAL;
     }
 
-    am_setfilter({FIL,FQ, Q}, util) {
+    am_setfilter({ FIL, FQ, Q }, util) {
       // did not work in the original version
     }
 
-    am_toglefilter({FIL, STATE}, util) {
+    am_toglefilter({ FIL, STATE }, util) {
       // did not work in the original version
     }
 
-    am_freset({FQ}, util) {
+    am_freset({ FQ }, util) {
       // did not work in the original version
     }
 
-    am_connect({STRING}, util) {
+    am_connect({ STRING }, util) {
       // did not work in the original version
     }
 
-    am_disconnect({STRING}, util) {
+    am_disconnect({ STRING }, util) {
       // did not work in the original version
     }
 
-    am_analyserfft({VAL}, util) {
+    am_analyserfft({ VAL }, util) {
       let ctx = this.getContext(util.target.id);
       ctx.analyser.fftSize = VAL;
     }
@@ -579,7 +605,7 @@
       return JSON.stringify(ctx.dataArray);
     }
 
-    am_getanalyserindex({INDEX}, util) {
+    am_getanalyserindex({ INDEX }, util) {
       let ctx = this.getContext(util.target.id);
       ctx.analyser.getByteTimeDomainData(ctx.dataArray);
       return ctx.dataArray[INDEX];
@@ -602,4 +628,4 @@
   }
 
   Scratch.extensions.register(new AudioStream());
-}(Scratch));
+})(Scratch);

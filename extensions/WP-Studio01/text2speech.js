@@ -1,8 +1,8 @@
-(function(Scratch) {
+(function (Scratch) {
   'use strict';
 
   class Tools {
-    getInfo () {
+    getInfo() {
       return {
         id: 'wpstudio01tts',
         name: 'System Text To Speech',
@@ -14,15 +14,15 @@
             arguments: {
               TEXT: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'Hello'
-              }
-            }
-          }
-        ]
+                defaultValue: 'Hello',
+              },
+            },
+          },
+        ],
       };
     }
 
-    speak (args) {
+    speak(args) {
       return new Promise((resolve, reject) => {
         const utterance = new SpeechSynthesisUtterance(args.TEXT);
         utterance.onend = () => {

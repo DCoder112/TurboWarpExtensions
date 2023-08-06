@@ -2,7 +2,7 @@
  * Credit to NexusKitten (NamelessCat) for the idea
  */
 
-(function(Scratch) {
+(function (Scratch) {
   'use strict';
 
   class lmsmcutils {
@@ -19,15 +19,15 @@
             text: 'if [INPUTA] is manager then [INPUTB] else [INPUTC]',
             arguments: {
               INPUTA: {
-                type: Scratch.ArgumentType.BOOLEAN
+                type: Scratch.ArgumentType.BOOLEAN,
               },
               INPUTB: {
-                type: Scratch.ArgumentType.STRING
+                type: Scratch.ArgumentType.STRING,
               },
               INPUTC: {
-                type: Scratch.ArgumentType.STRING
-              }
-            }
+                type: Scratch.ArgumentType.STRING,
+              },
+            },
           },
           {
             opcode: 'icecreammachine',
@@ -36,9 +36,9 @@
             arguments: {
               INPUT: {
                 type: Scratch.ArgumentType.STRING,
-                menu: 'iceCreamMenu'
-              }
-            }
+                menu: 'iceCreamMenu',
+              },
+            },
           },
           {
             opcode: 'talkToManager',
@@ -47,8 +47,8 @@
             arguments: {
               INPUT: {
                 type: Scratch.ArgumentType.STRING,
-              }
-            }
+              },
+            },
           },
           {
             opcode: 'placeOrder',
@@ -57,9 +57,9 @@
             arguments: {
               INPUT: {
                 type: Scratch.ArgumentType.STRING,
-              }
-            }
-          }
+              },
+            },
+          },
         ],
         menus: {
           iceCreamMenu: {
@@ -67,15 +67,15 @@
             items: [
               {
                 text: 'working',
-                value: 'working'
+                value: 'working',
               },
               {
                 text: 'broken',
-                value: 'broken'
-              }
-            ]
-          }
-        }
+                value: 'broken',
+              },
+            ],
+          },
+        },
       };
     }
 

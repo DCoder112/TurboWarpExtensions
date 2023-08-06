@@ -31,7 +31,7 @@ Other various small fixes
         COMMAND: 'command',
         REPORTER: 'reporter',
         BOOLEAN: 'Boolean',
-        HAT: 'hat'
+        HAT: 'hat',
       },
       // @ts-expect-error
       ArgumentType: {
@@ -41,7 +41,7 @@ Other various small fixes
         ANGLE: 'angle',
         BOOLEAN: 'Boolean',
         MATRIX: 'matrix',
-        NOTE: 'note'
+        NOTE: 'note',
       },
       // @ts-expect-error
       vm: window.vm,
@@ -49,11 +49,15 @@ Other various small fixes
         unsandboxed: true,
         register: (object) => {
           // @ts-expect-error
-          const serviceName = vm.extensionManager._registerInternalExtension(object);
+          const serviceName =
+            vm.extensionManager._registerInternalExtension(object);
           // @ts-expect-error
-          vm.extensionManager._loadedExtensions.set(object.getInfo().id, serviceName);
-        }
-      }
+          vm.extensionManager._loadedExtensions.set(
+            object.getInfo().id,
+            serviceName
+          );
+        },
+      },
     };
     if (!Scratch.vm) {
       throw new Error('The VM does not exist');
@@ -71,7 +75,8 @@ Other various small fixes
 
   const EXAMPLE_IMAGE = 'https://extensions.turbowarp.org/dango.png';
 
-  const blankImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAAXNSR0IArs4c6QAAABRJREFUGFdj/P///38GBgYGRhgDAFfVB/vDfnUlAAAAAElFTkSuQmCC";
+  const blankImage =
+    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAAXNSR0IArs4c6QAAABRJREFUGFdj/P///38GBgYGRhgDAFfVB/vDfnUlAAAAAElFTkSuQmCC';
 
   // TODO: see how these differ from Scratch, if at all
   // Note to Garbo or any code checker it does it uses bilinear filtering!
@@ -87,12 +92,12 @@ Other various small fixes
     r: 1,
     g: 1,
     b: 1,
-    a: 1
+    a: 1,
   };
 
   var screenWidth = 480;
   var screenHeight = 360;
-  var coordinateSpace = "Canvas";
+  var coordinateSpace = 'Canvas';
 
   var stampRotation = 90;
   var stampOffset = [0, 0];
@@ -152,7 +157,6 @@ Other various small fixes
      * @typedef {number[]|Float32Array} Matrix4
      * @memberOf module:webgl-3d-math
      */
-
 
     let MatType = Float32Array;
 
@@ -230,7 +234,6 @@ Other various small fixes
       dst[15] = b30 * a03 + b31 * a13 + b32 * a23 + b33 * a33;
       return dst;
     }
-
 
     /**
      * adds 2 vectors3s
@@ -342,7 +345,7 @@ Other various small fixes
      * @memberOf module:webgl-3d-math
      */
     function dot(a, b) {
-      return (a[0] * b[0]) + (a[1] * b[1]) + (a[2] * b[2]);
+      return a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
     }
 
     /**
@@ -576,12 +579,12 @@ Other various small fixes
       var dy = top - bottom;
       var dz = far - near;
 
-      dst[0] = 2 * near / dx;
+      dst[0] = (2 * near) / dx;
       dst[1] = 0;
       dst[2] = 0;
       dst[3] = 0;
       dst[4] = 0;
-      dst[5] = 2 * near / dy;
+      dst[5] = (2 * near) / dy;
       dst[6] = 0;
       dst[7] = 0;
       dst[8] = (left + right) / dx;
@@ -590,7 +593,7 @@ Other various small fixes
       dst[11] = -1;
       dst[12] = 0;
       dst[13] = 0;
-      dst[14] = -2 * near * far / dz;
+      dst[14] = (-2 * near * far) / dz;
       dst[15] = 0;
 
       return dst;
@@ -1282,13 +1285,25 @@ Other various small fixes
       var tmp_10 = m02 * m13;
       var tmp_11 = m12 * m03;
 
-      var t0 = (tmp_0 * m11 + tmp_3 * m21 + tmp_4 * m31) -
+      var t0 =
+        tmp_0 * m11 +
+        tmp_3 * m21 +
+        tmp_4 * m31 -
         (tmp_1 * m11 + tmp_2 * m21 + tmp_5 * m31);
-      var t1 = (tmp_1 * m01 + tmp_6 * m21 + tmp_9 * m31) -
+      var t1 =
+        tmp_1 * m01 +
+        tmp_6 * m21 +
+        tmp_9 * m31 -
         (tmp_0 * m01 + tmp_7 * m21 + tmp_8 * m31);
-      var t2 = (tmp_2 * m01 + tmp_7 * m11 + tmp_10 * m31) -
+      var t2 =
+        tmp_2 * m01 +
+        tmp_7 * m11 +
+        tmp_10 * m31 -
         (tmp_3 * m01 + tmp_6 * m11 + tmp_11 * m31);
-      var t3 = (tmp_5 * m01 + tmp_8 * m11 + tmp_11 * m21) -
+      var t3 =
+        tmp_5 * m01 +
+        tmp_8 * m11 +
+        tmp_11 * m21 -
         (tmp_4 * m01 + tmp_9 * m11 + tmp_10 * m21);
 
       return 1.0 / (m00 * t0 + m10 * t1 + m20 * t2 + m30 * t3);
@@ -1344,13 +1359,25 @@ Other various small fixes
       var tmp_22 = m00 * m11;
       var tmp_23 = m10 * m01;
 
-      var t0 = (tmp_0 * m11 + tmp_3 * m21 + tmp_4 * m31) -
+      var t0 =
+        tmp_0 * m11 +
+        tmp_3 * m21 +
+        tmp_4 * m31 -
         (tmp_1 * m11 + tmp_2 * m21 + tmp_5 * m31);
-      var t1 = (tmp_1 * m01 + tmp_6 * m21 + tmp_9 * m31) -
+      var t1 =
+        tmp_1 * m01 +
+        tmp_6 * m21 +
+        tmp_9 * m31 -
         (tmp_0 * m01 + tmp_7 * m21 + tmp_8 * m31);
-      var t2 = (tmp_2 * m01 + tmp_7 * m11 + tmp_10 * m31) -
+      var t2 =
+        tmp_2 * m01 +
+        tmp_7 * m11 +
+        tmp_10 * m31 -
         (tmp_3 * m01 + tmp_6 * m11 + tmp_11 * m31);
-      var t3 = (tmp_5 * m01 + tmp_8 * m11 + tmp_11 * m21) -
+      var t3 =
+        tmp_5 * m01 +
+        tmp_8 * m11 +
+        tmp_11 * m21 -
         (tmp_4 * m01 + tmp_9 * m11 + tmp_10 * m21);
 
       var d = 1.0 / (m00 * t0 + m10 * t1 + m20 * t2 + m30 * t3);
@@ -1359,30 +1386,78 @@ Other various small fixes
       dst[1] = d * t1;
       dst[2] = d * t2;
       dst[3] = d * t3;
-      dst[4] = d * ((tmp_1 * m10 + tmp_2 * m20 + tmp_5 * m30) -
-        (tmp_0 * m10 + tmp_3 * m20 + tmp_4 * m30));
-      dst[5] = d * ((tmp_0 * m00 + tmp_7 * m20 + tmp_8 * m30) -
-        (tmp_1 * m00 + tmp_6 * m20 + tmp_9 * m30));
-      dst[6] = d * ((tmp_3 * m00 + tmp_6 * m10 + tmp_11 * m30) -
-        (tmp_2 * m00 + tmp_7 * m10 + tmp_10 * m30));
-      dst[7] = d * ((tmp_4 * m00 + tmp_9 * m10 + tmp_10 * m20) -
-        (tmp_5 * m00 + tmp_8 * m10 + tmp_11 * m20));
-      dst[8] = d * ((tmp_12 * m13 + tmp_15 * m23 + tmp_16 * m33) -
-        (tmp_13 * m13 + tmp_14 * m23 + tmp_17 * m33));
-      dst[9] = d * ((tmp_13 * m03 + tmp_18 * m23 + tmp_21 * m33) -
-        (tmp_12 * m03 + tmp_19 * m23 + tmp_20 * m33));
-      dst[10] = d * ((tmp_14 * m03 + tmp_19 * m13 + tmp_22 * m33) -
-        (tmp_15 * m03 + tmp_18 * m13 + tmp_23 * m33));
-      dst[11] = d * ((tmp_17 * m03 + tmp_20 * m13 + tmp_23 * m23) -
-        (tmp_16 * m03 + tmp_21 * m13 + tmp_22 * m23));
-      dst[12] = d * ((tmp_14 * m22 + tmp_17 * m32 + tmp_13 * m12) -
-        (tmp_16 * m32 + tmp_12 * m12 + tmp_15 * m22));
-      dst[13] = d * ((tmp_20 * m32 + tmp_12 * m02 + tmp_19 * m22) -
-        (tmp_18 * m22 + tmp_21 * m32 + tmp_13 * m02));
-      dst[14] = d * ((tmp_18 * m12 + tmp_23 * m32 + tmp_15 * m02) -
-        (tmp_22 * m32 + tmp_14 * m02 + tmp_19 * m12));
-      dst[15] = d * ((tmp_22 * m22 + tmp_16 * m02 + tmp_21 * m12) -
-        (tmp_20 * m12 + tmp_23 * m22 + tmp_17 * m02));
+      dst[4] =
+        d *
+        (tmp_1 * m10 +
+          tmp_2 * m20 +
+          tmp_5 * m30 -
+          (tmp_0 * m10 + tmp_3 * m20 + tmp_4 * m30));
+      dst[5] =
+        d *
+        (tmp_0 * m00 +
+          tmp_7 * m20 +
+          tmp_8 * m30 -
+          (tmp_1 * m00 + tmp_6 * m20 + tmp_9 * m30));
+      dst[6] =
+        d *
+        (tmp_3 * m00 +
+          tmp_6 * m10 +
+          tmp_11 * m30 -
+          (tmp_2 * m00 + tmp_7 * m10 + tmp_10 * m30));
+      dst[7] =
+        d *
+        (tmp_4 * m00 +
+          tmp_9 * m10 +
+          tmp_10 * m20 -
+          (tmp_5 * m00 + tmp_8 * m10 + tmp_11 * m20));
+      dst[8] =
+        d *
+        (tmp_12 * m13 +
+          tmp_15 * m23 +
+          tmp_16 * m33 -
+          (tmp_13 * m13 + tmp_14 * m23 + tmp_17 * m33));
+      dst[9] =
+        d *
+        (tmp_13 * m03 +
+          tmp_18 * m23 +
+          tmp_21 * m33 -
+          (tmp_12 * m03 + tmp_19 * m23 + tmp_20 * m33));
+      dst[10] =
+        d *
+        (tmp_14 * m03 +
+          tmp_19 * m13 +
+          tmp_22 * m33 -
+          (tmp_15 * m03 + tmp_18 * m13 + tmp_23 * m33));
+      dst[11] =
+        d *
+        (tmp_17 * m03 +
+          tmp_20 * m13 +
+          tmp_23 * m23 -
+          (tmp_16 * m03 + tmp_21 * m13 + tmp_22 * m23));
+      dst[12] =
+        d *
+        (tmp_14 * m22 +
+          tmp_17 * m32 +
+          tmp_13 * m12 -
+          (tmp_16 * m32 + tmp_12 * m12 + tmp_15 * m22));
+      dst[13] =
+        d *
+        (tmp_20 * m32 +
+          tmp_12 * m02 +
+          tmp_19 * m22 -
+          (tmp_18 * m22 + tmp_21 * m32 + tmp_13 * m02));
+      dst[14] =
+        d *
+        (tmp_18 * m12 +
+          tmp_23 * m32 +
+          tmp_15 * m02 -
+          (tmp_22 * m32 + tmp_14 * m02 + tmp_19 * m12));
+      dst[15] =
+        d *
+        (tmp_22 * m22 +
+          tmp_16 * m02 +
+          tmp_21 * m12 -
+          (tmp_20 * m12 + tmp_23 * m22 + tmp_17 * m02));
 
       return dst;
     }
@@ -1422,11 +1497,30 @@ Other various small fixes
       var v0 = v[0];
       var v1 = v[1];
       var v2 = v[2];
-      var d = v0 * m[0 * 4 + 3] + v1 * m[1 * 4 + 3] + v2 * m[2 * 4 + 3] + m[3 * 4 + 3];
+      var d =
+        v0 * m[0 * 4 + 3] +
+        v1 * m[1 * 4 + 3] +
+        v2 * m[2 * 4 + 3] +
+        m[3 * 4 + 3];
 
-      dst[0] = (v0 * m[0 * 4 + 0] + v1 * m[1 * 4 + 0] + v2 * m[2 * 4 + 0] + m[3 * 4 + 0]) / d;
-      dst[1] = (v0 * m[0 * 4 + 1] + v1 * m[1 * 4 + 1] + v2 * m[2 * 4 + 1] + m[3 * 4 + 1]) / d;
-      dst[2] = (v0 * m[0 * 4 + 2] + v1 * m[1 * 4 + 2] + v2 * m[2 * 4 + 2] + m[3 * 4 + 2]) / d;
+      dst[0] =
+        (v0 * m[0 * 4 + 0] +
+          v1 * m[1 * 4 + 0] +
+          v2 * m[2 * 4 + 0] +
+          m[3 * 4 + 0]) /
+        d;
+      dst[1] =
+        (v0 * m[0 * 4 + 1] +
+          v1 * m[1 * 4 + 1] +
+          v2 * m[2 * 4 + 1] +
+          m[3 * 4 + 1]) /
+        d;
+      dst[2] =
+        (v0 * m[0 * 4 + 2] +
+          v1 * m[1 * 4 + 2] +
+          v2 * m[2 * 4 + 2] +
+          m[3 * 4 + 2]) /
+        d;
 
       return dst;
     }
@@ -1550,7 +1644,7 @@ Other various small fixes
       transformNormal: transformNormal,
       setDefaultType: setDefaultType,
     };
-  }());
+  })();
 
   const textures = {};
 
@@ -1569,7 +1663,7 @@ Other various small fixes
     'gl_Position = u_matrix * (a_position * a_zOffset * float(128)) + vec4(0,0,1,a_zOffset);',
     'v_texcoord = a_texcoord;',
     'vColor = aVertexColor;',
-    '}'
+    '}',
   ].join('\n');
 
   var fragmentShaderCode = [
@@ -1585,56 +1679,29 @@ Other various small fixes
     '}',
   ].join('\n');
 
-  var quadPositions = [
-    0, 0,
-    0, 1,
-    1, 0,
-    1, 0,
-    0, 1,
-    1, 1,
-  ];
+  var quadPositions = [0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 1];
 
-  var quadCoords = [
-    0, 0,
-    0, 1,
-    1, 0,
-    1, 0,
-    0, 1,
-    1, 1,
-  ];
+  var quadCoords = [0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 1];
 
-  var quadZPositionArray = [
-    1,
-    1,
-    1,
-    1,
-    1,
-    1
-  ];
+  var quadZPositionArray = [1, 1, 1, 1, 1, 1];
 
   var quadColors = [
-    1.0, 1.0, 1.0, 1.0,
-    1.0, 1.0, 1.0, 1.0,
-    1.0, 1.0, 1.0, 1.0,
-    1.0, 1.0, 1.0, 1.0,
-    1.0, 1.0, 1.0, 1.0,
-    1.0, 1.0, 1.0, 1.0
+    1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
+    1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
   ];
 
-  var TriangleZPositionArray = [
-    1,
-    1,
-    1
-  ];
+  var TriangleZPositionArray = [1, 1, 1];
 
   var triangleColors = [
-    1.0, 1.0, 1.0, 1.0,
-    1.0, 1.0, 1.0, 1.0,
-    1.0, 1.0, 1.0, 1.0
+    1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
   ];
   var quadPositionBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, quadPositionBuffer);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(quadPositions), gl.STATIC_DRAW);
+  gl.bufferData(
+    gl.ARRAY_BUFFER,
+    new Float32Array(quadPositions),
+    gl.STATIC_DRAW
+  );
 
   var quadZPositionBuffer = gl.createBuffer();
 
@@ -1715,7 +1782,17 @@ Other various small fixes
     const texture = gl.createTexture();
     gl.bindTexture(gl.TEXTURE_2D, texture);
     // Fill the texture with a 1x1 blue pixel.
-    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array([0, 0, 255, 255]));
+    gl.texImage2D(
+      gl.TEXTURE_2D,
+      0,
+      gl.RGBA,
+      1,
+      1,
+      0,
+      gl.RGBA,
+      gl.UNSIGNED_BYTE,
+      new Uint8Array([0, 0, 255, 255])
+    );
 
     // Let's assume all images are not a power of 2
     if (clamp) {
@@ -1731,10 +1808,10 @@ Other various small fixes
       // we don't know the size until it loads
       width: 1,
       height: 1,
-      texture
+      texture,
     };
 
-    Scratch.canFetch(url).then(allowed => {
+    Scratch.canFetch(url).then((allowed) => {
       if (!allowed) {
         return;
       }
@@ -1746,7 +1823,14 @@ Other various small fixes
         textureInfo.height = image.height;
 
         gl.bindTexture(gl.TEXTURE_2D, textureInfo.texture);
-        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
+        gl.texImage2D(
+          gl.TEXTURE_2D,
+          0,
+          gl.RGBA,
+          gl.RGBA,
+          gl.UNSIGNED_BYTE,
+          image
+        );
       };
       image.crossOrigin = 'anonymous';
       image.src = url;
@@ -1762,11 +1846,19 @@ Other various small fixes
     gl.useProgram(program);
 
     gl.bindBuffer(gl.ARRAY_BUFFER, quadZPositionBuffer);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(quadZPositionArray), gl.STATIC_DRAW);
+    gl.bufferData(
+      gl.ARRAY_BUFFER,
+      new Float32Array(quadZPositionArray),
+      gl.STATIC_DRAW
+    );
 
     gl.bindBuffer(gl.ARRAY_BUFFER, quadColorBuffer);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(quadColors), gl.STATIC_DRAW);
-    // Setup the attributes to pull data from our buffers 
+    gl.bufferData(
+      gl.ARRAY_BUFFER,
+      new Float32Array(quadColors),
+      gl.STATIC_DRAW
+    );
+    // Setup the attributes to pull data from our buffers
     gl.bindBuffer(gl.ARRAY_BUFFER, quadPositionBuffer);
     gl.enableVertexAttribArray(positionLocation);
     gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
@@ -1781,12 +1873,24 @@ Other various small fixes
     gl.vertexAttribPointer(colorLocation, 4, gl.FLOAT, false, 0, 0);
 
     // this matrix will convert from pixels to clip space
-    var matrix = m4.orthographic(0, gl.canvas.width, gl.canvas.height, 0, -1, 1);
-    if (coordinateSpace == "Canvas") {
+    var matrix = m4.orthographic(
+      0,
+      gl.canvas.width,
+      gl.canvas.height,
+      0,
+      -1,
+      1
+    );
+    if (coordinateSpace == 'Canvas') {
       matrix = m4.translate(matrix, dstX, dstY, 0);
     } else {
       var scalemultiplyer = canvas.width / runtime.stageWidth;
-      matrix = m4.translate(matrix, runtime.stageWidth / 2 * scalemultiplyer, runtime.stageHeight / 2 * scalemultiplyer, 0);
+      matrix = m4.translate(
+        matrix,
+        (runtime.stageWidth / 2) * scalemultiplyer,
+        (runtime.stageHeight / 2) * scalemultiplyer,
+        0
+      );
       matrix = m4.translate(matrix, dstX, -dstY, 0);
     }
 
@@ -1813,16 +1917,32 @@ Other various small fixes
     gl.bindTexture(gl.TEXTURE_2D, tex);
 
     gl.bindBuffer(gl.ARRAY_BUFFER, triPosBuffer);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(trianglePoints), gl.STATIC_DRAW);
+    gl.bufferData(
+      gl.ARRAY_BUFFER,
+      new Float32Array(trianglePoints),
+      gl.STATIC_DRAW
+    );
 
     gl.bindBuffer(gl.ARRAY_BUFFER, triUVBuffer);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(triangleUvs), gl.STATIC_DRAW);
+    gl.bufferData(
+      gl.ARRAY_BUFFER,
+      new Float32Array(triangleUvs),
+      gl.STATIC_DRAW
+    );
 
     gl.bindBuffer(gl.ARRAY_BUFFER, triZBuffer);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(TriangleZPositionArray), gl.STATIC_DRAW);
+    gl.bufferData(
+      gl.ARRAY_BUFFER,
+      new Float32Array(TriangleZPositionArray),
+      gl.STATIC_DRAW
+    );
 
     gl.bindBuffer(gl.ARRAY_BUFFER, tricolorBuffer);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(triangleColors), gl.STATIC_DRAW);
+    gl.bufferData(
+      gl.ARRAY_BUFFER,
+      new Float32Array(triangleColors),
+      gl.STATIC_DRAW
+    );
 
     // Tell WebGL to use our shader program pair
     gl.useProgram(program);
@@ -1842,16 +1962,28 @@ Other various small fixes
     gl.vertexAttribPointer(colorLocation, 4, gl.FLOAT, false, 0, 0);
 
     // this matrix will convert from pixels to clip space
-    var matrix = m4.orthographic(0, gl.canvas.width, gl.canvas.height, 0, -1, 1);
+    var matrix = m4.orthographic(
+      0,
+      gl.canvas.width,
+      gl.canvas.height,
+      0,
+      -1,
+      1
+    );
 
     // this matrix will translate our quad to dstX, dstY
 
     // this matrix will scale our 1 unit quad
     // from 1 unit to texWidth, texHeight units
 
-    if (coordinateSpace == "Scratch") {
+    if (coordinateSpace == 'Scratch') {
       var scalemultiplyer = canvas.width / runtime.stageWidth;
-      matrix = m4.translate(matrix, runtime.stageWidth / 2 * scalemultiplyer, runtime.stageHeight / 2 * scalemultiplyer, 0);
+      matrix = m4.translate(
+        matrix,
+        (runtime.stageWidth / 2) * scalemultiplyer,
+        (runtime.stageHeight / 2) * scalemultiplyer,
+        0
+      );
     }
 
     // Set the matrix.
@@ -1870,13 +2002,13 @@ Other various small fixes
       return {
         r: parseInt(splitHex[1], 16),
         g: parseInt(splitHex[2], 16),
-        b: parseInt(splitHex[3], 16)
+        b: parseInt(splitHex[3], 16),
       };
     }
     return {
       r: Math.floor(hex / 65536),
       g: Math.floor(hex / 256) % 256,
-      b: hex % 256
+      b: hex % 256,
     };
   }
 
@@ -1892,13 +2024,12 @@ Other various small fixes
     }
   }
 
-
   //Split Blocks Function
   function splitBlockCatagories(Catagories) {
     let returnedArray = [];
-    Catagories.forEach(Catagory => {
-      Catagory.blocks.forEach(Block => {
-        if ((!Block.blockIconURI) && Catagory.icon) {
+    Catagories.forEach((Catagory) => {
+      Catagory.blocks.forEach((Block) => {
+        if (!Block.blockIconURI && Catagory.icon) {
           Block.blockIconURI = Catagory.icon;
         }
         returnedArray.push(Block);
@@ -1909,416 +2040,418 @@ Other various small fixes
     return returnedArray;
   }
 
-  const BlankIcon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABZCAYAAAC+PDOsAAAAAXNSR0IArs4c6QAAAihJREFUeF7t3VtuwyAQBdB4Cd1S19XPrqtb6hJakcQOJtjmMQPzuPwgJGuAoyt+LMFye7S/Z792SzLGsFMggKbIcUmAdwLHyd2gP36+b7+fX2lpYBNgb4kOyGsDNoFs5iy+JzqGDmNg02JnE41k0yKHaqfQSDYd+CU0sGmwi6CB3Y9dDA3sPuwqaGC3Y1dDA7sNuwka2PXYzdDArsPuggZ2OXY3NLDLsEmggX2NTQYN7HNsUmhgH2OTQwM7j80CDex3bDZoYO+xWaGB/cJmhwb2A3sINLAHQnvHHpbo9bTy+nd9OLTXZE+B9og9Ddob9lRoT9jTob1gi4D2gC0G2jq2KGjL2OKgrWKLhLaILRbaGrZoaEvY4qGtYKuAtoCtBlo7tipozdjqoLViq4TWiK0WWhu2amhN2OqhtWCbgNaAbQZaOrYpaMnY5qClYpuElohtFloatmloSdjmoaVgu4CWgO0Geja2K+iZ2O6gZ2G7hJ6B7RZ6NLZr6JHY7qFHYQM6SA+4ixXQT2hubEBH0JzYgE6gubABnYHmwAb0ATQ1NqBPoCmxAX0BTYUN6AJoCmxAF0L3YgO6AroHG9CV0K3YgG6AbsEGdCN0LTagO6BrsAHdCV2KDWgC6BJsQBNBX2EDmhD6DBvQxNBH2Bt0+CB905BhDW5KJjdWLgE6tN1zqG40mDcaY79BM8/ttvwKvUu1Ww2+jW9HR26Ks2es+ZZko3Ic4PuO/gGXQ1VnDpD+gwAAAABJRU5ErkJggg==";
-  const CoordsIcon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGIAAABgCAYAAADmbacFAAAAAXNSR0IArs4c6QAAA2xJREFUeF7tncFxwyAQRe0S0pKLSDWZHDKpJkWkpZSQDJKxkAwsYtfMRn65OaBl+U8fMLLx+bT++72+PG/+X3oZ64fy3DVSeWMzx68WxUsFi72WYEjXSOXHV3dHD4PYk2Av35+3y34ubxKMWeSP16Wp96/0Gql8R4rPUXUCkUKI3b7CKLnidwUhXrTAWENal0tOew7lN72UQJTH/tQNadAII1c+lwEic6v1g9gOTeldX4cEiCEgSgPLeg55yuGn1uleR4SY9xNyrSWGperNNwYEbhBHAA2INlcAQYQQVzC15WvLKie/lL1f0jJJV5BoHSG7grlhiCPkCZuhyQmIkAauEGFohibZDcwTIoBYYQwIXCEC6QXR7gZcIULQLF/LS9YwH7DX1CR+WqnfEey+7hb7EXtNPI8wxTA/G+h5Zy09gZPKjbvx/8P1gljeUa81SLcxeGa94/7QgIjNBMFr+0hS+Y50j1vVAsRx1RnYM0AMFPsRqyYn6R8nDRzhhCUgAOFEASdp4AhAOFHASRo4AhBOFHCSBo4AhBMFnKSBIwDhRAEnaeAIQDhRwEkaOAIQThRwkgaOAIQTBZykgSMA4UQBJ2ngCEA4UcBJGjgCEE4UcJIGjgCEEwWcpIEjAOFEASdp4AhAOFHASRo4AhBOFHCSBo4AhBMF7NJoPfU5Ww9H2IDIfYM2RN5+ybP4TVtA6EHkzyW5Pxqp+t1zQFiAKB82HF1RPkTmCgwQjwIR4kpHdC91zoCwABFi1F0hntgDiEeCiHe8dJLP6YQj9BymCOqDxHCEEYkJRunOz7WxOf0TEJYgSnPFto3MEayAsAPRPkQBwlb1TDR5rigcSIwj7NnUYRQOIwbESBCV47kBYQuiyw23fZDKr27ldhBtUz9WtPp5uHNftzuyt3/2nHJ5LPlsetPtBhxhAyBG6XYDIOxAqNwACEsQDRt7teZYNelhSA99mhY8gLAAoXQDQ5Mewry/JD8qFVvCEaJEYoXahweahiUcIWrcXGGBkT6n3vFLxTiiWWux4vYzS9l30KUogBD1HVMBEGN0FlsBhCjRmAqAGKOz2EoLCDEIFVQKTJN6EYQqNBc3KfBzeYv1yh8wa4pEJbUCEQaOUEupDxBgAEKvozoCINQS6gOshiZ9OCIoFZgna2UQLu9X4LYf9Qeqxh17SNwkIgAAAABJRU5ErkJggg==";
-  const SpriteIcon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABeCAYAAADc6BHlAAAAAXNSR0IArs4c6QAABItJREFUeF7tncuN2zAQhu0SctmCAuSQDnLZAlLCAjkG2BJSwF62gxwWSEG5pIQEFJYKRQ5f8+BzfLSoMfV/8yIl2/db+PrrvXUHxti3/LGJobeUndR5Sx9zRUmJWTquVCyF8a4UKOzj89Pt5em5VMxj3Idf34Pxfz5+y9nYHoQV4PR+I777ioGABM+pHQGyNYRqABjhfTAAiG0hRAH4ns8hvIIIc0RRcZUQ307Fi4btIiELQFJ8hXALevNLK9pC/N0h+CF/Amgp/s4QFECudxY+DtaAHt6/axQoAGEPz5kP1gE9vR+IguXb0tEBGCZLQ7gAGMH7jeI7Lc6GBOBB0AjIFRKJ404UKAAJgXM2dwLQdfUbA7ETAKPBAWGUIgwUYpfTUilpmCJccPsyFixTA+kOgCC8D2RKEN0AQMI//n7L1ebz+MvDpyUiostK2Be/RnhIdQDGNNHQFAC38C6MSEQMDyLYDZXqhCTFT4CYD4BUO+oCoKacXKHwomFoCOAdMe4oaCm+hTMLBPFbkj3EnwkCFJ5sWxM9xTcQZoiCWH5kgdAbwAwQsgAoRdkCkC66FUV5uIKcmhDpIa0RvH+GWpDzCDSEUbx/9DSUA3BuVbthnmtTR/J+IApKrjmX1diO10wG/ApT7psxvfP/SgDstdR8Me82IABzHTWOx+btkCHKRIpAKIA0PwoAyHIARQG0BXBJU6OIP3InxB0BQZ3oDSFx54w7JaNqxZIAKkXvemtzKQAp4b/8/BH10NfPX1PeK6XR8ZmSxo+C3CoFQeKnRI8pHoEhppOYYfuwlzQAX3iM6BAMAISIViJG3y/o/88fVDxuUlPJpMR35yANYloALcS3IDwIrJqxGgO8VywKXABcaScVfVIQpgTQWnzJSJAGYObOGgW9xJeC0AIAKwQLoEXaKeiOyPqRDRR2LZdNOmxr2tv7JaKgFYBLFGAXaL29f3YAJAijeD8AgeTEpJML048/DHXPYGAApC2dHgCCLWv7Rqo2jJJ+uNNQTwBBSoIiykJRAMh8U3ha0f1lY6tX+5lpSdGOjD6xUFjMsCQMBYCRlH7OCUUB0MXEWFAAGNWYzzkgaAQwq1phbigAXNvTIxbhGJNmAFxxYxG3LQDJNBR7OgKCoAAqclfJ0MyjKUHtccaTsgjp5JILYx4jloasoKn/T7CRwOX9pE0kZmFLzYm0o66gPgAzMfen/A2EnQGc+0ec7WgOgA/B8RZyBiEbKHVdxnFdoiACgawf2QCjsDWm2CH4RRhKRQAEsn5kAzWqMY69bNhxpaMeEGYFcNYCC3VWCDMDWALC7ACmh7ACAJuFWOpCakUsUZhXAhBEQ019yG1FWFvcEFYDAEYDsvtytbk+2ef93aO17/35XZG2RYOQFzDCacU3+wtWtyIQVgcQcwIjJuba2SFgJjGCZ/ecAysEBYBDyQZBAeAABB0XtjtSAHgALBAUAA0AGYICoAMgQVAAPADQEBQAHwAMhLsC4AVQBMHdslAA/ACyEBwAGgEy+h9WwcWav2GnESBIwIcAfJRGgKz+YST4u67/APKrBHxjStmdAAAAAElFTkSuQmCC";
-  const ColorIcon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAF4AAABeCAYAAACq0qNuAAAAAXNSR0IArs4c6QAABTFJREFUeF7t3b2KFEEUBeAecBVkk8nERBSMBEGMTDcxN/IhfATDRdinMDSaV5gn8REEo40MlBqoobrmVtWtqvtzWnYzd3tmer46ffrOr7tlOz9/mbu6Y27nuhniTnKBe+Gg7ivKzmhhlxbH/X577UAT+smnD81EP3r9vLnN/d2huc2yLOYO1jdYBOdA54Ic+PwyjYUw87C6IRJ8BDuFHIFPL19ZBHUX9RtYluUCfRY84s3Cx+spLICqjeaVq4FLw3ssgAa8OrgWvOUCSMOv0KUqpTSWSFVN6fqJChLzEruivMu10QOWNny4DS18CXjTlEtONZwBv1I/U3ZTF/ZIuRe8dPpn4N2Srn1yrR0JUtUzCu+ObtXx1CJI4I/AQ6B7wkvUTi88DLo3/Cz+MLzFuNiaOizGydY+ZLXD9mRvmE4wCOgIiS+MmixT1kaI6EjwRO00XZsboKKjwffiP8C3Srzj7z1934I/TzEove75yJWzBlx8FjwiOmLVECfbom8N/pz26xfPlj/vX3IW3HQbhHGS8ciWNC7Br9DTK0daAET4xx/fnbh+33xN2S6cu+HDtaHgI8FH8Kg9Al9Me35YeS8AAnwOnhrV8KnEs+HjjXgtgCf8/d1htz/eVt+Y1QPfje6J7wVfS3neCiX8PPHD8B4LYA3fA97qehI+jI+zPxb1YwU/Al7o+rO3GrzF9GMBP4uejZYk/HTNlI4SrfRrwkuA1+omTfwJXqJmrBZAA14SvFY3pvDS9SMJrwVOpP5kHuHVakYz/VLw2ujUUwhu8BLj5yy8BXip51fwmv3eGk9HTsCj8JbgpZ6HgR/p/154L3Cq56Hge+unB94bPZ/nIeG5C8CBRwAvJd58omn1ffr3WvfX4JHAqRNsSDw0fC39FDwi+KbhqQXI4ZHR81l+M4mn6ifCo4P/F4lPF+Dq+5ee04X7tumLIptMfBC8un663Pz4dsI8/vrpjsrZgU3DB/D4E+Hjv9EXYJPwKXgJHj39m4On0ANynvj0cEdM/2bgS+C1xOddi7QAOXzYV/VXnzgnn9XEknR56bK1xCOmP4HfwT1X00p5CsqFRzn5QsL3gPdUDXW0eNUPHPwIeuvk2qo2D/wifNhZy1ehRsFnE+/R//lb+Vxec50Fl4S36v8SvNlkI4U+WzXW3Z/WTLhts/fVSIJrJF67fprw0j2vAa4NL10/1Fu1Vd+0qomuUTVa9ZOnPa8asZ7XBrdKvFT9sOFH68YK3AN+tH7UPxFijW5VNbP1w4U/1w039R7gnonvqZ+eD5+x4T3BUeBb9dML38RHQPesGqp+wu/S539S9P3xNnzSezVBdn2yGwUcLfFU/Yx8sjtez+odZmjoiImPcIe3n89rQaWdmuPzo+iEv3/zqnR0uf6+94UQq51N4E+f/s5rhg2Pio8In6a99n+PtL4oaHWiRUs+GjwXnZP4B/iOfpKGh8VHSnwPOjfxF1MOSuWgwPei98LDJR8BfgR9Ch5h0vGGz9C7PDlTDTnbx1961o4n/Ax61wpl+quvhPLC94KfRZ+BX/W9V+14wEugz8K741vDS6FLwLviW8JLokvBX8z5VtVjAS8NHrFGpprag2jTk642vBa6dOLJ5GumXwueABe3kk58ejRcfAup9NgpDW8BrlU1VA2pLYAUvCW4JfzF5CP1qHcWvgAuXitUGjWrhpX+mUUYga9gm4BbJ776fA+1QpzzAQe+Ae3mYJ340iha/Trw2vw6+Df3++2+AwSc1iJA3VeonWmkl7sgm7hP/wDwgcxktVR5CQAAAABJRU5ErkJggg==";
-  const LineStyleIcon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAE4AAABOCAYAAACOqiAdAAAAAXNSR0IArs4c6QAAAkxJREFUeF7t2m1OBCEMBmDnCF7Jc/nTc3klj7CG0TFIgLbsQD9498cmm2kUn22BgscLXpTAowg40ufzDa+mQIl2BR6Aa2fNifb6+fEv4uvt/fwMuDpcFS2FAk6YaVc44ISZBrjBTMvLNE1xmON+IJtzWplp17oAuAE0rKqDaLvDicsznx53LdWn0HbNuKfRAFfZmlwbXKqr2rFUyXaKQkPGZRnHzbS/45FNj5Sax0Vcj+ilWj2E/MXpPSP9IsM9nVU9vahw3UNIzuRPpVxEuFtWzd3guptb6cq5S6ne0hFQmRZtO7IULcoGeDlaBDgVNO9wamie4VTRvMKpo3mEM4HmDc4Mmic4U2he4MyhuYEr/9Uqb4vu7D+57ZZ7OC0013CaaG7g0kDzctVG8wKXxlk7Blc9hFX95cVkzMFJMSbGbGIQeUalkrRQitQKawFu+sUKhTDyXBuOc0egPcaqq+agOGhmFzAtOJNtlKRkNeDco2mUQQi01XBh0FbChUJbBRcObQVcSLTZcGHRZsKFRpsFFx5tBtwWaFPgLF6sSFopbuzdLdejBefhjI2LtizjoqFNgbN4sSLJJG7s3aVq8mKFiyGJG4UrL1ZGf45krKZiR/7g2m3UjLI3BVUORgrn8mJlxjcggWtubiOumhQ2F871xQqFMPKcA7dNGyUBpOCA1tDswQGtk4ItOKARdVuDAxpjsivhgMZAK3f7QGOi5XBAE6BdcEATorHgdmynOI5pcUAPypEqYppwyLS+5rUdwRmbMOvyfdz2p7oSu299qhZaTMEypAAAAABJRU5ErkJggg==";
-
+  const BlankIcon =
+    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABZCAYAAAC+PDOsAAAAAXNSR0IArs4c6QAAAihJREFUeF7t3VtuwyAQBdB4Cd1S19XPrqtb6hJakcQOJtjmMQPzuPwgJGuAoyt+LMFye7S/Z792SzLGsFMggKbIcUmAdwLHyd2gP36+b7+fX2lpYBNgb4kOyGsDNoFs5iy+JzqGDmNg02JnE41k0yKHaqfQSDYd+CU0sGmwi6CB3Y9dDA3sPuwqaGC3Y1dDA7sNuwka2PXYzdDArsPuggZ2OXY3NLDLsEmggX2NTQYN7HNsUmhgH2OTQwM7j80CDex3bDZoYO+xWaGB/cJmhwb2A3sINLAHQnvHHpbo9bTy+nd9OLTXZE+B9og9Ddob9lRoT9jTob1gi4D2gC0G2jq2KGjL2OKgrWKLhLaILRbaGrZoaEvY4qGtYKuAtoCtBlo7tipozdjqoLViq4TWiK0WWhu2amhN2OqhtWCbgNaAbQZaOrYpaMnY5qClYpuElohtFloatmloSdjmoaVgu4CWgO0Geja2K+iZ2O6gZ2G7hJ6B7RZ6NLZr6JHY7qFHYQM6SA+4ixXQT2hubEBH0JzYgE6gubABnYHmwAb0ATQ1NqBPoCmxAX0BTYUN6AJoCmxAF0L3YgO6AroHG9CV0K3YgG6AbsEGdCN0LTagO6BrsAHdCV2KDWgC6BJsQBNBX2EDmhD6DBvQxNBH2Bt0+CB905BhDW5KJjdWLgE6tN1zqG40mDcaY79BM8/ttvwKvUu1Ww2+jW9HR26Ks2es+ZZko3Ic4PuO/gGXQ1VnDpD+gwAAAABJRU5ErkJggg==';
+  const CoordsIcon =
+    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGIAAABgCAYAAADmbacFAAAAAXNSR0IArs4c6QAAA2xJREFUeF7tncFxwyAQRe0S0pKLSDWZHDKpJkWkpZSQDJKxkAwsYtfMRn65OaBl+U8fMLLx+bT++72+PG/+X3oZ64fy3DVSeWMzx68WxUsFi72WYEjXSOXHV3dHD4PYk2Av35+3y34ubxKMWeSP16Wp96/0Gql8R4rPUXUCkUKI3b7CKLnidwUhXrTAWENal0tOew7lN72UQJTH/tQNadAII1c+lwEic6v1g9gOTeldX4cEiCEgSgPLeg55yuGn1uleR4SY9xNyrSWGperNNwYEbhBHAA2INlcAQYQQVzC15WvLKie/lL1f0jJJV5BoHSG7grlhiCPkCZuhyQmIkAauEGFohibZDcwTIoBYYQwIXCEC6QXR7gZcIULQLF/LS9YwH7DX1CR+WqnfEey+7hb7EXtNPI8wxTA/G+h5Zy09gZPKjbvx/8P1gljeUa81SLcxeGa94/7QgIjNBMFr+0hS+Y50j1vVAsRx1RnYM0AMFPsRqyYn6R8nDRzhhCUgAOFEASdp4AhAOFHASRo4AhBOFHCSBo4AhBMFnKSBIwDhRAEnaeAIQDhRwEkaOAIQThRwkgaOAIQTBZykgSMA4UQBJ2ngCEA4UcBJGjgCEE4UcJIGjgCEEwWcpIEjAOFEASdp4AhAOFHASRo4AhBOFHCSBo4AhBMF7NJoPfU5Ww9H2IDIfYM2RN5+ybP4TVtA6EHkzyW5Pxqp+t1zQFiAKB82HF1RPkTmCgwQjwIR4kpHdC91zoCwABFi1F0hntgDiEeCiHe8dJLP6YQj9BymCOqDxHCEEYkJRunOz7WxOf0TEJYgSnPFto3MEayAsAPRPkQBwlb1TDR5rigcSIwj7NnUYRQOIwbESBCV47kBYQuiyw23fZDKr27ldhBtUz9WtPp5uHNftzuyt3/2nHJ5LPlsetPtBhxhAyBG6XYDIOxAqNwACEsQDRt7teZYNelhSA99mhY8gLAAoXQDQ5Mewry/JD8qFVvCEaJEYoXahweahiUcIWrcXGGBkT6n3vFLxTiiWWux4vYzS9l30KUogBD1HVMBEGN0FlsBhCjRmAqAGKOz2EoLCDEIFVQKTJN6EYQqNBc3KfBzeYv1yh8wa4pEJbUCEQaOUEupDxBgAEKvozoCINQS6gOshiZ9OCIoFZgna2UQLu9X4LYf9Qeqxh17SNwkIgAAAABJRU5ErkJggg==';
+  const SpriteIcon =
+    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABeCAYAAADc6BHlAAAAAXNSR0IArs4c6QAABItJREFUeF7tncuN2zAQhu0SctmCAuSQDnLZAlLCAjkG2BJSwF62gxwWSEG5pIQEFJYKRQ5f8+BzfLSoMfV/8yIl2/db+PrrvXUHxti3/LGJobeUndR5Sx9zRUmJWTquVCyF8a4UKOzj89Pt5em5VMxj3Idf34Pxfz5+y9nYHoQV4PR+I777ioGABM+pHQGyNYRqABjhfTAAiG0hRAH4ns8hvIIIc0RRcZUQ307Fi4btIiELQFJ8hXALevNLK9pC/N0h+CF/Amgp/s4QFECudxY+DtaAHt6/axQoAGEPz5kP1gE9vR+IguXb0tEBGCZLQ7gAGMH7jeI7Lc6GBOBB0AjIFRKJ404UKAAJgXM2dwLQdfUbA7ETAKPBAWGUIgwUYpfTUilpmCJccPsyFixTA+kOgCC8D2RKEN0AQMI//n7L1ebz+MvDpyUiostK2Be/RnhIdQDGNNHQFAC38C6MSEQMDyLYDZXqhCTFT4CYD4BUO+oCoKacXKHwomFoCOAdMe4oaCm+hTMLBPFbkj3EnwkCFJ5sWxM9xTcQZoiCWH5kgdAbwAwQsgAoRdkCkC66FUV5uIKcmhDpIa0RvH+GWpDzCDSEUbx/9DSUA3BuVbthnmtTR/J+IApKrjmX1diO10wG/ApT7psxvfP/SgDstdR8Me82IABzHTWOx+btkCHKRIpAKIA0PwoAyHIARQG0BXBJU6OIP3InxB0BQZ3oDSFx54w7JaNqxZIAKkXvemtzKQAp4b/8/BH10NfPX1PeK6XR8ZmSxo+C3CoFQeKnRI8pHoEhppOYYfuwlzQAX3iM6BAMAISIViJG3y/o/88fVDxuUlPJpMR35yANYloALcS3IDwIrJqxGgO8VywKXABcaScVfVIQpgTQWnzJSJAGYObOGgW9xJeC0AIAKwQLoEXaKeiOyPqRDRR2LZdNOmxr2tv7JaKgFYBLFGAXaL29f3YAJAijeD8AgeTEpJML048/DHXPYGAApC2dHgCCLWv7Rqo2jJJ+uNNQTwBBSoIiykJRAMh8U3ha0f1lY6tX+5lpSdGOjD6xUFjMsCQMBYCRlH7OCUUB0MXEWFAAGNWYzzkgaAQwq1phbigAXNvTIxbhGJNmAFxxYxG3LQDJNBR7OgKCoAAqclfJ0MyjKUHtccaTsgjp5JILYx4jloasoKn/T7CRwOX9pE0kZmFLzYm0o66gPgAzMfen/A2EnQGc+0ec7WgOgA/B8RZyBiEbKHVdxnFdoiACgawf2QCjsDWm2CH4RRhKRQAEsn5kAzWqMY69bNhxpaMeEGYFcNYCC3VWCDMDWALC7ACmh7ACAJuFWOpCakUsUZhXAhBEQ019yG1FWFvcEFYDAEYDsvtytbk+2ef93aO17/35XZG2RYOQFzDCacU3+wtWtyIQVgcQcwIjJuba2SFgJjGCZ/ecAysEBYBDyQZBAeAABB0XtjtSAHgALBAUAA0AGYICoAMgQVAAPADQEBQAHwAMhLsC4AVQBMHdslAA/ACyEBwAGgEy+h9WwcWav2GnESBIwIcAfJRGgKz+YST4u67/APKrBHxjStmdAAAAAElFTkSuQmCC';
+  const ColorIcon =
+    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAF4AAABeCAYAAACq0qNuAAAAAXNSR0IArs4c6QAABTFJREFUeF7t3b2KFEEUBeAecBVkk8nERBSMBEGMTDcxN/IhfATDRdinMDSaV5gn8REEo40MlBqoobrmVtWtqvtzWnYzd3tmer46ffrOr7tlOz9/mbu6Y27nuhniTnKBe+Gg7ivKzmhhlxbH/X577UAT+smnD81EP3r9vLnN/d2huc2yLOYO1jdYBOdA54Ic+PwyjYUw87C6IRJ8BDuFHIFPL19ZBHUX9RtYluUCfRY84s3Cx+spLICqjeaVq4FLw3ssgAa8OrgWvOUCSMOv0KUqpTSWSFVN6fqJChLzEruivMu10QOWNny4DS18CXjTlEtONZwBv1I/U3ZTF/ZIuRe8dPpn4N2Srn1yrR0JUtUzCu+ObtXx1CJI4I/AQ6B7wkvUTi88DLo3/Cz+MLzFuNiaOizGydY+ZLXD9mRvmE4wCOgIiS+MmixT1kaI6EjwRO00XZsboKKjwffiP8C3Srzj7z1934I/TzEove75yJWzBlx8FjwiOmLVECfbom8N/pz26xfPlj/vX3IW3HQbhHGS8ciWNC7Br9DTK0daAET4xx/fnbh+33xN2S6cu+HDtaHgI8FH8Kg9Al9Me35YeS8AAnwOnhrV8KnEs+HjjXgtgCf8/d1htz/eVt+Y1QPfje6J7wVfS3neCiX8PPHD8B4LYA3fA97qehI+jI+zPxb1YwU/Al7o+rO3GrzF9GMBP4uejZYk/HTNlI4SrfRrwkuA1+omTfwJXqJmrBZAA14SvFY3pvDS9SMJrwVOpP5kHuHVakYz/VLw2ujUUwhu8BLj5yy8BXip51fwmv3eGk9HTsCj8JbgpZ6HgR/p/154L3Cq56Hge+unB94bPZ/nIeG5C8CBRwAvJd58omn1ffr3WvfX4JHAqRNsSDw0fC39FDwi+KbhqQXI4ZHR81l+M4mn6ifCo4P/F4lPF+Dq+5ee04X7tumLIptMfBC8un663Pz4dsI8/vrpjsrZgU3DB/D4E+Hjv9EXYJPwKXgJHj39m4On0ANynvj0cEdM/2bgS+C1xOddi7QAOXzYV/VXnzgnn9XEknR56bK1xCOmP4HfwT1X00p5CsqFRzn5QsL3gPdUDXW0eNUPHPwIeuvk2qo2D/wifNhZy1ehRsFnE+/R//lb+Vxec50Fl4S36v8SvNlkI4U+WzXW3Z/WTLhts/fVSIJrJF67fprw0j2vAa4NL10/1Fu1Vd+0qomuUTVa9ZOnPa8asZ7XBrdKvFT9sOFH68YK3AN+tH7UPxFijW5VNbP1w4U/1w039R7gnonvqZ+eD5+x4T3BUeBb9dML38RHQPesGqp+wu/S539S9P3xNnzSezVBdn2yGwUcLfFU/Yx8sjtez+odZmjoiImPcIe3n89rQaWdmuPzo+iEv3/zqnR0uf6+94UQq51N4E+f/s5rhg2Pio8In6a99n+PtL4oaHWiRUs+GjwXnZP4B/iOfpKGh8VHSnwPOjfxF1MOSuWgwPei98LDJR8BfgR9Ch5h0vGGz9C7PDlTDTnbx1961o4n/Ax61wpl+quvhPLC94KfRZ+BX/W9V+14wEugz8K741vDS6FLwLviW8JLokvBX8z5VtVjAS8NHrFGpprag2jTk642vBa6dOLJ5GumXwueABe3kk58ejRcfAup9NgpDW8BrlU1VA2pLYAUvCW4JfzF5CP1qHcWvgAuXitUGjWrhpX+mUUYga9gm4BbJ776fA+1QpzzAQe+Ae3mYJ340iha/Trw2vw6+Df3++2+AwSc1iJA3VeonWmkl7sgm7hP/wDwgcxktVR5CQAAAABJRU5ErkJggg==';
+  const LineStyleIcon =
+    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAE4AAABOCAYAAACOqiAdAAAAAXNSR0IArs4c6QAAAkxJREFUeF7t2m1OBCEMBmDnCF7Jc/nTc3klj7CG0TFIgLbsQD9498cmm2kUn22BgscLXpTAowg40ufzDa+mQIl2BR6Aa2fNifb6+fEv4uvt/fwMuDpcFS2FAk6YaVc44ISZBrjBTMvLNE1xmON+IJtzWplp17oAuAE0rKqDaLvDicsznx53LdWn0HbNuKfRAFfZmlwbXKqr2rFUyXaKQkPGZRnHzbS/45FNj5Sax0Vcj+ilWj2E/MXpPSP9IsM9nVU9vahw3UNIzuRPpVxEuFtWzd3guptb6cq5S6ne0hFQmRZtO7IULcoGeDlaBDgVNO9wamie4VTRvMKpo3mEM4HmDc4Mmic4U2he4MyhuYEr/9Uqb4vu7D+57ZZ7OC0013CaaG7g0kDzctVG8wKXxlk7Blc9hFX95cVkzMFJMSbGbGIQeUalkrRQitQKawFu+sUKhTDyXBuOc0egPcaqq+agOGhmFzAtOJNtlKRkNeDco2mUQQi01XBh0FbChUJbBRcObQVcSLTZcGHRZsKFRpsFFx5tBtwWaFPgLF6sSFopbuzdLdejBefhjI2LtizjoqFNgbN4sSLJJG7s3aVq8mKFiyGJG4UrL1ZGf45krKZiR/7g2m3UjLI3BVUORgrn8mJlxjcggWtubiOumhQ2F871xQqFMPKcA7dNGyUBpOCA1tDswQGtk4ItOKARdVuDAxpjsivhgMZAK3f7QGOi5XBAE6BdcEATorHgdmynOI5pcUAPypEqYppwyLS+5rUdwRmbMOvyfdz2p7oSu299qhZaTMEypAAAAABJRU5ErkJggg==';
 
   //Block Catagories in pen+ version 5.0
   const UtilityBlocks = {
     blocks: [
       {
         blockIconURI: SpriteIcon,
-        opcode: "precachetextures",
+        opcode: 'precachetextures',
         blockType: Scratch.BlockType.COMMAND,
-        text: "Start loading image from url: [uri] clamp the texture? [clamp]",
+        text: 'Start loading image from url: [uri] clamp the texture? [clamp]',
         arguments: {
           uri: {
             type: Scratch.ArgumentType.STRING,
-            defaultValue: EXAMPLE_IMAGE
+            defaultValue: EXAMPLE_IMAGE,
           },
           clamp: {
             type: Scratch.ArgumentType.STRING,
-            menu: 'TFmenu'
-          }
-        }
+            menu: 'TFmenu',
+          },
+        },
       },
       {
         blockIconURI: SpriteIcon,
-        opcode: "getcostumedata",
+        opcode: 'getcostumedata',
         blockType: Scratch.BlockType.REPORTER,
-        text: "Get data uri of costume[costu]",
+        text: 'Get data uri of costume[costu]',
         arguments: {
           costu: {
             type: Scratch.ArgumentType.NUMBER,
-            defaultValue: "1"
+            defaultValue: '1',
           },
           spr: {
             type: Scratch.ArgumentType.NUMBER,
-            defaultValue: "1"
-          }
-        }
+            defaultValue: '1',
+          },
+        },
       },
       {
         blockIconURI: BlankIcon,
-        opcode: "SolidColorRet",
+        opcode: 'SolidColorRet',
         blockType: Scratch.BlockType.REPORTER,
-        text: "Solid Color",
-        disableMonitor: true
+        text: 'Solid Color',
+        disableMonitor: true,
       },
       {
         blockIconURI: ColorIcon,
-        opcode: "rgbtoSColor",
+        opcode: 'rgbtoSColor',
         blockType: Scratch.BlockType.REPORTER,
-        text: "Convert R[R] G[G] B[B] to Hex",
+        text: 'Convert R[R] G[G] B[B] to Hex',
         arguments: {
           R: {
             type: Scratch.ArgumentType.NUMBER,
-            defaultValue: '255'
+            defaultValue: '255',
           },
           G: {
             type: Scratch.ArgumentType.NUMBER,
-            defaultValue: '255'
+            defaultValue: '255',
           },
           B: {
             type: Scratch.ArgumentType.NUMBER,
-            defaultValue: '255'
-          }
-        }
+            defaultValue: '255',
+          },
+        },
       },
       {
         blockIconURI: ColorIcon,
-        opcode: "hsvtoSColor",
+        opcode: 'hsvtoSColor',
         blockType: Scratch.BlockType.REPORTER,
-        text: "Convert Hue[H] Saturation[S] Value[V] to Hex",
+        text: 'Convert Hue[H] Saturation[S] Value[V] to Hex',
         arguments: {
           H: {
             type: Scratch.ArgumentType.NUMBER,
-            defaultValue: '0'
+            defaultValue: '0',
           },
           S: {
             type: Scratch.ArgumentType.NUMBER,
-            defaultValue: '100'
+            defaultValue: '100',
           },
           V: {
             type: Scratch.ArgumentType.NUMBER,
-            defaultValue: '100'
-          }
-        }
+            defaultValue: '100',
+          },
+        },
       },
       {
         blockIconURI: CoordsIcon,
-        opcode: "setCoordSpace",
+        opcode: 'setCoordSpace',
         blockType: Scratch.BlockType.COMMAND,
-        text: "Set the coordinate space to [space]",
+        text: 'Set the coordinate space to [space]',
         arguments: {
           space: {
             type: Scratch.ArgumentType.STRING,
-            menu: 'coordTypes'
-          }
-        }
+            menu: 'coordTypes',
+          },
+        },
       },
       {
         blockIconURI: CoordsIcon,
-        opcode: "coordBlock",
+        opcode: 'coordBlock',
         blockType: Scratch.BlockType.REPORTER,
-        text: "[c1][c2][c3][c4][c5][c6]",
+        text: '[c1][c2][c3][c4][c5][c6]',
         arguments: {
           c1: {
             type: Scratch.ArgumentType.NUMBER,
-            defaultValue: "0"
+            defaultValue: '0',
           },
           c2: {
             type: Scratch.ArgumentType.NUMBER,
-            defaultValue: "0"
+            defaultValue: '0',
           },
           c3: {
             type: Scratch.ArgumentType.NUMBER,
-            defaultValue: "0"
+            defaultValue: '0',
           },
           c4: {
             type: Scratch.ArgumentType.NUMBER,
-            defaultValue: "0"
+            defaultValue: '0',
           },
           c5: {
             type: Scratch.ArgumentType.NUMBER,
-            defaultValue: "0"
+            defaultValue: '0',
           },
           c6: {
             type: Scratch.ArgumentType.NUMBER,
-            defaultValue: "0"
-          }
-        }
-      }
-    ]
+            defaultValue: '0',
+          },
+        },
+      },
+    ],
   };
 
   const StampBlocks = {
-    icon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGIAAABYCAYAAAAORCLFAAAAAXNSR0IArs4c6QAAArZJREFUeF7tnDFSwzAQRe2SgoIr0XCTlJyAkhNQ5iY0XImCghLGmcijmBjLWe3qJ35UDCPtrv7T1yrG0HfxXz/xKVdn7FfPME6ITngNEHJJw/QJS9R13QmEu92TcQ/5TP/ev28HhCqERKAFjHBHqEMYYNwyiPFYugYQExghmzUkSd4fAHG+twFipudnx1OIRiFJcMTyDQ8QOGJ5l7QcwdHUUv0sNyAA4aoAnyMW5KVZ06xdHWgOTo8wS1gnACDq6GiOAgizhHUCAKKOjuYogDBLWCcAIOroaI4CCLOEdQIAoo6O5ig3D8KsUHyAkKcPIUmmr9LEa2nKGKJRSJIVMhweDt6/7f6d8vW8XxFydqjU2qWKSc5ZAnEphQlAqbVLFQOIS7dY/XlFR5MlbeYKqU0oVYy3IwaAgCjbxjiiTCf3UYBwl7gsASDKdHIfBQh3icsSAKJMJ/dRkSCGxcjcGmUKOSIGhPteL0sAiDKdXEeNbwN6PWuafKDjaJrBCQjXfV4ePASE6mMOpWYNiPJN6zoSEK7ylgcHRLlWriPdr66pesXf1Mn1CM+rKyDKjIQjynRyHxUGQvEKq3I0hTXqM8eThAYSReQvoEX0CBwxf7qFHkuKz5zmHNHkX75FuWHm9uTeBI8Jzmqe/7CJ+PnqNwIiX/Kof/qmKYRoALkSld6jtbqpH0CcQGgpinU11zR/+un+BAQQYlHmMEYQQIiFML0wAKKN/mPW5ApAAKKxAiLpcQQgRBQQKQNHAEJEAZEycAQgRBQQKQNHAEJEAZEycAQgRBQQKQNHAEJEAZEycAQgRBQQKQNHqIIQqWuzZfx5i2OzSjReOCAaA0jpRxAPH68iJW2rjM/Hl8OCAdGYOyAaA0jpAQEIEQVEysARqiCGurg5xdJJbji5NcWWQLapAhJ/qAKWrv8Fl7tFSQcWbxYAAAAASUVORK5CYII=",
+    icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGIAAABYCAYAAAAORCLFAAAAAXNSR0IArs4c6QAAArZJREFUeF7tnDFSwzAQRe2SgoIr0XCTlJyAkhNQ5iY0XImCghLGmcijmBjLWe3qJ35UDCPtrv7T1yrG0HfxXz/xKVdn7FfPME6ITngNEHJJw/QJS9R13QmEu92TcQ/5TP/ev28HhCqERKAFjHBHqEMYYNwyiPFYugYQExghmzUkSd4fAHG+twFipudnx1OIRiFJcMTyDQ8QOGJ5l7QcwdHUUv0sNyAA4aoAnyMW5KVZ06xdHWgOTo8wS1gnACDq6GiOAgizhHUCAKKOjuYogDBLWCcAIOroaI4CCLOEdQIAoo6O5ig3D8KsUHyAkKcPIUmmr9LEa2nKGKJRSJIVMhweDt6/7f6d8vW8XxFydqjU2qWKSc5ZAnEphQlAqbVLFQOIS7dY/XlFR5MlbeYKqU0oVYy3IwaAgCjbxjiiTCf3UYBwl7gsASDKdHIfBQh3icsSAKJMJ/dRkSCGxcjcGmUKOSIGhPteL0sAiDKdXEeNbwN6PWuafKDjaJrBCQjXfV4ePASE6mMOpWYNiPJN6zoSEK7ylgcHRLlWriPdr66pesXf1Mn1CM+rKyDKjIQjynRyHxUGQvEKq3I0hTXqM8eThAYSReQvoEX0CBwxf7qFHkuKz5zmHNHkX75FuWHm9uTeBI8Jzmqe/7CJ+PnqNwIiX/Kof/qmKYRoALkSld6jtbqpH0CcQGgpinU11zR/+un+BAQQYlHmMEYQQIiFML0wAKKN/mPW5ApAAKKxAiLpcQQgRBQQKQNHAEJEAZEycAQgRBQQKQNHAEJEAZEycAQgRBQQKQNHAEJEAZEycAQgRBQQKQNHqIIQqWuzZfx5i2OzSjReOCAaA0jpRxAPH68iJW2rjM/Hl8OCAdGYOyAaA0jpAQEIEQVEysARqiCGurg5xdJJbji5NcWWQLapAhJ/qAKWrv8Fl7tFSQcWbxYAAAAASUVORK5CYII=',
     blocks: [
       {
-        opcode: "pendrawspritefromurl",
+        opcode: 'pendrawspritefromurl',
         blockType: Scratch.BlockType.COMMAND,
-        text: "Stamp the image from url: [url] at x:[x] y:[y]",
+        text: 'Stamp the image from url: [url] at x:[x] y:[y]',
         arguments: {
           url: {
             type: Scratch.ArgumentType.STRING,
-            defaultValue: EXAMPLE_IMAGE
+            defaultValue: EXAMPLE_IMAGE,
           },
           x: {
             type: Scratch.ArgumentType.NUMBER,
-            defaultValue: "240"
+            defaultValue: '240',
           },
           y: {
             type: Scratch.ArgumentType.NUMBER,
-            defaultValue: "180"
-          }
-        }
+            defaultValue: '180',
+          },
+        },
       },
       {
-        opcode: "rotateStamp",
+        opcode: 'rotateStamp',
         blockType: Scratch.BlockType.COMMAND,
-        text: "Set stamp rotation to [ANGLE]",
+        text: 'Set stamp rotation to [ANGLE]',
         arguments: {
           ANGLE: {
             type: Scratch.ArgumentType.ANGLE,
-            defaultValue: "90"
-          }
-        }
+            defaultValue: '90',
+          },
+        },
       },
       {
-        opcode: "getstamprotation",
+        opcode: 'getstamprotation',
         blockType: Scratch.BlockType.REPORTER,
-        text: "Stamp Rotation",
+        text: 'Stamp Rotation',
         arguments: {
           ANGLE: {
             type: Scratch.ArgumentType.ANGLE,
-            defaultValue: "90"
-          }
-        }
+            defaultValue: '90',
+          },
+        },
       },
       {
-        opcode: "setpenstrechandsquash",
+        opcode: 'setpenstrechandsquash',
         blockType: Scratch.BlockType.COMMAND,
-        text: "Set stamp width to [width] and height to [height]",
+        text: 'Set stamp width to [width] and height to [height]',
         arguments: {
           width: {
             type: Scratch.ArgumentType.NUMBER,
-            defaultValue: "64"
+            defaultValue: '64',
           },
           height: {
             type: Scratch.ArgumentType.NUMBER,
-            defaultValue: "64"
-          }
-        }
+            defaultValue: '64',
+          },
+        },
       },
       {
-        opcode: "getstampwidth",
+        opcode: 'getstampwidth',
         blockType: Scratch.BlockType.REPORTER,
-        text: "Stamp Width",
-        arguments: {
-        }
+        text: 'Stamp Width',
+        arguments: {},
       },
       {
-        opcode: "getstampheight",
+        opcode: 'getstampheight',
         blockType: Scratch.BlockType.REPORTER,
-        text: "Stamp Height",
-        arguments: {
-        }
+        text: 'Stamp Height',
+        arguments: {},
       },
       {
-        opcode: "setstampcolor",
+        opcode: 'setstampcolor',
         blockType: Scratch.BlockType.COMMAND,
-        text: "Tint stamp by [color] and transparency[T](0-255)",
+        text: 'Tint stamp by [color] and transparency[T](0-255)',
         arguments: {
           color: {
             type: Scratch.ArgumentType.COLOR,
-            defaultValue: '#ffffff'
+            defaultValue: '#ffffff',
           },
           T: {
             type: Scratch.ArgumentType.NUMBER,
-            defaultValue: '0'
-          }
-        }
+            defaultValue: '0',
+          },
+        },
       },
       {
-        opcode: "offsetStamp",
+        opcode: 'offsetStamp',
         blockType: Scratch.BlockType.COMMAND,
-        text: "Set stamp anchorPoint to [Anchor]",
+        text: 'Set stamp anchorPoint to [Anchor]',
         arguments: {
           Anchor: {
-            menu: "AnchorPointMenu",
+            menu: 'AnchorPointMenu',
             type: Scratch.ArgumentType.STRING,
-            defaultValue: [0, 0]
-          }
-        }
-      }
-    ]
+            defaultValue: [0, 0],
+          },
+        },
+      },
+    ],
   };
 
   const TriangleBlocks = {
-    icon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGIAAABiCAYAAACrpQYOAAAAAXNSR0IArs4c6QAABGtJREFUeF7tncGxEzEMhpMZrhwogAYog2a4UAJHSuBCM5TxGqAADlyZgXGIg+Pd9UqyJP82yuXNvHi9sj7/siUnm+sF//X7buIV31S5heiDyxDyCNHtFZNAHlgNYWkYqCAeEF5/+XAD8PPj13K2odq9nCIChBip7oU3EFkNueuVVYEo8Y0aMohX795efrz/tORaAQuiVkPyfgUi/QvRflFsQBvIoRoyiPS3UMUyMAKEaP7qXwQJ4s23z5dfL983o02hKb9WUwUSiEdYooCoQhTSOERyQRrADUSCkF5nilhtrUAB8aQGKoiVYAQIUSDRvwgBxEYNHEWsoooAoT+5RT3CgNjLpDkjmr0ONRpEM5PmgEhtZ4YBAaJXDStUZ0eCUFXD7DACBDf+GbUfDiJn0r3jKzPxGdeKUSB2c4ceGHVJpIAxaoys4Ywy8qmuxLL4oHEDxBRnFiNAqKvhKBOfKUQFCA05KvThDcJEDa3a1CwHSAFCYTZrdDEEhNaWtXRA6yBpBlV4gjALS5SyOTqMAKERVxT68AJhqgaKItAPkNxBaFVaJZMQOa9wBTESAnp11gOESblboogdGB7jJ5nqYcjuR+xJ1hk1QgxR1iDg1IAaotxAUJM4yif8NISClldYghBtWb1AoG1nA8Q/eVn64lTEljcXHf54KgJJFVYgRGGJmiGfTi9mA4T1IkCAfBXMAoRYDaMUgRCiAsQ9jI0OT2YgqHlDHc69F+vy/iNhaIPoCksjQ1MGMuoL9SYgpGoAA5HM0fbP4X5O80bdakAAMWrhNgGBcO7ATCWemo+ozqqDmB3CqOqsFgjYcreSMrT8ZL5GwB3+9AAYoQoN0kuqIcHwfCyRGYjyASYas5PSh0Uy6JXk9YJoPm2M4jzNNhYgvLazAYIwEzxUoQLi6LFvhDGqNrFShIcqekCQHvum6umTzixBWMPoBkF9yJUHkP8RBPtpYyuAsFSFVBEB4u/MkvpvMy+lHbEf+7aKIqxUIQEhfuybNQzrNaK0X/sASQyiPPzxdEALpqcd2rkFF8SydSWJWjXPLQKEhMD9mlEgQg070LRgcBQRIJBAHGXSHQqf9tJc6tdYuKmKUPmExpHHPXc7Z9SltvTCCBAVGWQQpmpIfpAO/mx2S97vsaVHFRRFBIjidytacF1A9HyM8mxm9szCs7657/faIoVxpghzNawUmjJ0SR2KBMJSDYuDIJfKWyBc1LAiCEmpPEAobV/rtYi7VhyBcFPDqorgqiJAGClCFYT1Ip190Ltl5G5RPQ+XqCFqTxFRZdUkS/yBkQCh7PS97ihnFjWIUIMRmDMYAcLI8XW3IhCrfA/Oycfk27RglIpg5Q4oO53Z7DiqQ21AULesszmAPG2FDan+ONrOZhAsNSBlw1QHCP1Lvoxjxx6MAEF2dbuhKghqWApFbKFwQOyVP5Ii2GEpQPSDqGBcA8SA0JRvWa4VTyBSA2p44kpRabybbma2owaRBvcIT1YOi37bHthN6MJp7h64/gHORJl+nCcCdQAAAABJRU5ErkJggg==",
+    icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGIAAABiCAYAAACrpQYOAAAAAXNSR0IArs4c6QAABGtJREFUeF7tncGxEzEMhpMZrhwogAYog2a4UAJHSuBCM5TxGqAADlyZgXGIg+Pd9UqyJP82yuXNvHi9sj7/siUnm+sF//X7buIV31S5heiDyxDyCNHtFZNAHlgNYWkYqCAeEF5/+XAD8PPj13K2odq9nCIChBip7oU3EFkNueuVVYEo8Y0aMohX795efrz/tORaAQuiVkPyfgUi/QvRflFsQBvIoRoyiPS3UMUyMAKEaP7qXwQJ4s23z5dfL983o02hKb9WUwUSiEdYooCoQhTSOERyQRrADUSCkF5nilhtrUAB8aQGKoiVYAQIUSDRvwgBxEYNHEWsoooAoT+5RT3CgNjLpDkjmr0ONRpEM5PmgEhtZ4YBAaJXDStUZ0eCUFXD7DACBDf+GbUfDiJn0r3jKzPxGdeKUSB2c4ceGHVJpIAxaoys4Ywy8qmuxLL4oHEDxBRnFiNAqKvhKBOfKUQFCA05KvThDcJEDa3a1CwHSAFCYTZrdDEEhNaWtXRA6yBpBlV4gjALS5SyOTqMAKERVxT68AJhqgaKItAPkNxBaFVaJZMQOa9wBTESAnp11gOESblboogdGB7jJ5nqYcjuR+xJ1hk1QgxR1iDg1IAaotxAUJM4yif8NISClldYghBtWb1AoG1nA8Q/eVn64lTEljcXHf54KgJJFVYgRGGJmiGfTi9mA4T1IkCAfBXMAoRYDaMUgRCiAsQ9jI0OT2YgqHlDHc69F+vy/iNhaIPoCksjQ1MGMuoL9SYgpGoAA5HM0fbP4X5O80bdakAAMWrhNgGBcO7ATCWemo+ozqqDmB3CqOqsFgjYcreSMrT8ZL5GwB3+9AAYoQoN0kuqIcHwfCyRGYjyASYas5PSh0Uy6JXk9YJoPm2M4jzNNhYgvLazAYIwEzxUoQLi6LFvhDGqNrFShIcqekCQHvum6umTzixBWMPoBkF9yJUHkP8RBPtpYyuAsFSFVBEB4u/MkvpvMy+lHbEf+7aKIqxUIQEhfuybNQzrNaK0X/sASQyiPPzxdEALpqcd2rkFF8SydSWJWjXPLQKEhMD9mlEgQg070LRgcBQRIJBAHGXSHQqf9tJc6tdYuKmKUPmExpHHPXc7Z9SltvTCCBAVGWQQpmpIfpAO/mx2S97vsaVHFRRFBIjidytacF1A9HyM8mxm9szCs7657/faIoVxpghzNawUmjJ0SR2KBMJSDYuDIJfKWyBc1LAiCEmpPEAobV/rtYi7VhyBcFPDqorgqiJAGClCFYT1Ip190Ltl5G5RPQ+XqCFqTxFRZdUkS/yBkQCh7PS97ihnFjWIUIMRmDMYAcLI8XW3IhCrfA/Oycfk27RglIpg5Q4oO53Z7DiqQ21AULesszmAPG2FDan+ONrOZhAsNSBlw1QHCP1Lvoxjxx6MAEF2dbuhKghqWApFbKFwQOyVP5Ii2GEpQPSDqGBcA8SA0JRvWa4VTyBSA2p44kpRabybbma2owaRBvcIT1YOi37bHthN6MJp7h64/gHORJl+nCcCdQAAAABJRU5ErkJggg==',
     blocks: [
       {
-        opcode: "pendrawtexturedtrifromurl",
+        opcode: 'pendrawtexturedtrifromurl',
         blockType: Scratch.BlockType.COMMAND,
-        text: "Draw a triangle with points at(seperated by commas)[trianglepoints] and the uvs of [triangleuvs] with the image from url:[url]",
+        text: 'Draw a triangle with points at(seperated by commas)[trianglepoints] and the uvs of [triangleuvs] with the image from url:[url]',
         arguments: {
           url: {
             type: Scratch.ArgumentType.STRING,
-            defaultValue: EXAMPLE_IMAGE
+            defaultValue: EXAMPLE_IMAGE,
           },
           trianglepoints: {
             type: Scratch.ArgumentType.STRING,
-            defaultValue: "0,0,10,10,0,10"
+            defaultValue: '0,0,10,10,0,10',
           },
           triangleuvs: {
             type: Scratch.ArgumentType.STRING,
-            defaultValue: "0,0,1,1,0,1"
-          }
-        }
+            defaultValue: '0,0,1,1,0,1',
+          },
+        },
       },
       {
-        opcode: "settripointcolour",
+        opcode: 'settripointcolour',
         blockType: Scratch.BlockType.COMMAND,
-        text: "Tint point [pointmenu] by [color] and transparency[T](0-255)",
+        text: 'Tint point [pointmenu] by [color] and transparency[T](0-255)',
         arguments: {
           pointmenu: {
             type: Scratch.ArgumentType.STRING,
-            menu: 'pointmenu'
+            menu: 'pointmenu',
           },
           color: {
             type: Scratch.ArgumentType.COLOR,
-            defaultValue: '#ffffff'
+            defaultValue: '#ffffff',
           },
           T: {
             type: Scratch.ArgumentType.NUMBER,
-            defaultValue: '0'
-          }
-        }
+            defaultValue: '0',
+          },
+        },
       },
       {
-        opcode: "setTriPointZ",
+        opcode: 'setTriPointZ',
         blockType: Scratch.BlockType.COMMAND,
         text: "Set point [pointmenu]'s depth to [Z]",
         arguments: {
           pointmenu: {
             type: Scratch.ArgumentType.STRING,
-            menu: 'pointmenu'
+            menu: 'pointmenu',
           },
           Z: {
             type: Scratch.ArgumentType.NUMBER,
-            defaultValue: '1'
-          }
-        }
-      }
-    ]
+            defaultValue: '1',
+          },
+        },
+      },
+    ],
   };
 
   const LineBlocks = {
-    icon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAE4AAABOCAYAAACOqiAdAAAAAXNSR0IArs4c6QAAAclJREFUeF7t3EFuxCAMBdDmCL1Sz9XlnGuu1CO0IjNIFIUEiAF/+7OIhORI6MU2ysbbB9eVwG8WsIX9/uAqCuRoMXAjXDlrdrTP5+NfxM/X974n3DHcIVoIJVxjpsVwwjVmGuE6My0t09Di2ONekMWelmdavBcI14HGW7UTzTtcc3mm7dFrqd5C85pxt9E8womgeYMTQ/MEJ4rmBU4czQPcEDTrcMPQLMMNRbMKNxzNItwUNGtw09AswU1FswI3Hc0C3BI0dLhlaMhwS9FQ4ZajIcKpQEODU4OGBKcKDQVOHRoCnEo07XBq0TTDqUbTCqceTSMcBJo2OBg0TXBQaFrg4NA0wEGirYaDRVsJB422Cg4ebQWcCbTZcGbQZsKZQpsFZw5tBpxJtNFwZtFGwplGGwVnHm0EnAs0aTg3aJJwrtCk4NyhScC5RLsL5xbtDpxrtF4492g9cEQLao0jgoj2RmuBI1qCVgtHtAytBo5oB2hXcEQroJ3BEe0ErQRHtAu0IziiVaDlcESrREvhiNaAFuGI1ohWBReHaTb+nnUcBeuVMAatmHFEK3/MIhzRzisgDt7bs67jlwyrvgRPm04szPG8TjOs4v0Dp6EsWljkur0AAAAASUVORK5CYII=",
+    icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAE4AAABOCAYAAACOqiAdAAAAAXNSR0IArs4c6QAAAclJREFUeF7t3EFuxCAMBdDmCL1Sz9XlnGuu1CO0IjNIFIUEiAF/+7OIhORI6MU2ysbbB9eVwG8WsIX9/uAqCuRoMXAjXDlrdrTP5+NfxM/X974n3DHcIVoIJVxjpsVwwjVmGuE6My0t09Di2ONekMWelmdavBcI14HGW7UTzTtcc3mm7dFrqd5C85pxt9E8womgeYMTQ/MEJ4rmBU4czQPcEDTrcMPQLMMNRbMKNxzNItwUNGtw09AswU1FswI3Hc0C3BI0dLhlaMhwS9FQ4ZajIcKpQEODU4OGBKcKDQVOHRoCnEo07XBq0TTDqUbTCqceTSMcBJo2OBg0TXBQaFrg4NA0wEGirYaDRVsJB422Cg4ebQWcCbTZcGbQZsKZQpsFZw5tBpxJtNFwZtFGwplGGwVnHm0EnAs0aTg3aJJwrtCk4NyhScC5RLsL5xbtDpxrtF4492g9cEQLao0jgoj2RmuBI1qCVgtHtAytBo5oB2hXcEQroJ3BEe0ErQRHtAu0IziiVaDlcESrREvhiNaAFuGI1ohWBReHaTb+nnUcBeuVMAatmHFEK3/MIhzRzisgDt7bs67jlwyrvgRPm04szPG8TjOs4v0Dp6EsWljkur0AAAAASUVORK5CYII=',
     blocks: [
       {
-        opcode: "drawLine",
+        opcode: 'drawLine',
         blockType: Scratch.BlockType.COMMAND,
-        text: "Draw a line from:[x1][y1] to:[x2][y2]",
+        text: 'Draw a line from:[x1][y1] to:[x2][y2]',
         arguments: {
           x1: {
             type: Scratch.ArgumentType.NUMBER,
-            defaultValue: 0
+            defaultValue: 0,
           },
           y1: {
             type: Scratch.ArgumentType.NUMBER,
-            defaultValue: 0
+            defaultValue: 0,
           },
           x2: {
             type: Scratch.ArgumentType.NUMBER,
-            defaultValue: 25
+            defaultValue: 25,
           },
           y2: {
             type: Scratch.ArgumentType.NUMBER,
-            defaultValue: 25
-          }
-        }
+            defaultValue: 25,
+          },
+        },
       },
       {
-        opcode: "setLineWidth",
+        opcode: 'setLineWidth',
         blockIconURI: LineStyleIcon,
         blockType: Scratch.BlockType.COMMAND,
         text: "Set line the:[point] point's width to:[Width]",
         arguments: {
           Width: {
             type: Scratch.ArgumentType.NUMBER,
-            defaultValue: 10
+            defaultValue: 10,
           },
           point: {
             type: Scratch.ArgumentType.STRING,
-            defaultValue: "All",
-            menu: "linePointsmenu"
-          }
-        }
+            defaultValue: 'All',
+            menu: 'linePointsmenu',
+          },
+        },
       },
       {
-        opcode: "setLineColor",
+        opcode: 'setLineColor',
         blockIconURI: LineStyleIcon,
         blockType: Scratch.BlockType.COMMAND,
-        text: "Set line color to:[color] and transparency to:[Alpha]",
+        text: 'Set line color to:[color] and transparency to:[Alpha]',
         arguments: {
           color: {
             type: Scratch.ArgumentType.COLOR,
-            defaultValue: '#ffffff'
+            defaultValue: '#ffffff',
           },
           Alpha: {
             type: Scratch.ArgumentType.NUMBER,
-            defaultValue: '255'
-          }
-        }
-      }
-    ]
+            defaultValue: '255',
+          },
+        },
+      },
+    ],
   };
 
   const DepracatedBlocks = {
-    icon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAE4AAABOCAYAAACOqiAdAAAAAXNSR0IArs4c6QAAAphJREFUeF7t20lywyAQBdB4lQvlFjlvbpELZZUUqqKMCFM3PXzA3liyLQTPH4Fk+fH2fPwmy2Hxka2fulp0iTj5mxHpdLyqS4C53nz//Lgl6ufr+3S8pksVLqgdjFdES02acIfiVdFIcIfhNdFyuLA+vMHGoy3JIB01SRtuNjchtz2fbpAL2ACQ1ebSPI1V0KKA7LbWJrjsAhcCnGpj68xgqmBwwOm29U6ppncACCjSph7cblMVETTKFRCxHTomULQNI4mLbRXdsTGgeN0pcKt2W3E0SldNA6JSEaUEqtWVmriVuq0aGjdxK+Cpos3CoR7z1NEk4NDwTNCk4FDwzNAk4bzxTNGk4bzwzNE04KzxXNC04Kzw3NA04bTxXNG04bTw3NEs4KTxINCs4KTwYNAs4WbxoNCs4bh4cGgecFS860pMfgtavDwTnr3uqOJej0vrzlkeThEimlfiInQXr/WNeCUt1skrcVN43mjeiWPhIaChwA0NGJ4DQemQ4d1VSalDSRtK4kiDBAqed+JIaDGeCHiecCw0FDwvuC5aTNVrAvwcmobR4iaIeNaJo6Dd/meGhmcJx0Ebnq5YDxhWcDNokHgWcBJocHjacJJoUHiacBpoMHhacJpoEHgacBZo7njScJZorniScB5obnhScJ5oLngScAho5nizcEhopngzcIhoZnhcOGQ0EzwO3Apo6nhUuJXQVPEocCuiqeGNwq2MpoI3ArcDmjheD24nNFG8FtyOaGJ4Nbid0UTwSnAnoE3j5XAnoU3hpXAnorHxoH8tL93Qp/gaKTgBjrSBYsURih626MJZ31oAoNfEix5NuAPRuse8LtzBaE28FC588Ipn4dE7JQPoWapVqLr8m44k1Tgd7Za83OUPGEk0ZW66HHQAAAAASUVORK5CYII=",
+    icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAE4AAABOCAYAAACOqiAdAAAAAXNSR0IArs4c6QAAAphJREFUeF7t20lywyAQBdB4lQvlFjlvbpELZZUUqqKMCFM3PXzA3liyLQTPH4Fk+fH2fPwmy2Hxka2fulp0iTj5mxHpdLyqS4C53nz//Lgl6ufr+3S8pksVLqgdjFdES02acIfiVdFIcIfhNdFyuLA+vMHGoy3JIB01SRtuNjchtz2fbpAL2ACQ1ebSPI1V0KKA7LbWJrjsAhcCnGpj68xgqmBwwOm29U6ppncACCjSph7cblMVETTKFRCxHTomULQNI4mLbRXdsTGgeN0pcKt2W3E0SldNA6JSEaUEqtWVmriVuq0aGjdxK+Cpos3CoR7z1NEk4NDwTNCk4FDwzNAk4bzxTNGk4bzwzNE04KzxXNC04Kzw3NA04bTxXNG04bTw3NEs4KTxINCs4KTwYNAs4WbxoNCs4bh4cGgecFS860pMfgtavDwTnr3uqOJej0vrzlkeThEimlfiInQXr/WNeCUt1skrcVN43mjeiWPhIaChwA0NGJ4DQemQ4d1VSalDSRtK4kiDBAqed+JIaDGeCHiecCw0FDwvuC5aTNVrAvwcmobR4iaIeNaJo6Dd/meGhmcJx0Ebnq5YDxhWcDNokHgWcBJocHjacJJoUHiacBpoMHhacJpoEHgacBZo7njScJZorniScB5obnhScJ5oLngScAho5nizcEhopngzcIhoZnhcOGQ0EzwO3Apo6nhUuJXQVPEocCuiqeGNwq2MpoI3ArcDmjheD24nNFG8FtyOaGJ4Nbid0UTwSnAnoE3j5XAnoU3hpXAnorHxoH8tL93Qp/gaKTgBjrSBYsURih626MJZ31oAoNfEix5NuAPRuse8LtzBaE28FC588Ipn4dE7JQPoWapVqLr8m44k1Tgd7Za83OUPGEk0ZW66HHQAAAAASUVORK5CYII=',
     blocks: [
       {
-        opcode: "settargetsw",
+        opcode: 'settargetsw',
         blockType: Scratch.BlockType.COMMAND,
-        text: "Change the target screen size to width[width] and height[height]",
+        text: 'Change the target screen size to width[width] and height[height]',
         arguments: {
           width: {
             type: Scratch.ArgumentType.NUMBER,
-            defaultValue: "480"
+            defaultValue: '480',
           },
           height: {
             type: Scratch.ArgumentType.NUMBER,
-            defaultValue: "360"
-          }
-        }
+            defaultValue: '360',
+          },
+        },
       },
       {
-        opcode: "gettargetstagewidth",
+        opcode: 'gettargetstagewidth',
         blockType: Scratch.BlockType.REPORTER,
-        text: "Target Stage Width",
-        disableMonitor: true
+        text: 'Target Stage Width',
+        disableMonitor: true,
       },
       {
-        opcode: "gettargetstageheight",
+        opcode: 'gettargetstageheight',
         blockType: Scratch.BlockType.REPORTER,
-        text: "Target Stage Height",
-        disableMonitor: true
+        text: 'Target Stage Height',
+        disableMonitor: true,
       },
       {
-        opcode: "converttocanvascoords",
+        opcode: 'converttocanvascoords',
         blockType: Scratch.BlockType.REPORTER,
-        text: "Convert [scrcoord] to [coordTypes] units on the axis [coordmenu]",
+        text: 'Convert [scrcoord] to [coordTypes] units on the axis [coordmenu]',
         arguments: {
           coordmenu: {
             type: Scratch.ArgumentType.STRING,
-            menu: 'coordMenu'
+            menu: 'coordMenu',
           },
           scrcoord: {
             type: Scratch.ArgumentType.NUMBER,
-            defaultValue: '0'
+            defaultValue: '0',
           },
           coordTypes: {
             type: Scratch.ArgumentType.STRING,
-            menu: 'coordTypes'
-          }
-        }
-      }
-    ]
+            menu: 'coordTypes',
+          },
+        },
+      },
+    ],
   };
 
   //Stamps
@@ -2326,77 +2459,85 @@ Other various small fixes
   class PenPlus {
     getInfo() {
       return {
-        id: "betterpen",
-        name: "Pen+",
+        id: 'betterpen',
+        name: 'Pen+',
         color1: '#0e9a6b',
         color2: '#0b7f58',
         color3: '#096647',
-        docsURI: 'https://www.youtube.com/playlist?list=PLdR2VVCBIN3CceUdgKWOUxFEEbLqWgCC9',
-        menuIconURI: "data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIzNy44NjkyMSIgaGVpZ2h0PSI0OC44NTI3MiIgdmlld0JveD0iMCwwLDM3Ljg2OTIxLDQ4Ljg1MjcyIj48ZGVmcz48cmFkaWFsR3JhZGllbnQgY3g9IjIzNy41NDM0IiBjeT0iMTg0LjAwNTYiIHI9IjkuOTg1NDkiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiBpZD0iY29sb3ItMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZmZmZmZmIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjY2ZkNWU5Ii8+PC9yYWRpYWxHcmFkaWVudD48L2RlZnM+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTIyMy4zMDE4MSwtMTYzLjc2MzA5KSI+PGcgZGF0YS1wYXBlci1kYXRhPSJ7JnF1b3Q7aXNQYWludGluZ0xheWVyJnF1b3Q7OnRydWV9IiBmaWxsLXJ1bGU9Im5vbnplcm8iIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLWRhc2hhcnJheT0iIiBzdHJva2UtZGFzaG9mZnNldD0iMCIgc3R5bGU9Im1peC1ibGVuZC1tb2RlOiBub3JtYWwiPjxwYXRoIGQ9Ik0yMjUuMTYzNTYsMTkzLjIwMDIxYzAuNTYxNTMsLTEuMTA3NDYgMi4yMzQwNCwtMy4yODU4MyAyLjIzNDA0LC0zLjI4NTgzYzAsMCAwLjU5NDQyLDEuODIzOTEgMS4yMjQ0OSwyLjU5NTc1YzAuNjMyMTIsMC43NzQzNSAyLjA4ODc4LDEuNDc0ODQgMi4wODg3OCwxLjQ3NDg0YzAsMCAtMi4xOTQ0NiwxLjI4MTQxIC0zLjMyNDIxLDEuNzI2OTVjLTEuMTEwMzIsMC40Mzc4NyAtMy4zOTcsMC45MjM2NyAtMy4zOTcsMC45MjM2N2MwLDAgMC41OTk3NCwtMi4zMDI5OSAxLjE3MzksLTMuNDM1Mzh6IiBmaWxsPSIjNGM5N2ZmIiBzdHJva2U9IiM1NzVlNzUiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiLz48cGF0aCBkPSJNMjI3LjYxMTMxLDE4OS4yOTIwM2wxNC45NTE1NCwtMTUuMjcxOTNjMCwwIDIuMjA2LDAuODk1MDUgMi45NTc3NiwxLjYzMDQ3YzAuODY4OCwwLjg0OTkxIDEuOTU0ODksMy4xNzUzOCAxLjk1NDg5LDMuMTc1MzhsLTE2LjEyNjMxLDE1LjE2NTE0YzAsMCAtMi4wMDYzOSwtMS4xMjc4NiAtMi42MDkyMSwtMS44ODU2OGMtMC42NDA4MiwtMC44MDU2IC0xLjEyODY4LC0yLjgxMzM3IC0xLjEyODY4LC0yLjgxMzM3eiIgZmlsbD0idXJsKCNjb2xvci0xKSIgc3Ryb2tlPSIjNTc1ZTc1IiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJidXR0Ii8+PHBhdGggZD0iTTIzNy43NTY5OSwxNzIuOTUyMTNjMCwwIDAuOTg2MTksMS4wNTA2MiAyLjM5NjA4LC0wLjI3MDcyYzEuODAzLC0xLjY4OTc3IDQuMjMxMDUsLTUuOTAxNDcgNS40NDc0MywtNi41ODcwN2MxLjM3NDgsLTAuNzc0ODkgMy45MDQxNCwwLjIzNjM5IDMuOTA0MTQsMC4yMzYzOSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNTc1ZTc1IiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0yMzYuMDc5ODEsMTcyLjMxMTM1YzAsLTAuNjkwMzYgMC41NTk2NCwtMS4yNSAxLjI1LC0xLjI1YzAuNjkwMzYsMCAxLjI1LDAuNTU5NjQgMS4yNSwxLjI1YzAsMC42OTAzNiAtMC41NTk2NCwxLjI1IC0xLjI1LDEuMjVjLTAuNjkwMzYsMCAtMS4yNSwtMC41NTk2NCAtMS4yNSwtMS4yNXoiIGZpbGw9IiM1NzVlNzUiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIwLjUiIHN0cm9rZS1saW5lY2FwPSJidXR0Ii8+PHBhdGggZD0iTTI1MC45OTk3OSwxNjQuNzI4NzdjMCwwIDEuOTEzOTYsLTEuMDUxOTMgNC4yMDAwOSwxLjMyMzU4YzIuNDI2ODUsMi41MjE3MyAwLjYwNTc2LDQuNDQzNDQgMC42MDU3Niw0LjQ0MzQ0bC04LjMzMDE0LDguMjIzMzVjMCwwIC0wLjc1MDQsLTIuMDcxMTIgLTEuNTYyNDksLTIuNzk0OTRjLTAuODI1MjQsLTAuNzM1NTUgLTMuMzUwMTYsLTEuNTgzNzMgLTMuMzUwMTYsLTEuNTgzNzN6IiBmaWxsPSIjNGM5N2ZmIiBzdHJva2U9IiM1NzVlNzUiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiLz48dGV4dCB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyMzkuODkzMzcsMjAxLjcxMTE4KSBzY2FsZSgwLjg3MjM3LDAuODcyMzcpIiBmb250LXNpemU9IjQwIiB4bWw6c3BhY2U9InByZXNlcnZlIiBmaWxsPSIjZThlYmY0IiBmaWxsLXJ1bGU9Im5vbnplcm8iIHN0cm9rZT0iIzU3NWU3NSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtZGFzaGFycmF5PSIiIHN0cm9rZS1kYXNob2Zmc2V0PSIwIiBmb250LWZhbWlseT0iU2FucyBTZXJpZiIgZm9udC13ZWlnaHQ9Im5vcm1hbCIgdGV4dC1hbmNob3I9InN0YXJ0IiBzdHlsZT0ibWl4LWJsZW5kLW1vZGU6IG5vcm1hbCI+PHRzcGFuIHg9IjAiIGR5PSIwIj4rPC90c3Bhbj48L3RleHQ+PC9nPjwvZz48L3N2Zz48IS0tcm90YXRpb25DZW50ZXI6MTYuNjk4MTkxNTI3MDE2NDYyOjE2LjIzNjkxNDk5OTk5OTk4Mi0tPg==",
-        blocks: splitBlockCatagories([UtilityBlocks, StampBlocks, TriangleBlocks, LineBlocks, DepracatedBlocks]),
+        docsURI:
+          'https://www.youtube.com/playlist?list=PLdR2VVCBIN3CceUdgKWOUxFEEbLqWgCC9',
+        menuIconURI:
+          'data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIzNy44NjkyMSIgaGVpZ2h0PSI0OC44NTI3MiIgdmlld0JveD0iMCwwLDM3Ljg2OTIxLDQ4Ljg1MjcyIj48ZGVmcz48cmFkaWFsR3JhZGllbnQgY3g9IjIzNy41NDM0IiBjeT0iMTg0LjAwNTYiIHI9IjkuOTg1NDkiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiBpZD0iY29sb3ItMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZmZmZmZmIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjY2ZkNWU5Ii8+PC9yYWRpYWxHcmFkaWVudD48L2RlZnM+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTIyMy4zMDE4MSwtMTYzLjc2MzA5KSI+PGcgZGF0YS1wYXBlci1kYXRhPSJ7JnF1b3Q7aXNQYWludGluZ0xheWVyJnF1b3Q7OnRydWV9IiBmaWxsLXJ1bGU9Im5vbnplcm8iIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLWRhc2hhcnJheT0iIiBzdHJva2UtZGFzaG9mZnNldD0iMCIgc3R5bGU9Im1peC1ibGVuZC1tb2RlOiBub3JtYWwiPjxwYXRoIGQ9Ik0yMjUuMTYzNTYsMTkzLjIwMDIxYzAuNTYxNTMsLTEuMTA3NDYgMi4yMzQwNCwtMy4yODU4MyAyLjIzNDA0LC0zLjI4NTgzYzAsMCAwLjU5NDQyLDEuODIzOTEgMS4yMjQ0OSwyLjU5NTc1YzAuNjMyMTIsMC43NzQzNSAyLjA4ODc4LDEuNDc0ODQgMi4wODg3OCwxLjQ3NDg0YzAsMCAtMi4xOTQ0NiwxLjI4MTQxIC0zLjMyNDIxLDEuNzI2OTVjLTEuMTEwMzIsMC40Mzc4NyAtMy4zOTcsMC45MjM2NyAtMy4zOTcsMC45MjM2N2MwLDAgMC41OTk3NCwtMi4zMDI5OSAxLjE3MzksLTMuNDM1Mzh6IiBmaWxsPSIjNGM5N2ZmIiBzdHJva2U9IiM1NzVlNzUiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiLz48cGF0aCBkPSJNMjI3LjYxMTMxLDE4OS4yOTIwM2wxNC45NTE1NCwtMTUuMjcxOTNjMCwwIDIuMjA2LDAuODk1MDUgMi45NTc3NiwxLjYzMDQ3YzAuODY4OCwwLjg0OTkxIDEuOTU0ODksMy4xNzUzOCAxLjk1NDg5LDMuMTc1MzhsLTE2LjEyNjMxLDE1LjE2NTE0YzAsMCAtMi4wMDYzOSwtMS4xMjc4NiAtMi42MDkyMSwtMS44ODU2OGMtMC42NDA4MiwtMC44MDU2IC0xLjEyODY4LC0yLjgxMzM3IC0xLjEyODY4LC0yLjgxMzM3eiIgZmlsbD0idXJsKCNjb2xvci0xKSIgc3Ryb2tlPSIjNTc1ZTc1IiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJidXR0Ii8+PHBhdGggZD0iTTIzNy43NTY5OSwxNzIuOTUyMTNjMCwwIDAuOTg2MTksMS4wNTA2MiAyLjM5NjA4LC0wLjI3MDcyYzEuODAzLC0xLjY4OTc3IDQuMjMxMDUsLTUuOTAxNDcgNS40NDc0MywtNi41ODcwN2MxLjM3NDgsLTAuNzc0ODkgMy45MDQxNCwwLjIzNjM5IDMuOTA0MTQsMC4yMzYzOSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNTc1ZTc1IiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0yMzYuMDc5ODEsMTcyLjMxMTM1YzAsLTAuNjkwMzYgMC41NTk2NCwtMS4yNSAxLjI1LC0xLjI1YzAuNjkwMzYsMCAxLjI1LDAuNTU5NjQgMS4yNSwxLjI1YzAsMC42OTAzNiAtMC41NTk2NCwxLjI1IC0xLjI1LDEuMjVjLTAuNjkwMzYsMCAtMS4yNSwtMC41NTk2NCAtMS4yNSwtMS4yNXoiIGZpbGw9IiM1NzVlNzUiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIwLjUiIHN0cm9rZS1saW5lY2FwPSJidXR0Ii8+PHBhdGggZD0iTTI1MC45OTk3OSwxNjQuNzI4NzdjMCwwIDEuOTEzOTYsLTEuMDUxOTMgNC4yMDAwOSwxLjMyMzU4YzIuNDI2ODUsMi41MjE3MyAwLjYwNTc2LDQuNDQzNDQgMC42MDU3Niw0LjQ0MzQ0bC04LjMzMDE0LDguMjIzMzVjMCwwIC0wLjc1MDQsLTIuMDcxMTIgLTEuNTYyNDksLTIuNzk0OTRjLTAuODI1MjQsLTAuNzM1NTUgLTMuMzUwMTYsLTEuNTgzNzMgLTMuMzUwMTYsLTEuNTgzNzN6IiBmaWxsPSIjNGM5N2ZmIiBzdHJva2U9IiM1NzVlNzUiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiLz48dGV4dCB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyMzkuODkzMzcsMjAxLjcxMTE4KSBzY2FsZSgwLjg3MjM3LDAuODcyMzcpIiBmb250LXNpemU9IjQwIiB4bWw6c3BhY2U9InByZXNlcnZlIiBmaWxsPSIjZThlYmY0IiBmaWxsLXJ1bGU9Im5vbnplcm8iIHN0cm9rZT0iIzU3NWU3NSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtZGFzaGFycmF5PSIiIHN0cm9rZS1kYXNob2Zmc2V0PSIwIiBmb250LWZhbWlseT0iU2FucyBTZXJpZiIgZm9udC13ZWlnaHQ9Im5vcm1hbCIgdGV4dC1hbmNob3I9InN0YXJ0IiBzdHlsZT0ibWl4LWJsZW5kLW1vZGU6IG5vcm1hbCI+PHRzcGFuIHg9IjAiIGR5PSIwIj4rPC90c3Bhbj48L3RleHQ+PC9nPjwvZz48L3N2Zz48IS0tcm90YXRpb25DZW50ZXI6MTYuNjk4MTkxNTI3MDE2NDYyOjE2LjIzNjkxNDk5OTk5OTk4Mi0tPg==',
+        blocks: splitBlockCatagories([
+          UtilityBlocks,
+          StampBlocks,
+          TriangleBlocks,
+          LineBlocks,
+          DepracatedBlocks,
+        ]),
         menus: {
           coordMenu: {
             acceptReporters: true,
-            items: ['x', 'y']
+            items: ['x', 'y'],
           },
           coordTypes: {
             acceptReporters: true,
-            items: ['Canvas', 'Scratch']
+            items: ['Canvas', 'Scratch'],
           },
           pointmenu: {
             acceptReporters: true,
-            items: ['1', '2', '3']
+            items: ['1', '2', '3'],
           },
           TFmenu: {
             acceptReporters: true,
-            items: ['true', "false"]
+            items: ['true', 'false'],
           },
           AnchorPointMenu: {
             acceptReporters: true,
             items: [
               {
                 text: 'Top Left',
-                value: [0, 0]
+                value: [0, 0],
               },
               {
                 text: 'Top',
-                value: [-0.5, 0]
+                value: [-0.5, 0],
               },
               {
                 text: 'Top Right',
-                value: [-1, 0]
+                value: [-1, 0],
               },
               {
                 text: 'Middle Left',
-                value: [0, -0.5]
+                value: [0, -0.5],
               },
               {
                 text: 'Middle',
-                value: [-0.5, -0.5]
+                value: [-0.5, -0.5],
               },
               {
                 text: 'Middle Right',
-                value: [-1, -0.5]
+                value: [-1, -0.5],
               },
               {
                 text: 'Bottom Left',
-                value: [0, -1]
+                value: [0, -1],
               },
               {
                 text: 'Bottom',
-                value: [-0.5, -1]
+                value: [-0.5, -1],
               },
               {
                 text: 'Bottom Right',
-                value: [-1, -1]
-              }
-            ]
+                value: [-1, -1],
+              },
+            ],
           },
           linePointsmenu: {
             acceptReporters: true,
-            items: ['All', 'Starting', 'Ending']
-          }
-        }
+            items: ['All', 'Starting', 'Ending'],
+          },
+        },
       };
     }
 
@@ -2404,7 +2545,7 @@ Other various small fixes
       R = Math.min(Math.max(R, 0), 255);
       G = Math.min(Math.max(G, 0), 255);
       B = Math.min(Math.max(B, 0), 255);
-      return (((Math.floor(R) * 256) + Math.floor(G)) * 256) + Math.floor(B);
+      return (Math.floor(R) * 256 + Math.floor(G)) * 256 + Math.floor(B);
     }
 
     hsvtoSColor({ H, S, V }) {
@@ -2415,7 +2556,7 @@ Other various small fixes
       V = Math.min(Math.max(V, 0), 1);
       H = H % 360;
       const C = V * S;
-      const X = C * (1 - Math.abs((H / 60) % 2 - 1));
+      const X = C * (1 - Math.abs(((H / 60) % 2) - 1));
       const M = V - C;
       let Primes = [0, 0, 0];
       if (H >= 0 && H < 60) {
@@ -2444,32 +2585,32 @@ Other various small fixes
       return this.rgbtoSColor({ R: Primes[0], G: Primes[1], B: Primes[2] });
     }
 
-    getstampwidth({ }) {
+    getstampwidth({}) {
       return stampWidth;
     }
 
-    getstampheight({ }) {
+    getstampheight({}) {
       return stampHeight;
     }
 
     converttocanvascoords({ coordmenu, scrcoord, coordTypes }) {
       if (coordTypes == 'Canvas') {
-        if (coordmenu == "x") {
-          return scrcoord + (runtime.stageWidth / 2);
+        if (coordmenu == 'x') {
+          return scrcoord + runtime.stageWidth / 2;
         } else {
-          return (scrcoord * -1) + (runtime.stageHeight / 2);
+          return scrcoord * -1 + runtime.stageHeight / 2;
         }
       } else {
-        if (coordmenu == "x") {
-          return scrcoord - (runtime.stageWidth / 2);
+        if (coordmenu == 'x') {
+          return scrcoord - runtime.stageWidth / 2;
         } else {
-          return (scrcoord * -1) - (runtime.stageHeight / 2);
+          return scrcoord * -1 - runtime.stageHeight / 2;
         }
       }
     }
 
     offsetStamp({ Anchor }) {
-      stampOffset = Anchor.split(",");
+      stampOffset = Anchor.split(',');
     }
 
     setCoordSpace({ space }) {
@@ -2480,7 +2621,7 @@ Other various small fixes
       return blankImage;
     }
 
-    getstamprotation({ }) {
+    getstamprotation({}) {
       return stampRotation;
     }
 
@@ -2493,7 +2634,14 @@ Other various small fixes
       if (!textures.hasOwnProperty(url)) {
         textures[url] = loadImageAndCreateTextureInfo(url, true);
       }
-      drawImage(textures[url].texture, stampWidth * scaleMultiplier, stampHeight * scaleMultiplier, (x) * scaleMultiplier, (y) * scaleMultiplier, stampRotation - 90);
+      drawImage(
+        textures[url].texture,
+        stampWidth * scaleMultiplier,
+        stampHeight * scaleMultiplier,
+        x * scaleMultiplier,
+        y * scaleMultiplier,
+        stampRotation - 90
+      );
     }
 
     setLineWidth({ Width, point }) {
@@ -2504,49 +2652,73 @@ Other various small fixes
       } else {
         lineWidth[1] = Width;
       }
-
     }
 
     drawLine({ x1, y1, x2, y2 }) {
       var scalemultiplyer = canvas.width / runtime.stageWidth;
       let tempColors = triangleColors;
       triangleColors = [
-        lineColor.r, lineColor.g, lineColor.b, lineColor.a,
-        lineColor.r, lineColor.g, lineColor.b, lineColor.a,
-        lineColor.r, lineColor.g, lineColor.b, lineColor.a
+        lineColor.r,
+        lineColor.g,
+        lineColor.b,
+        lineColor.a,
+        lineColor.r,
+        lineColor.g,
+        lineColor.b,
+        lineColor.a,
+        lineColor.r,
+        lineColor.g,
+        lineColor.b,
+        lineColor.a,
       ];
       let vectorLength = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-      let vectorDir = { X: (x2 - x1) / vectorLength, Y: (y2 - y1) / vectorLength };
-      let triangleDir = { X1: -vectorDir.Y * lineWidth[0], Y1: vectorDir.X * lineWidth[0], X2: -vectorDir.Y * lineWidth[1], Y2: vectorDir.X * lineWidth[1] };
+      let vectorDir = {
+        X: (x2 - x1) / vectorLength,
+        Y: (y2 - y1) / vectorLength,
+      };
+      let triangleDir = {
+        X1: -vectorDir.Y * lineWidth[0],
+        Y1: vectorDir.X * lineWidth[0],
+        X2: -vectorDir.Y * lineWidth[1],
+        Y2: vectorDir.X * lineWidth[1],
+      };
 
       if (!textures.hasOwnProperty(blankImage)) {
         textures[blankImage] = loadImageAndCreateTextureInfo(blankImage, true);
       }
-      drawTexturedTri(textures[blankImage].texture, [
-        (x1 + triangleDir.X1) * scalemultiplyer,
-        (y1 + triangleDir.Y1) * scalemultiplyer,
-        (x1 - triangleDir.X1) * scalemultiplyer,
-        (y1 - triangleDir.Y1) * scalemultiplyer,
-        (x2 + triangleDir.X2) * scalemultiplyer,
-        (y2 + triangleDir.Y2) * scalemultiplyer], [0.5, 0.5, 0.5, 0.6, 0.6, 0.6]
+      drawTexturedTri(
+        textures[blankImage].texture,
+        [
+          (x1 + triangleDir.X1) * scalemultiplyer,
+          (y1 + triangleDir.Y1) * scalemultiplyer,
+          (x1 - triangleDir.X1) * scalemultiplyer,
+          (y1 - triangleDir.Y1) * scalemultiplyer,
+          (x2 + triangleDir.X2) * scalemultiplyer,
+          (y2 + triangleDir.Y2) * scalemultiplyer,
+        ],
+        [0.5, 0.5, 0.5, 0.6, 0.6, 0.6]
       );
 
-      drawTexturedTri(textures[blankImage].texture, [
-        (x1 - triangleDir.X1) * scalemultiplyer,
-        (y1 - triangleDir.Y1) * scalemultiplyer,
-        (x2 - triangleDir.X2) * scalemultiplyer,
-        (y2 - triangleDir.Y2) * scalemultiplyer,
-        (x2 + triangleDir.X2) * scalemultiplyer,
-        (y2 + triangleDir.Y2) * scalemultiplyer], [0.5, 0.5, 0.5, 0.6, 0.6, 0.6]
+      drawTexturedTri(
+        textures[blankImage].texture,
+        [
+          (x1 - triangleDir.X1) * scalemultiplyer,
+          (y1 - triangleDir.Y1) * scalemultiplyer,
+          (x2 - triangleDir.X2) * scalemultiplyer,
+          (y2 - triangleDir.Y2) * scalemultiplyer,
+          (x2 + triangleDir.X2) * scalemultiplyer,
+          (y2 + triangleDir.Y2) * scalemultiplyer,
+        ],
+        [0.5, 0.5, 0.5, 0.6, 0.6, 0.6]
       );
       triangleColors = tempColors;
     }
 
-    gettargetstagewidth({ }) {
+    gettargetstagewidth({}) {
       return screenWidth;
     }
 
-    gettargetstageheight({ }) {
+    gettargetstageheight({}) {
       return screenHeight;
     }
 
@@ -2555,12 +2727,12 @@ Other various small fixes
       if (!textures.hasOwnProperty(url)) {
         textures[url] = loadImageAndCreateTextureInfo(url, true);
       }
-      var pointsarray = trianglepoints.split(",");
+      var pointsarray = trianglepoints.split(',');
       var pointslen = pointsarray.length;
       for (var i = 0; i < pointslen; i++) {
         pointsarray[i] = pointsarray[i] * scalemultiplyer;
       }
-      var uvarray = triangleuvs.split(",");
+      var uvarray = triangleuvs.split(',');
       drawTexturedTri(textures[url].texture, pointsarray, uvarray);
     }
 
@@ -2584,16 +2756,16 @@ Other various small fixes
     }
 
     coordBlock({ c1, c2, c3, c4, c5, c6 }) {
-      return c1 + "," + c2 + "," + c3 + "," + c4 + "," + c5 + "," + c6;
+      return c1 + ',' + c2 + ',' + c3 + ',' + c4 + ',' + c5 + ',' + c6;
     }
 
     settripointcolour({ pointmenu, color, T }) {
-      if (pointmenu == "1") {
+      if (pointmenu == '1') {
         triangleColors[0] = hexToRgb(color).r / 255;
         triangleColors[1] = hexToRgb(color).g / 255;
         triangleColors[2] = hexToRgb(color).b / 255;
         triangleColors[3] = T / 255;
-      } else if (pointmenu == "2") {
+      } else if (pointmenu == '2') {
         triangleColors[4] = hexToRgb(color).r / 255;
         triangleColors[5] = hexToRgb(color).g / 255;
         triangleColors[6] = hexToRgb(color).b / 255;
@@ -2614,9 +2786,9 @@ Other various small fixes
     }
 
     setTriPointZ({ pointmenu, Z }) {
-      if (pointmenu == "1") {
+      if (pointmenu == '1') {
         TriangleZPositionArray[0] = Z;
-      } else if (pointmenu == "2") {
+      } else if (pointmenu == '2') {
         TriangleZPositionArray[1] = Z;
       } else {
         TriangleZPositionArray[2] = Z;

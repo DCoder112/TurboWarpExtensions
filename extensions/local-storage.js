@@ -12,7 +12,9 @@
   const validNamespace = () => {
     const valid = !!namespace;
     if (!valid) {
-      alert('Local Storage extension: project must run the "set storage namespace ID" block before it can use other blocks');
+      alert(
+        'Local Storage extension: project must run the "set storage namespace ID" block before it can use other blocks'
+      );
     }
     return valid;
   };
@@ -28,7 +30,11 @@
           // Remove invalid values from the JSON
           const processed = {};
           for (const [key, value] of Object.entries(parsed.data)) {
-            if (typeof value === 'number' || typeof value === 'string' || typeof value === 'boolean') {
+            if (
+              typeof value === 'number' ||
+              typeof value === 'string' ||
+              typeof value === 'boolean'
+            ) {
               processed[key] = value;
             }
           }
@@ -44,10 +50,13 @@
   const saveToLocalStorage = (data) => {
     try {
       if (Object.keys(data).length > 0) {
-        localStorage.setItem(getFullStorageKey(), JSON.stringify({
-          time: Math.round(Date.now() / 1000),
-          data
-        }));
+        localStorage.setItem(
+          getFullStorageKey(),
+          JSON.stringify({
+            time: Math.round(Date.now() / 1000),
+            data,
+          })
+        );
       } else {
         localStorage.removeItem(getFullStorageKey());
       }
@@ -57,7 +66,11 @@
   };
 
   window.addEventListener('storage', (event) => {
-    if (namespace && event.key === getFullStorageKey() && event.storageArea === localStorage) {
+    if (
+      namespace &&
+      event.key === getFullStorageKey() &&
+      event.storageArea === localStorage
+    ) {
       Scratch.vm.runtime.startHats('localstorage_whenChanged');
     }
   });
@@ -67,7 +80,7 @@
       return {
         id: 'localstorage',
         name: 'Local Storage',
-        docsURI: "https://extensions.turbowarp.org/local-storage.html",
+        docsURI: 'https://extensions.turbowarp.org/local-storage.html',
         blocks: [
           {
             opcode: 'setProjectId',
@@ -76,9 +89,9 @@
             arguments: {
               ID: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'project title'
-              }
-            }
+                defaultValue: 'project title',
+              },
+            },
           },
           {
             opcode: 'get',
@@ -113,21 +126,21 @@
             arguments: {
               KEY: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'score'
+                defaultValue: 'score',
               },
             },
           },
           {
             opcode: 'removeAll',
             blockType: Scratch.BlockType.COMMAND,
-            text: 'delete all keys'
+            text: 'delete all keys',
           },
           {
             opcode: 'whenChanged',
             blockType: Scratch.BlockType.HAT,
             text: 'when another window changes storage',
-            isEdgeActivated: false
-          }
+            isEdgeActivated: false,
+          },
         ],
       };
     }

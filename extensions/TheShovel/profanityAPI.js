@@ -1,7 +1,7 @@
-(function(Scratch) {
+(function (Scratch) {
   'use strict';
   class profanityAPI {
-    getInfo () {
+    getInfo() {
       return {
         id: 'profanityAPI',
         name: 'profanityAPI',
@@ -12,21 +12,23 @@
           {
             opcode: 'checkProfanity',
             blockType: Scratch.BlockType.REPORTER,
-            text: "Remove profanity from [TEXT]",
+            text: 'Remove profanity from [TEXT]',
             arguments: {
               TEXT: {
                 type: Scratch.ArgumentType.STRING,
                 defaultValue: 'Hello, I love pizza!',
-              }
-            }
+              },
+            },
           },
-        ]
+        ],
       };
     }
 
-    checkProfanity({TEXT}) {
-      return Scratch.fetch("https://www.purgomalum.com/service/plain?text=" + TEXT)
-        .then(r => r.text())
+    checkProfanity({ TEXT }) {
+      return Scratch.fetch(
+        'https://www.purgomalum.com/service/plain?text=' + TEXT
+      )
+        .then((r) => r.text())
         .catch(() => '');
     }
   }

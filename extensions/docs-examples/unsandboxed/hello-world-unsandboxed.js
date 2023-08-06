@@ -1,4 +1,4 @@
-(function(Scratch) {
+(function (Scratch) {
   'use strict';
 
   if (!Scratch.extensions.unsandboxed) {
@@ -14,9 +14,9 @@
           {
             opcode: 'hello',
             blockType: Scratch.BlockType.REPORTER,
-            text: 'Hello!'
-          }
-        ]
+            text: 'Hello!',
+          },
+        ],
       };
     }
     hello() {

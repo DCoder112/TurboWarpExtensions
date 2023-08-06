@@ -1,6 +1,6 @@
 // https://github.com/CS2627883/Turbowarp-Encoding-Extension/blob/main/Encoding.js
 
-(function(Scratch) {
+(function (Scratch) {
   'use strict';
   class NumericalEncodingExtension {
     maxcharlength = 6; // There are 149,186 unicode characters, so the maximum character code length is 6
@@ -10,17 +10,18 @@
       return {
         id: 'cs2627883NumericalEncoding',
         name: 'Numerical Encoding',
-        blocks: [{
-          opcode: 'NumericalEncode',
-          blockType: Scratch.BlockType.COMMAND,
-          text: 'Encode [DATA] to numbers',
-          arguments: {
-            DATA: {
-              type: Scratch.ArgumentType.STRING,
-              defaultValue: 'Hello!'
-            }
-          }
-        },
+        blocks: [
+          {
+            opcode: 'NumericalEncode',
+            blockType: Scratch.BlockType.COMMAND,
+            text: 'Encode [DATA] to numbers',
+            arguments: {
+              DATA: {
+                type: Scratch.ArgumentType.STRING,
+                defaultValue: 'Hello!',
+              },
+            },
+          },
           {
             opcode: 'NumericalDecode',
             blockType: Scratch.BlockType.COMMAND,
@@ -28,9 +29,9 @@
             arguments: {
               ENCODED: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: '000072000101000108000108000111000033' //Encoded "Hello!"
-              }
-            }
+                defaultValue: '000072000101000108000108000111000033', //Encoded "Hello!"
+              },
+            },
           },
           {
             opcode: 'GetNumericalEncoded',
@@ -41,29 +42,30 @@
             opcode: 'GetNumericalDecoded',
             blockType: Scratch.BlockType.REPORTER,
             text: 'decoded',
-          }
-        ]
+          },
+        ],
       };
     }
     NumericalEncode(args) {
       const toencode = String(args.DATA);
-      var encoded = "";
+      var encoded = '';
       for (let i = 0; i < toencode.length; ++i) {
         // Get char code of character
         var encodedchar = String(toencode.charCodeAt(i));
         // Pad encodedchar with 0s to ensure all encodedchars are the same length
-        encodedchar = "0".repeat(this.maxcharlength - encodedchar.length) + encodedchar;
+        encodedchar =
+          '0'.repeat(this.maxcharlength - encodedchar.length) + encodedchar;
         encoded += encodedchar;
       }
       this.encoded = encoded;
     }
     NumericalDecode(args) {
       const todecode = String(args.ENCODED);
-      if (todecode == "") {
-        this.decoded = "";
+      if (todecode == '') {
+        this.decoded = '';
         return;
       }
-      var decoded = "";
+      var decoded = '';
       // Create regex to split by char length
       const regex = new RegExp('.{1,' + this.maxcharlength + '}', 'g');
       // Split into array of characters

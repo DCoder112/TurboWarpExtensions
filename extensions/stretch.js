@@ -30,7 +30,9 @@
     };
   };
   vm.runtime.targets.forEach((target) => implementStretchForTarget(target));
-  vm.runtime.on('targetWasCreated', (target, originalTarget) => implementStretchForTarget(target, originalTarget));
+  vm.runtime.on('targetWasCreated', (target, originalTarget) =>
+    implementStretchForTarget(target, originalTarget)
+  );
   vm.runtime.on('PROJECT_LOADED', () => {
     vm.runtime.targets.forEach((target) => implementStretchForTarget(target));
   });
@@ -74,13 +76,13 @@
             arguments: {
               DX: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: 0
+                defaultValue: 0,
               },
               DY: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: 0
-              }
-            }
+                defaultValue: 0,
+              },
+            },
           },
 
           '---',
@@ -93,7 +95,7 @@
               X: {
                 type: Scratch.ArgumentType.NUMBER,
                 defaultValue: 100,
-              }
+              },
             },
             filter: [Scratch.TargetType.SPRITE],
           },
@@ -105,7 +107,7 @@
               Y: {
                 type: Scratch.ArgumentType.NUMBER,
                 defaultValue: 100,
-              }
+              },
             },
             filter: [Scratch.TargetType.SPRITE],
           },
@@ -116,9 +118,9 @@
             arguments: {
               DX: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: 10
-              }
-            }
+                defaultValue: 10,
+              },
+            },
           },
           {
             opcode: 'changeStretchY',
@@ -127,9 +129,9 @@
             arguments: {
               DY: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: 10
-              }
-            }
+                defaultValue: 10,
+              },
+            },
           },
 
           '---',

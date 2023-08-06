@@ -1,4 +1,4 @@
-(function(Scratch) {
+(function (Scratch) {
   'use strict';
   class Broadcast5 {
     getInfo() {
@@ -14,9 +14,9 @@
             arguments: {
               EVENT_OPTION: {
                 type: Scratch.ArgumentType.STRING,
-                menu: 'EVENT_FIELD'
-              }
-            }
+                menu: 'EVENT_FIELD',
+              },
+            },
           },
           {
             opcode: 'broadcast',
@@ -26,31 +26,27 @@
             arguments: {
               EVENT: {
                 type: Scratch.ArgumentType.STRING,
-                menu: 'EVENT_FIELD'
-              }
-            }
-          }
+                menu: 'EVENT_FIELD',
+              },
+            },
+          },
         ],
         menus: {
           EVENT_FIELD: {
             acceptReporters: false,
-            items: [
-              'Event 1',
-              'Event 2',
-              'Event 3'
-            ]
-          }
-        }
+            items: ['Event 1', 'Event 2', 'Event 3'],
+          },
+        },
       };
     }
-    broadcast({EVENT, TARGET}, util) {
+    broadcast({ EVENT, TARGET }, util) {
       // highlight-start
       const threads = util.startHats('broadcast5example_whenReceived', {
-        EVENT_OPTION: EVENT
+        EVENT_OPTION: EVENT,
       });
       return `Started ${threads.length} new threads!`;
       // highlight-end
     }
   }
   Scratch.extensions.register(new Broadcast5());
-}(Scratch));
+})(Scratch);

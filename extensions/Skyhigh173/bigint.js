@@ -1,11 +1,11 @@
-(function(Scratch){
+(function (Scratch) {
   'use strict';
 
   /**
    * @param {unknown} x
    * @returns {bigint}
    */
-  const bi = x => {
+  const bi = (x) => {
     if (typeof x === 'string') {
       // Try to parse things like '8n'
       if (x.charAt(x.length - 1) === 'n') {
@@ -16,9 +16,10 @@
         }
       }
       // Must remove decimal using string operations. Math.trunc will convert to float
-      // which ruins the point of using bigints. 
+      // which ruins the point of using bigints.
       const decimalIndex = x.indexOf('.');
-      const withoutDecimal = decimalIndex === -1 ? x : x.substring(0, decimalIndex);
+      const withoutDecimal =
+        decimalIndex === -1 ? x : x.substring(0, decimalIndex);
       try {
         return BigInt(withoutDecimal);
       } catch (e) {
@@ -36,7 +37,7 @@
 
   const makeLabel = (text) => ({
     blockType: 'label',
-    text: text
+    text: text,
   });
 
   class BigIntExtension {
@@ -53,9 +54,9 @@
             arguments: {
               text: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
-              }
-            }
+                defaultValue: '',
+              },
+            },
           },
           {
             opcode: 'to',
@@ -64,9 +65,9 @@
             arguments: {
               text: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
-              }
-            }
+                defaultValue: '',
+              },
+            },
           },
           makeLabel('Arithmetic'),
           {
@@ -76,13 +77,13 @@
             arguments: {
               a: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
+                defaultValue: '',
               },
               b: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
-              }
-            }
+                defaultValue: '',
+              },
+            },
           },
           {
             opcode: 'sub',
@@ -91,13 +92,13 @@
             arguments: {
               a: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
+                defaultValue: '',
               },
               b: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
-              }
-            }
+                defaultValue: '',
+              },
+            },
           },
           {
             opcode: 'mul',
@@ -106,13 +107,13 @@
             arguments: {
               a: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
+                defaultValue: '',
               },
               b: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
-              }
-            }
+                defaultValue: '',
+              },
+            },
           },
           {
             opcode: 'div',
@@ -121,13 +122,13 @@
             arguments: {
               a: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
+                defaultValue: '',
               },
               b: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
-              }
-            }
+                defaultValue: '',
+              },
+            },
           },
           {
             opcode: 'pow',
@@ -136,13 +137,13 @@
             arguments: {
               a: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
+                defaultValue: '',
               },
               b: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
-              }
-            }
+                defaultValue: '',
+              },
+            },
           },
           {
             opcode: 'mod',
@@ -151,13 +152,13 @@
             arguments: {
               a: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
+                defaultValue: '',
               },
               b: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
-              }
-            }
+                defaultValue: '',
+              },
+            },
           },
           {
             opcode: 'select',
@@ -166,18 +167,18 @@
             arguments: {
               a: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
+                defaultValue: '',
               },
               b: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
+                defaultValue: '',
               },
               sel: {
                 type: Scratch.ArgumentType.STRING,
                 defaultValue: '+',
-                menu: 'op'
-              }
-            }
+                menu: 'op',
+              },
+            },
           },
           makeLabel('Logic'),
           {
@@ -187,13 +188,13 @@
             arguments: {
               a: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
+                defaultValue: '',
               },
               b: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
-              }
-            }
+                defaultValue: '',
+              },
+            },
           },
           {
             opcode: 'le',
@@ -202,13 +203,13 @@
             arguments: {
               a: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
+                defaultValue: '',
               },
               b: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
-              }
-            }
+                defaultValue: '',
+              },
+            },
           },
           {
             opcode: 'eq',
@@ -217,13 +218,13 @@
             arguments: {
               a: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
+                defaultValue: '',
               },
               b: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
-              }
-            }
+                defaultValue: '',
+              },
+            },
           },
           {
             opcode: 'neq',
@@ -232,13 +233,13 @@
             arguments: {
               a: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
+                defaultValue: '',
               },
               b: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
-              }
-            }
+                defaultValue: '',
+              },
+            },
           },
           {
             opcode: 'ge',
@@ -247,13 +248,13 @@
             arguments: {
               a: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
+                defaultValue: '',
               },
               b: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
-              }
-            }
+                defaultValue: '',
+              },
+            },
           },
           {
             opcode: 'gt',
@@ -262,13 +263,13 @@
             arguments: {
               a: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
+                defaultValue: '',
               },
               b: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
-              }
-            }
+                defaultValue: '',
+              },
+            },
           },
           makeLabel('Bitwise'),
           {
@@ -278,13 +279,13 @@
             arguments: {
               a: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
+                defaultValue: '',
               },
               b: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
-              }
-            }
+                defaultValue: '',
+              },
+            },
           },
           {
             opcode: 'or',
@@ -293,13 +294,13 @@
             arguments: {
               a: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
+                defaultValue: '',
               },
               b: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
-              }
-            }
+                defaultValue: '',
+              },
+            },
           },
           {
             opcode: 'xor',
@@ -308,13 +309,13 @@
             arguments: {
               a: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
+                defaultValue: '',
               },
               b: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
-              }
-            }
+                defaultValue: '',
+              },
+            },
           },
           {
             opcode: 'ls',
@@ -323,13 +324,13 @@
             arguments: {
               a: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
+                defaultValue: '',
               },
               b: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
-              }
-            }
+                defaultValue: '',
+              },
+            },
           },
           {
             opcode: 'rs',
@@ -338,13 +339,13 @@
             arguments: {
               a: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
+                defaultValue: '',
               },
               b: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
-              }
-            }
+                defaultValue: '',
+              },
+            },
           },
           {
             opcode: 'not',
@@ -353,17 +354,17 @@
             arguments: {
               a: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ''
+                defaultValue: '',
               },
-            }
+            },
           },
         ],
         menus: {
           op: {
             items: ['+', '-', '*', '/', '%', '^'],
-            acceptReporters: true
-          }
-        }
+            acceptReporters: true,
+          },
+        },
       };
     }
     from({ text }) {
@@ -414,19 +415,25 @@
 
     select({ a, sel, b }) {
       switch (sel) {
-      case '+': return (bi(a) + bi(b)).toString();
-      case '-': return (bi(a) - bi(b)).toString();
-      case '*': return (bi(a) * bi(b)).toString();
-      case '/': {
-        if (Number(b) == 0) return 'NaN';
-        return (bi(a) / bi(b)).toString();
-      }
-      case '%': {
-        if (Number(b) == 0) return 'NaN';
-        return (bi(a) % bi(b)).toString();
-      }
-      case '^': case '**': return (bi(a) ** bi(b)).toString();
-      default: return '0';
+        case '+':
+          return (bi(a) + bi(b)).toString();
+        case '-':
+          return (bi(a) - bi(b)).toString();
+        case '*':
+          return (bi(a) * bi(b)).toString();
+        case '/': {
+          if (Number(b) == 0) return 'NaN';
+          return (bi(a) / bi(b)).toString();
+        }
+        case '%': {
+          if (Number(b) == 0) return 'NaN';
+          return (bi(a) % bi(b)).toString();
+        }
+        case '^':
+        case '**':
+          return (bi(a) ** bi(b)).toString();
+        default:
+          return '0';
       }
     }
 

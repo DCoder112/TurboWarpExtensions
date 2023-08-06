@@ -1,4 +1,4 @@
-(function(Scratch) {
+(function (Scratch) {
   'use strict';
 
   if (!Scratch.extensions.unsandboxed) {
@@ -16,7 +16,7 @@
           {
             filter: [Scratch.TargetType.STAGE],
             blockType: Scratch.BlockType.LABEL,
-            text: 'Stage selected: no motion blocks'
+            text: 'Stage selected: no motion blocks',
           },
           {
             filter: [Scratch.TargetType.SPRITE],
@@ -26,13 +26,13 @@
             arguments: {
               X: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
+                defaultValue: '0',
               },
               Y: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
-              }
-            }
+                defaultValue: '0',
+              },
+            },
           },
           {
             filter: [Scratch.TargetType.SPRITE],
@@ -42,27 +42,27 @@
             arguments: {
               X: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
+                defaultValue: '0',
               },
               Y: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
-              }
-            }
+                defaultValue: '0',
+              },
+            },
           },
           {
             filter: [Scratch.TargetType.SPRITE],
             opcode: 'rotationStyle',
             blockType: Scratch.BlockType.REPORTER,
             text: 'rotation style',
-            disableMonitor: true
+            disableMonitor: true,
           },
           '---',
           {
             filter: [Scratch.TargetType.SPRITE],
             opcode: 'fence',
             blockType: Scratch.BlockType.COMMAND,
-            text: 'manually fence'
+            text: 'manually fence',
           },
           '---',
           {
@@ -73,17 +73,17 @@
             arguments: {
               STEPS: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '10'
+                defaultValue: '10',
               },
               X: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
+                defaultValue: '0',
               },
               Y: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
-              }
-            }
+                defaultValue: '0',
+              },
+            },
           },
           {
             filter: [Scratch.TargetType.SPRITE],
@@ -93,17 +93,17 @@
             arguments: {
               PERCENT: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '10'
+                defaultValue: '10',
               },
               X: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
+                defaultValue: '0',
               },
               Y: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
-              }
-            }
+                defaultValue: '0',
+              },
+            },
           },
           '---',
           {
@@ -114,13 +114,13 @@
             arguments: {
               X: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
+                defaultValue: '0',
               },
               Y: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
-              }
-            }
+                defaultValue: '0',
+              },
+            },
           },
           {
             filter: [Scratch.TargetType.SPRITE],
@@ -130,13 +130,13 @@
             arguments: {
               X: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
+                defaultValue: '0',
               },
               Y: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
-              }
-            }
+                defaultValue: '0',
+              },
+            },
           },
           {
             filter: [Scratch.TargetType.SPRITE],
@@ -147,9 +147,9 @@
             arguments: {
               WHAT: {
                 type: Scratch.ArgumentType.STRING,
-                menu: 'WHAT'
-              }
-            }
+                menu: 'WHAT',
+              },
+            },
           },
           '---',
           {
@@ -160,13 +160,13 @@
             arguments: {
               X: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
+                defaultValue: '0',
               },
               Y: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
-              }
-            }
+                defaultValue: '0',
+              },
+            },
           },
           {
             filter: [Scratch.TargetType.SPRITE],
@@ -176,34 +176,29 @@
             arguments: {
               X1: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '-100'
+                defaultValue: '-100',
               },
               Y1: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '-100'
+                defaultValue: '-100',
               },
               X2: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '100'
+                defaultValue: '100',
               },
               Y2: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '100'
-              }
-            }
+                defaultValue: '100',
+              },
+            },
           },
         ],
         menus: {
           WHAT: {
             acceptreporters: true,
-            items: [
-              'width',
-              'height',
-              'costume width',
-              'costume height'
-            ]
-          }
-        }
+            items: ['width', 'height', 'costume width', 'costume height'],
+          },
+        },
       };
     }
 
@@ -218,9 +213,15 @@
       const x = Scratch.Cast.toNumber(args.X);
       const y = Scratch.Cast.toNumber(args.Y);
       if (util.target.y > y) {
-        util.target.setDirection(((180 / Math.PI) * Math.atan((x - util.target.x) / (y - util.target.y))) + 180);
+        util.target.setDirection(
+          (180 / Math.PI) *
+            Math.atan((x - util.target.x) / (y - util.target.y)) +
+            180
+        );
       } else {
-        util.target.setDirection(((180 / Math.PI) * Math.atan((x - util.target.x) / (y - util.target.y))));
+        util.target.setDirection(
+          (180 / Math.PI) * Math.atan((x - util.target.x) / (y - util.target.y))
+        );
       }
     }
 
@@ -229,7 +230,10 @@
     }
 
     fence(args, util) {
-      const newpos = Scratch.vm.renderer.getFencedPositionOfDrawable(util.target.drawableID, [util.target.x, util.target.y]);
+      const newpos = Scratch.vm.renderer.getFencedPositionOfDrawable(
+        util.target.drawableID,
+        [util.target.x, util.target.y]
+      );
       util.target.setXY(newpos[0], newpos[1]);
     }
 
@@ -237,9 +241,15 @@
       const x = Scratch.Cast.toNumber(args.X);
       const y = Scratch.Cast.toNumber(args.Y);
       if (util.target.y > y) {
-        return ((180 / Math.PI) * Math.atan((x - util.target.x) / (y - util.target.y))) + 180;
+        return (
+          (180 / Math.PI) *
+            Math.atan((x - util.target.x) / (y - util.target.y)) +
+          180
+        );
       } else {
-        return ((180 / Math.PI) * Math.atan((x - util.target.x) / (y - util.target.y)));
+        return (
+          (180 / Math.PI) * Math.atan((x - util.target.x) / (y - util.target.y))
+        );
       }
     }
 
@@ -247,18 +257,22 @@
       const x = Scratch.Cast.toNumber(args.X);
       const y = Scratch.Cast.toNumber(args.Y);
       // Shoutout to Pythagoras!
-      return Math.sqrt(((x - util.target.x) ** 2) + ((y - util.target.y) ** 2));
+      return Math.sqrt((x - util.target.x) ** 2 + (y - util.target.y) ** 2);
     }
 
     steptowards(args, util) {
       const x = Scratch.Cast.toNumber(args.X);
       const y = Scratch.Cast.toNumber(args.Y);
       const steps = Scratch.Cast.toNumber(args.STEPS);
-      const val = steps / (Math.sqrt(((x - util.target.x) ** 2) + ((y - util.target.y) ** 2)));
+      const val =
+        steps / Math.sqrt((x - util.target.x) ** 2 + (y - util.target.y) ** 2);
       if (val >= 1) {
         util.target.setXY(x, y);
       } else {
-        util.target.setXY(((x - util.target.x) * (val)) + util.target.x, ((y - util.target.y) * (val)) + util.target.y);
+        util.target.setXY(
+          (x - util.target.x) * val + util.target.x,
+          (y - util.target.y) * val + util.target.y
+        );
       }
     }
 
@@ -267,7 +281,10 @@
       const y = Scratch.Cast.toNumber(args.Y);
       const val = Scratch.Cast.toNumber(args.PERCENT);
       // Essentially a smooth glide script.
-      util.target.setXY(((x - util.target.x) * (val / 100)) + util.target.x, ((y - util.target.y) * (val / 100)) + util.target.y);
+      util.target.setXY(
+        (x - util.target.x) * (val / 100) + util.target.x,
+        (y - util.target.y) * (val / 100) + util.target.y
+      );
     }
 
     touchingrect(args, util) {
@@ -288,7 +305,8 @@
         bottom = temp;
       }
 
-      const drawable = Scratch.vm.renderer._allDrawables[util.target.drawableID];
+      const drawable =
+        Scratch.vm.renderer._allDrawables[util.target.drawableID];
       if (!drawable) {
         return false;
       }
@@ -313,9 +331,16 @@
       drawable.updateCPURenderAttributes();
 
       /** @type {RenderWebGL.Rectangle} */
-      const intersectingBounds = Rectangle.intersect(drawableBounds, containsBounds);
+      const intersectingBounds = Rectangle.intersect(
+        drawableBounds,
+        containsBounds
+      );
       for (let x = intersectingBounds.left; x < intersectingBounds.right; x++) {
-        for (let y = intersectingBounds.bottom; y < intersectingBounds.top; y++) {
+        for (
+          let y = intersectingBounds.bottom;
+          y < intersectingBounds.top;
+          y++
+        ) {
           // technically should be a twgl vec3, but does not actually need to be
           if (drawable.isTouching([x, y])) {
             return true;
@@ -328,7 +353,8 @@
     touchingxy(args, util) {
       const x = Scratch.Cast.toNumber(args.X);
       const y = Scratch.Cast.toNumber(args.Y);
-      const drawable = Scratch.vm.renderer._allDrawables[util.target.drawableID];
+      const drawable =
+        Scratch.vm.renderer._allDrawables[util.target.drawableID];
       if (!drawable) {
         return false;
       }
@@ -345,7 +371,10 @@
         } else {
           return Math.ceil(bounds.height);
         }
-      } else if (args.WHAT === 'costume width' || args.WHAT === 'costume height') {
+      } else if (
+        args.WHAT === 'costume width' ||
+        args.WHAT === 'costume height'
+      ) {
         const costume = util.target.sprite.costumes[util.target.currentCostume];
         if (args.WHAT === 'costume width') {
           return Math.ceil(costume.size[0]);

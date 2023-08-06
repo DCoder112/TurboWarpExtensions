@@ -1,7 +1,7 @@
 // Some parts of this scripts are based on or designed to be compatible-ish with:
 // https://arpruss.github.io/gamepad.js (MIT Licensed)
 
-(function(Scratch) {
+(function (Scratch) {
   'use strict';
 
   const AXIS_DEADZONE = 0.1;
@@ -13,7 +13,7 @@
    */
   const getGamepads = (index) => {
     if (index === 'any') {
-      return navigator.getGamepads().filter(i => i);
+      return navigator.getGamepads().filter((i) => i);
     }
     const gamepad = navigator.getGamepads()[index - 1];
     if (gamepad) {
@@ -29,7 +29,7 @@
    */
   const isButtonPressed = (gamepad, buttonIndex) => {
     if (buttonIndex === 'any') {
-      return gamepad.buttons.some(i => i.pressed);
+      return gamepad.buttons.some((i) => i.pressed);
     }
     const button = gamepad.buttons[buttonIndex - 1];
     if (!button) {
@@ -85,9 +85,9 @@
               pad: {
                 type: Scratch.ArgumentType.NUMBER,
                 defaultValue: '1',
-                menu: 'padMenu'
-              }
-            }
+                menu: 'padMenu',
+              },
+            },
           },
           {
             opcode: 'buttonDown',
@@ -97,14 +97,14 @@
               b: {
                 type: Scratch.ArgumentType.NUMBER,
                 defaultValue: '1',
-                menu: 'buttonMenu'
+                menu: 'buttonMenu',
               },
               i: {
                 type: Scratch.ArgumentType.NUMBER,
                 defaultValue: '1',
-                menu: 'padMenu'
-              }
-            }
+                menu: 'padMenu',
+              },
+            },
           },
           {
             opcode: 'buttonValue',
@@ -114,14 +114,14 @@
               b: {
                 type: Scratch.ArgumentType.NUMBER,
                 defaultValue: '1',
-                menu: 'buttonMenu'
+                menu: 'buttonMenu',
               },
               i: {
                 type: Scratch.ArgumentType.NUMBER,
                 defaultValue: '1',
-                menu: 'padMenu'
-              }
-            }
+                menu: 'padMenu',
+              },
+            },
           },
           {
             opcode: 'axisValue',
@@ -131,12 +131,12 @@
               b: {
                 type: Scratch.ArgumentType.NUMBER,
                 defaultValue: '1',
-                menu: 'axisMenu'
+                menu: 'axisMenu',
               },
               i: {
                 type: Scratch.ArgumentType.NUMBER,
                 defaultValue: '1',
-                menu: 'padMenu'
+                menu: 'padMenu',
               },
             },
           },
@@ -151,14 +151,14 @@
               axis: {
                 type: Scratch.ArgumentType.NUMBER,
                 defaultValue: '1',
-                menu: 'axesGroupMenu'
+                menu: 'axesGroupMenu',
               },
               pad: {
                 type: Scratch.ArgumentType.NUMBER,
                 defaultValue: '1',
-                menu: 'padMenu'
-              }
-            }
+                menu: 'padMenu',
+              },
+            },
           },
           {
             opcode: 'axisMagnitude',
@@ -168,14 +168,14 @@
               axis: {
                 type: Scratch.ArgumentType.NUMBER,
                 defaultValue: '1',
-                menu: 'axesGroupMenu'
+                menu: 'axesGroupMenu',
               },
               pad: {
                 type: Scratch.ArgumentType.NUMBER,
                 defaultValue: '1',
-                menu: 'padMenu'
-              }
-            }
+                menu: 'padMenu',
+              },
+            },
           },
 
           /*
@@ -228,20 +228,20 @@
             arguments: {
               s: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0.25'
+                defaultValue: '0.25',
               },
               w: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0.5'
+                defaultValue: '0.5',
               },
               t: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0.25'
+                defaultValue: '0.25',
               },
               i: {
                 type: Scratch.ArgumentType.NUMBER,
                 defaultValue: '1',
-                menu: 'padMenu'
+                menu: 'padMenu',
               },
             },
           },
@@ -252,24 +252,24 @@
             items: [
               {
                 text: 'any',
-                value: 'any'
+                value: 'any',
               },
               {
                 text: '1',
-                value: '1'
+                value: '1',
               },
               {
                 text: '2',
-                value: '2'
+                value: '2',
               },
               {
                 text: '3',
-                value: '3'
+                value: '3',
               },
               {
                 text: '4',
-                value: '4'
-              }
+                value: '4',
+              },
             ],
           },
           buttonMenu: {
@@ -278,73 +278,73 @@
               // Based on an Xbox controller
               {
                 text: 'any',
-                value: 'any'
+                value: 'any',
               },
               {
                 text: 'A (1)',
-                value: '1'
+                value: '1',
               },
               {
                 text: 'B (2)',
-                value: '2'
+                value: '2',
               },
               {
                 text: 'X (3)',
-                value: '3'
+                value: '3',
               },
               {
                 text: 'Y (4)',
-                value: '4'
+                value: '4',
               },
               {
                 text: 'Left bumper (5)',
-                value: '5'
+                value: '5',
               },
               {
                 text: 'Right bumper (6)',
-                value: '6'
+                value: '6',
               },
               {
                 text: 'Left trigger (7)',
-                value: '7'
+                value: '7',
               },
               {
                 text: 'Right trigger (8)',
-                value: '8'
+                value: '8',
               },
               {
                 text: 'Select/View (9)',
-                value: '9'
+                value: '9',
               },
               {
                 text: 'Start/Menu (10)',
-                value: '10'
+                value: '10',
               },
               {
                 text: 'Left stick (11)',
-                value: '11'
+                value: '11',
               },
               {
                 text: 'Right stick (12)',
-                value: '12'
+                value: '12',
               },
               {
                 text: 'D-pad up (13)',
-                value: '13'
+                value: '13',
               },
               {
                 text: 'D-pad down (14)',
-                value: '14'
+                value: '14',
               },
               {
                 text: 'D-pad left (15)',
-                value: '15'
+                value: '15',
               },
               {
                 text: 'D-pad right (16)',
-                value: '16'
+                value: '16',
               },
-            ]
+            ],
           },
           axisMenu: {
             acceptReporters: true,
@@ -352,21 +352,21 @@
               // Based on an Xbox controller
               {
                 text: 'Left stick horizontal (1)',
-                value: '1'
+                value: '1',
               },
               {
                 text: 'Left stick vertical (2)',
-                value: '2'
+                value: '2',
               },
               {
                 text: 'Right stick horizontal (3)',
-                value: '3'
+                value: '3',
               },
               {
                 text: 'Right stick vertical (4)',
-                value: '4'
-              }
-            ]
+                value: '4',
+              },
+            ],
           },
           axesGroupMenu: {
             acceptReporters: true,
@@ -374,13 +374,13 @@
               // Based on an Xbox controller
               {
                 text: 'Left stick (1 & 2)',
-                value: '1'
+                value: '1',
               },
               {
                 text: 'Right stick (3 & 4)',
-                value: '3'
-              }
-            ]
+                value: '3',
+              },
+            ],
           },
           /*
           pressReleaseMenu: [
@@ -394,15 +394,15 @@
             }
           ],
           */
-        }
+        },
       };
     }
 
-    gamepadConnected ({pad}) {
+    gamepadConnected({ pad }) {
       return getGamepads(pad).length > 0;
     }
 
-    buttonDown ({b, i}) {
+    buttonDown({ b, i }) {
       for (const gamepad of getGamepads(i)) {
         if (isButtonPressed(gamepad, b)) {
           return true;
@@ -411,7 +411,7 @@
       return false;
     }
 
-    buttonValue ({b, i}) {
+    buttonValue({ b, i }) {
       let greatestButton = 0;
       for (const gamepad of getGamepads(i)) {
         const value = getButtonValue(gamepad, b);
@@ -422,7 +422,7 @@
       return greatestButton;
     }
 
-    axisValue ({b, i}) {
+    axisValue({ b, i }) {
       let greatestAxis = 0;
       for (const gamepad of getGamepads(i)) {
         const axis = getAxisValue(gamepad, b);
@@ -433,7 +433,7 @@
       return greatestAxis;
     }
 
-    axisDirection ({axis, pad}) {
+    axisDirection({ axis, pad }) {
       let greatestMagnitude = 0;
       let direction = 90;
       for (const gamepad of getGamepads(pad)) {
@@ -442,7 +442,8 @@
         const magnitude = Math.sqrt(horizontalAxis ** 2 + verticalAxis ** 2);
         if (magnitude > greatestMagnitude) {
           greatestMagnitude = magnitude;
-          direction = Math.atan2(verticalAxis, horizontalAxis) * 180 / Math.PI + 90;
+          direction =
+            (Math.atan2(verticalAxis, horizontalAxis) * 180) / Math.PI + 90;
           if (direction < 0) {
             direction += 360;
           }
@@ -451,7 +452,7 @@
       return direction;
     }
 
-    axisMagnitude ({axis, pad}) {
+    axisMagnitude({ axis, pad }) {
       let greatestMagnitude = 0;
       for (const gamepad of getGamepads(pad)) {
         const horizontalAxis = getAxisValue(gamepad, axis);
@@ -464,7 +465,7 @@
       return greatestMagnitude;
     }
 
-    rumble ({s, w, t, i}) {
+    rumble({ s, w, t, i }) {
       const gamepads = getGamepads(i);
       for (const gamepad of gamepads) {
         // @ts-ignore
@@ -474,7 +475,7 @@
             startDelay: 0,
             duration: t * 1000,
             weakMagnitude: w,
-            strongMagnitude: s
+            strongMagnitude: s,
           });
         }
       }

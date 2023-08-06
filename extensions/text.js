@@ -1,332 +1,331 @@
-
 // Made by CST1229
 // Modified port of an extension from a mod I worked on.
 
-(function(Scratch) {
-  "use strict";
+(function (Scratch) {
+  'use strict';
 
   const CaseParam = {
-    LOWERCASE: "lowercase",
-    UPPERCASE: "uppercase",
-    MIXEDCASE: "mixedcase",
-    TITLECASE: "titlecase",
-    EXACTTITLECASE: "exacttitlecase"
+    LOWERCASE: 'lowercase',
+    UPPERCASE: 'uppercase',
+    MIXEDCASE: 'mixedcase',
+    TITLECASE: 'titlecase',
+    EXACTTITLECASE: 'exacttitlecase',
   };
 
   let splitCache;
   let matchCache;
 
   class StringsExt {
-    constructor () {}
+    constructor() {}
 
-    _initCaseMenu () {
+    _initCaseMenu() {
       return [
         {
-          text: "lowercase",
-          value: CaseParam.LOWERCASE
+          text: 'lowercase',
+          value: CaseParam.LOWERCASE,
         },
         {
-          text: "UPPERCASE",
-          value: CaseParam.UPPERCASE
+          text: 'UPPERCASE',
+          value: CaseParam.UPPERCASE,
         },
         {
-          text: "Title Case",
-          value: CaseParam.TITLECASE
+          text: 'Title Case',
+          value: CaseParam.TITLECASE,
         },
         {
-          text: "Exactly Title Case",
-          value: CaseParam.EXACTTITLECASE
+          text: 'Exactly Title Case',
+          value: CaseParam.EXACTTITLECASE,
         },
         {
-          text: "MiXeD CaSe",
-          value: CaseParam.MIXEDCASE
-        }
+          text: 'MiXeD CaSe',
+          value: CaseParam.MIXEDCASE,
+        },
       ];
     }
 
-    getInfo () {
+    getInfo() {
       return {
         // id "text" could conflict with Scratch Lab's Animated Text
         // for mods which implement it or if it ever comes out
-        id: "strings",
-        name: "Text",
+        id: 'strings',
+        name: 'Text',
         blocks: [
           {
-            opcode: "letters_of",
+            opcode: 'letters_of',
             blockType: Scratch.BlockType.REPORTER,
-            text: "letters [LETTER1] to [LETTER2] of [STRING]",
+            text: 'letters [LETTER1] to [LETTER2] of [STRING]',
             arguments: {
               LETTER1: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: 2
+                defaultValue: 2,
               },
               LETTER2: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: 4
+                defaultValue: 4,
               },
               STRING: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "apple"
-              }
-            }
+                defaultValue: 'apple',
+              },
+            },
           },
           {
-            opcode: "split",
+            opcode: 'split',
             blockType: Scratch.BlockType.REPORTER,
-            text: "item [ITEM] of [STRING] split by [SPLIT]",
+            text: 'item [ITEM] of [STRING] split by [SPLIT]',
             arguments: {
               ITEM: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: 3
+                defaultValue: 3,
               },
               STRING: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "apple"
+                defaultValue: 'apple',
               },
               SPLIT: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "p"
-              }
-            }
+                defaultValue: 'p',
+              },
+            },
           },
           {
-            opcode: "count",
+            opcode: 'count',
             blockType: Scratch.BlockType.REPORTER,
-            text: "count [SUBSTRING] in [STRING]",
+            text: 'count [SUBSTRING] in [STRING]',
             arguments: {
               SUBSTRING: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "p"
+                defaultValue: 'p',
               },
               STRING: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "apple"
-              }
-            }
+                defaultValue: 'apple',
+              },
+            },
           },
           {
-            opcode: "indexof",
+            opcode: 'indexof',
             blockType: Scratch.BlockType.REPORTER,
-            text: "index of [SUBSTRING] in [STRING]",
+            text: 'index of [SUBSTRING] in [STRING]',
             arguments: {
               SUBSTRING: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "p"
+                defaultValue: 'p',
               },
               STRING: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "apple"
-              }
-            }
+                defaultValue: 'apple',
+              },
+            },
           },
 
-          "---",
+          '---',
 
           {
-            opcode: "replace",
+            opcode: 'replace',
             blockType: Scratch.BlockType.REPORTER,
-            text: "replace [SUBSTRING] in [STRING] with [REPLACE]",
+            text: 'replace [SUBSTRING] in [STRING] with [REPLACE]',
             arguments: {
               SUBSTRING: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "world"
+                defaultValue: 'world',
               },
               STRING: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "Hello world!"
+                defaultValue: 'Hello world!',
               },
               REPLACE: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "fellow Scratchers"
-              }
-            }
+                defaultValue: 'fellow Scratchers',
+              },
+            },
           },
           {
-            opcode: "repeat",
+            opcode: 'repeat',
             blockType: Scratch.BlockType.REPORTER,
-            text: "repeat [STRING] [REPEAT] times",
+            text: 'repeat [STRING] [REPEAT] times',
             arguments: {
               STRING: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "apple "
+                defaultValue: 'apple ',
               },
               REPEAT: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: 3
-              }
-            }
+                defaultValue: 3,
+              },
+            },
           },
 
-          "---",
+          '---',
 
           {
-            opcode: "unicodeof",
+            opcode: 'unicodeof',
             blockType: Scratch.BlockType.REPORTER,
-            text: "Unicode of [STRING]",
+            text: 'Unicode of [STRING]',
             arguments: {
               STRING: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "A"
-              }
-            }
+                defaultValue: 'A',
+              },
+            },
           },
           {
-            opcode: "unicodefrom",
+            opcode: 'unicodefrom',
             blockType: Scratch.BlockType.REPORTER,
-            text: "Unicode [NUM] as letter",
+            text: 'Unicode [NUM] as letter',
             arguments: {
               NUM: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: 65
-              }
-            }
+                defaultValue: 65,
+              },
+            },
           },
 
-          "---",
+          '---',
           {
-            opcode: "replaceRegex",
+            opcode: 'replaceRegex',
             blockType: Scratch.BlockType.REPORTER,
-            text: "replace regex /[REGEX]/[FLAGS] in [STRING] with [REPLACE]",
+            text: 'replace regex /[REGEX]/[FLAGS] in [STRING] with [REPLACE]',
             arguments: {
               REGEX: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "."
+                defaultValue: '.',
               },
               FLAGS: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "g"
+                defaultValue: 'g',
               },
               STRING: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "Hello world!"
+                defaultValue: 'Hello world!',
               },
               REPLACE: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "$&$&"
-              }
-            }
+                defaultValue: '$&$&',
+              },
+            },
           },
           {
-            opcode: "matchRegex",
+            opcode: 'matchRegex',
             blockType: Scratch.BlockType.REPORTER,
-            text: "item [ITEM] of [STRING] matched by regex /[REGEX]/[FLAGS]",
+            text: 'item [ITEM] of [STRING] matched by regex /[REGEX]/[FLAGS]',
             arguments: {
               ITEM: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: 1
+                defaultValue: 1,
               },
               STRING: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "Hello world!"
+                defaultValue: 'Hello world!',
               },
               REGEX: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "(.) (.{2})"
+                defaultValue: '(.) (.{2})',
               },
               FLAGS: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "g"
-              }
-            }
+                defaultValue: 'g',
+              },
+            },
           },
           {
-            opcode: "countRegex",
+            opcode: 'countRegex',
             blockType: Scratch.BlockType.REPORTER,
-            text: "count regex /[REGEX]/[FLAGS] in [STRING]",
+            text: 'count regex /[REGEX]/[FLAGS] in [STRING]',
             arguments: {
               STRING: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "Hello world!"
+                defaultValue: 'Hello world!',
               },
               REGEX: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "[AEIOU]"
+                defaultValue: '[AEIOU]',
               },
               FLAGS: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "i"
-              }
-            }
+                defaultValue: 'i',
+              },
+            },
           },
           {
-            opcode: "testRegex",
+            opcode: 'testRegex',
             blockType: Scratch.BlockType.BOOLEAN,
-            text: "[STRING] matches regex /[REGEX]/[FLAGS]?",
+            text: '[STRING] matches regex /[REGEX]/[FLAGS]?',
             arguments: {
               STRING: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "Hello world!"
+                defaultValue: 'Hello world!',
               },
               REGEX: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "hello"
+                defaultValue: 'hello',
               },
               FLAGS: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "i"
-              }
-            }
+                defaultValue: 'i',
+              },
+            },
           },
 
-          "---",
+          '---',
 
           {
-            opcode: "identical",
+            opcode: 'identical',
             blockType: Scratch.BlockType.BOOLEAN,
-            text: "is [OPERAND1] identical to [OPERAND2]?",
+            text: 'is [OPERAND1] identical to [OPERAND2]?',
             arguments: {
               OPERAND1: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "A"
+                defaultValue: 'A',
               },
               OPERAND2: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "a"
-              }
-            }
+                defaultValue: 'a',
+              },
+            },
           },
 
-          "---",
+          '---',
 
           {
-            opcode: "isCase",
+            opcode: 'isCase',
             blockType: Scratch.BlockType.BOOLEAN,
-            text: "is [STRING] [TEXTCASE]?",
+            text: 'is [STRING] [TEXTCASE]?',
             arguments: {
               STRING: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "apple"
+                defaultValue: 'apple',
               },
               TEXTCASE: {
                 type: Scratch.ArgumentType.STRING,
-                menu: "textCase",
-                defaultValue: CaseParam.LOWERCASE
-              }
-            }
+                menu: 'textCase',
+                defaultValue: CaseParam.LOWERCASE,
+              },
+            },
           },
           {
-            opcode: "toCase",
+            opcode: 'toCase',
             blockType: Scratch.BlockType.REPORTER,
-            text: "convert [STRING] to [TEXTCASE]",
+            text: 'convert [STRING] to [TEXTCASE]',
             arguments: {
               STRING: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "apple"
+                defaultValue: 'apple',
               },
               TEXTCASE: {
                 type: Scratch.ArgumentType.STRING,
-                menu: "textCase",
-                defaultValue: CaseParam.UPPERCASE
-              }
-            }
-          }
+                menu: 'textCase',
+                defaultValue: CaseParam.UPPERCASE,
+              },
+            },
+          },
         ],
         menus: {
           textCase: {
             acceptReporters: true,
-            items: this._initCaseMenu()
-          }
-        }
+            items: this._initCaseMenu(),
+          },
+        },
       };
     }
 
@@ -338,7 +337,7 @@
 
     unicodeof(args, util) {
       const chars = Array.from(args.STRING.toString());
-      return chars.map((char) => char.charCodeAt(0)).join(" ");
+      return chars.map((char) => char.charCodeAt(0)).join(' ');
     }
 
     unicodefrom(args, util) {
@@ -353,42 +352,44 @@
     }
 
     _caseInsensitiveRegex(str) {
-      return new RegExp(
-        str.replaceAll(/[^a-zA-Z0-9]/g, "\\$&"),
-        "gi"
-      );
+      return new RegExp(str.replaceAll(/[^a-zA-Z0-9]/g, '\\$&'), 'gi');
     }
 
     split(args, util) {
-      args.STRING = (args.STRING ?? "").toString();
-      args.SPLIT = (args.SPLIT ?? "").toString();
+      args.STRING = (args.STRING ?? '').toString();
+      args.SPLIT = (args.SPLIT ?? '').toString();
       args.ITEM = Number(args.ITEM) || 0;
 
       // Cache the last split
-      if (!(
-        splitCache &&
-        splitCache.string === args.STRING &&
-        splitCache.split === args.SPLIT
-      )) {
+      if (
+        !(
+          splitCache &&
+          splitCache.string === args.STRING &&
+          splitCache.split === args.SPLIT
+        )
+      ) {
         const regex = this._caseInsensitiveRegex(args.SPLIT);
 
         splitCache = {
           string: args.STRING,
           split: args.SPLIT,
-          arr: args.STRING.split(regex)
+          arr: args.STRING.split(regex),
         };
       }
-      return splitCache.arr[args.ITEM - 1] || "";
+      return splitCache.arr[args.ITEM - 1] || '';
     }
 
     count(args, util) {
       // Fill cache
-      this.split({
-        SPLIT: args.SUBSTRING,
-        STRING: args.STRING,
-        ITEM: 0
-      }, util);
-      return (splitCache.arr.length - 1) || 0;
+      this.split(
+        {
+          SPLIT: args.SUBSTRING,
+          STRING: args.STRING,
+          ITEM: 0,
+        },
+        util
+      );
+      return splitCache.arr.length - 1 || 0;
     }
 
     replace(args, util) {
@@ -404,8 +405,8 @@
 
     indexof(args, util) {
       // .toLowerCase() for case insensitivity
-      args.STRING = (args.STRING ?? "").toString().toLowerCase();
-      args.SUBSTRING = (args.SUBSTRING ?? "").toString().toLowerCase();
+      args.STRING = (args.STRING ?? '').toString().toLowerCase();
+      args.SUBSTRING = (args.SUBSTRING ?? '').toString().toLowerCase();
 
       // Since both arguments are casted to strings beforehand,
       // we don't have to worry about type differences
@@ -435,38 +436,42 @@
         );
       } catch (e) {
         console.error(e);
-        return "";
+        return '';
       }
     }
 
     matchRegex(args, util) {
       try {
-        args.STRING = (args.STRING ?? "").toString();
-        args.REGEX = (args.REGEX ?? "").toString();
-        args.FLAGS = (args.FLAGS ?? "").toString();
+        args.STRING = (args.STRING ?? '').toString();
+        args.REGEX = (args.REGEX ?? '').toString();
+        args.FLAGS = (args.FLAGS ?? '').toString();
         args.ITEM = Number(args.ITEM) || 0;
 
         // Cache the last matched string
-        if (!(
-          matchCache &&
-          matchCache.string === args.STRING &&
-          matchCache.regex === args.REGEX &&
-          matchCache.flags === args.FLAGS
-        )) {
-          const newFlags = args.FLAGS.includes("g") ? args.FLAGS : args.FLAGS + "g";
+        if (
+          !(
+            matchCache &&
+            matchCache.string === args.STRING &&
+            matchCache.regex === args.REGEX &&
+            matchCache.flags === args.FLAGS
+          )
+        ) {
+          const newFlags = args.FLAGS.includes('g')
+            ? args.FLAGS
+            : args.FLAGS + 'g';
           const regex = new RegExp(args.REGEX, newFlags);
 
           matchCache = {
             string: args.STRING,
             regex: args.REGEX,
             flags: args.FLAGS,
-            arr: args.STRING.match(regex) || []
+            arr: args.STRING.match(regex) || [],
           };
         }
-        return matchCache.arr[args.ITEM - 1] || "";
+        return matchCache.arr[args.ITEM - 1] || '';
       } catch (e) {
         console.error(e);
-        return "";
+        return '';
       }
     }
 
@@ -500,10 +505,9 @@
         case CaseParam.UPPERCASE:
           return string.toUpperCase() === string;
         case CaseParam.MIXEDCASE:
-          return (!(
-            string.toUpperCase() === string ||
-            string.toLowerCase() === string
-          ));
+          return !(
+            string.toUpperCase() === string || string.toLowerCase() === string
+          );
         case CaseParam.TITLECASE:
           return string.split(/\b/g).every((word) => {
             if (!word) return true;
@@ -513,10 +517,12 @@
         case CaseParam.EXACTTITLECASE:
           return string.split(/\b/g).every((word) => {
             if (!word) return true;
-            const titleCased = word[0].toUpperCase() + word.substring(1).toLowerCase();
+            const titleCased =
+              word[0].toUpperCase() + word.substring(1).toLowerCase();
             return word === titleCased;
           });
-        default: return false;
+        default:
+          return false;
       }
     }
 
@@ -529,22 +535,29 @@
         case CaseParam.UPPERCASE:
           return string.toUpperCase();
         case CaseParam.MIXEDCASE:
-          return Array.from(string).map(
-            (char, index) => index % 2 === 0 ?
-              char.toUpperCase() :
-              char.toLowerCase()
-          ).join("");
+          return Array.from(string)
+            .map((char, index) =>
+              index % 2 === 0 ? char.toUpperCase() : char.toLowerCase()
+            )
+            .join('');
         case CaseParam.TITLECASE:
-          return string.split(/\b/g).map((word) => {
-            if (!word) return '';
-            return word[0].toUpperCase() + word.substring(1);
-          }).join("");
+          return string
+            .split(/\b/g)
+            .map((word) => {
+              if (!word) return '';
+              return word[0].toUpperCase() + word.substring(1);
+            })
+            .join('');
         case CaseParam.EXACTTITLECASE:
-          return string.split(/\b/g).map((word) => {
-            if (!word) return '';
-            return word[0].toUpperCase() + word.substring(1).toLowerCase();
-          }).join("");
-        default: return string;
+          return string
+            .split(/\b/g)
+            .map((word) => {
+              if (!word) return '';
+              return word[0].toUpperCase() + word.substring(1).toLowerCase();
+            })
+            .join('');
+        default:
+          return string;
       }
     }
   }

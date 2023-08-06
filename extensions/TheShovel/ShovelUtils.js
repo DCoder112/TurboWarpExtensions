@@ -3,7 +3,7 @@
   if (!Scratch.extensions.unsandboxed) {
     throw new Error('ShovelUtils must be run unsandboxed');
   }
-  console.log("ShovelUtils v1.4");
+  console.log('ShovelUtils v1.4');
   const vm = Scratch.vm;
 
   // Based on from https://www.growingwiththeweb.com/2017/12/fast-simple-js-fps-counter.html
@@ -41,8 +41,8 @@
               NAME: {
                 type: Scratch.ArgumentType.STRING,
                 defaultValue: 'Dango',
-              }
-            }
+              },
+            },
           },
           {
             opcode: 'getlist',
@@ -52,8 +52,8 @@
               TEXT: {
                 type: Scratch.ArgumentType.STRING,
                 defaultValue: 'MyList',
-              }
-            }
+              },
+            },
           },
           {
             opcode: 'setlist',
@@ -67,8 +67,8 @@
               NAME: {
                 type: Scratch.ArgumentType.STRING,
                 defaultValue: 'MyList',
-              }
-            }
+              },
+            },
           },
           {
             opcode: 'importSprite',
@@ -78,8 +78,8 @@
               TEXT: {
                 type: Scratch.ArgumentType.STRING,
                 defaultValue: 'Link or data uri here',
-              }
-            }
+              },
+            },
           },
           {
             opcode: 'importSound',
@@ -93,8 +93,8 @@
               NAME: {
                 type: Scratch.ArgumentType.STRING,
                 defaultValue: 'Meow',
-              }
-            }
+              },
+            },
           },
           {
             opcode: 'importProject',
@@ -103,9 +103,10 @@
             arguments: {
               TEXT: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'https://theshovel.github.io/Bullet-Hell/Bullet%20Hell',
-              }
-            }
+                defaultValue:
+                  'https://theshovel.github.io/Bullet-Hell/Bullet%20Hell',
+              },
+            },
           },
           {
             opcode: 'loadExtension',
@@ -115,8 +116,8 @@
               TEXT: {
                 type: Scratch.ArgumentType.STRING,
                 defaultValue: 'https://extensions.turbowarp.org/utilities.js',
-              }
-            }
+              },
+            },
           },
 
           {
@@ -127,8 +128,8 @@
               TEXT: {
                 type: Scratch.ArgumentType.STRING,
                 defaultValue: '0',
-              }
-            }
+              },
+            },
           },
           {
             opcode: 'deleteSprite',
@@ -138,8 +139,8 @@
               SPRITE: {
                 type: Scratch.ArgumentType.STRING,
                 defaultValue: 'Sprite1',
-              }
-            }
+              },
+            },
           },
           {
             opcode: 'deleteImage',
@@ -148,13 +149,13 @@
             arguments: {
               COSNAME: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'costume1'
+                defaultValue: 'costume1',
               },
               SPRITE: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'Sprite1'
-              }
-            }
+                defaultValue: 'Sprite1',
+              },
+            },
           },
           {
             opcode: 'setedtarget',
@@ -164,8 +165,8 @@
               NAME: {
                 type: Scratch.ArgumentType.STRING,
                 defaultValue: 'Sprite1',
-              }
-            }
+              },
+            },
           },
 
           {
@@ -176,21 +177,21 @@
               color: {
                 type: Scratch.ArgumentType.STRING,
                 defaultValue: '#ffffff',
-              }
-            }
+              },
+            },
           },
 
           {
             opcode: 'getAllSprites',
             blockType: Scratch.BlockType.REPORTER,
-            text: 'get all sprites'
+            text: 'get all sprites',
           },
           {
             opcode: 'getfps',
             blockType: Scratch.BlockType.REPORTER,
-            text: 'Fps'
+            text: 'Fps',
           },
-        ]
+        ],
       };
     }
 
@@ -207,20 +208,20 @@
               storage.DataFormat.PNG,
               new Uint8Array(arrayBuffer),
               true
-            )
+            ),
           });
         });
     }
 
     importSprite({ TEXT }) {
       Scratch.fetch(TEXT)
-        .then(r => r.arrayBuffer())
-        .then(buffer => vm.addSprite(buffer))
+        .then((r) => r.arrayBuffer())
+        .then((buffer) => vm.addSprite(buffer))
         .then(() => {
-          console.log("Done");
+          console.log('Done');
         })
         .catch((error) => {
-          console.log("Error", error);
+          console.log('Error', error);
         });
     }
 
@@ -231,7 +232,11 @@
       }
       // @ts-expect-error
       if (typeof ScratchBlocks !== 'undefined') {
-        if (!confirm(`Do you want to delete the sprite "${SPRITE}"? This cannot be undone.`)) {
+        if (
+          !confirm(
+            `Do you want to delete the sprite "${SPRITE}"? This cannot be undone.`
+          )
+        ) {
           return;
         }
       }
@@ -253,7 +258,7 @@
           vm.addSound({
             md5: asset.assetId + '.' + asset.dataFormat,
             asset: asset,
-            name: NAME + ''
+            name: NAME + '',
           });
         });
     }
@@ -262,19 +267,23 @@
       // @ts-ignore
       if (typeof ScratchBlocks !== 'undefined') {
         // We are in the editor. Ask before loading a new project to avoid unrecoverable data loss.
-        if (!confirm(`Do you want to import a project from "${TEXT}"? Everything in the current project will be permanently deleted.`)) {
+        if (
+          !confirm(
+            `Do you want to import a project from "${TEXT}"? Everything in the current project will be permanently deleted.`
+          )
+        ) {
           return;
         }
       }
       Scratch.fetch(TEXT)
-        .then(r => r.arrayBuffer())
-        .then(buffer => vm.loadProject(buffer))
+        .then((r) => r.arrayBuffer())
+        .then((buffer) => vm.loadProject(buffer))
         .then(() => {
-          console.log("Done");
+          console.log('Done');
           vm.greenFlag();
         })
         .catch((error) => {
-          console.log("Error", error);
+          console.log('Error', error);
         });
     }
 
@@ -289,11 +298,13 @@
     }
 
     getlist({ TEXT }) {
-      const list = vm.runtime.getTargetForStage().lookupVariableByNameAndType(TEXT, 'list');
+      const list = vm.runtime
+        .getTargetForStage()
+        .lookupVariableByNameAndType(TEXT, 'list');
       if (list) {
         return JSON.stringify(list.value);
       } else {
-        return "";
+        return '';
       }
     }
     setlist({ TEXT, NAME }) {
@@ -310,12 +321,14 @@
 
       for (const element of parsed) {
         const type = typeof element;
-        if (type !== "string" && type !== "number" && type !== "boolean") {
+        if (type !== 'string' && type !== 'number' && type !== 'boolean') {
           return; // One of the elements has a disallowed type
         }
       }
 
-      const list = vm.runtime.getTargetForStage().lookupVariableByNameAndType(NAME, 'list');
+      const list = vm.runtime
+        .getTargetForStage()
+        .lookupVariableByNameAndType(NAME, 'list');
       if (!list) {
         return; // List was not found
       }
@@ -327,7 +340,7 @@
       let target;
 
       //I know this might cause sprites called "stage" to be ignored. But lets be real, who names their sprite "stage"?
-      if (NAME.toLowerCase() === "stage") {
+      if (NAME.toLowerCase() === 'stage') {
         target = vm.runtime.getTargetForStage();
       } else {
         target = vm.runtime.getSpriteTargetByName(NAME);
@@ -344,15 +357,15 @@
      */
     brightnessByColor({ color }) {
       // https://www.w3.org/TR/AERT/#color-contrast
-      const {r, g, b} = Scratch.Cast.toRgbColorObject(color);
-      return ((r * 299) + (g * 587) + (b * 114)) / 1000;
+      const { r, g, b } = Scratch.Cast.toRgbColorObject(color);
+      return (r * 299 + g * 587 + b * 114) / 1000;
     }
 
-    getfps(){
+    getfps() {
       return fps;
     }
 
-    deleteImage({ SPRITE, COSNAME }){
+    deleteImage({ SPRITE, COSNAME }) {
       // 0znzw, since shovel did not add it yet.
       const target = vm.runtime.getSpriteTargetByName(SPRITE);
       if (!target) {
@@ -361,7 +374,7 @@
       target.deleteCostume(target.getCostumeIndexByName(COSNAME));
     }
 
-    getAllSprites(){
+    getAllSprites() {
       // 0znzw, since shovel did not add it yet.
       let sprites = [];
       for (const target of vm.runtime.targets) {
@@ -371,5 +384,5 @@
     }
   }
   Scratch.extensions.register(new ShovelUtils());
-// @ts-ignore
+  // @ts-ignore
 })(Scratch);

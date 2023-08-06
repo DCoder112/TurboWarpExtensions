@@ -1,4 +1,4 @@
-(function(Scratch) {
+(function (Scratch) {
   'use strict';
   class Broadcast1 {
     getInfo() {
@@ -11,15 +11,15 @@
             // highlight-start
             blockType: Scratch.BlockType.HAT,
             text: 'when I receive the event',
-            isEdgeActivated: false
+            isEdgeActivated: false,
             // highlight-end
           },
           {
             opcode: 'broadcast',
             blockType: Scratch.BlockType.COMMAND,
-            text: 'broadcast the event'
-          }
-        ]
+            text: 'broadcast the event',
+          },
+        ],
       };
     }
     // highlight-start
@@ -29,4 +29,4 @@
     // highlight-end
   }
   Scratch.extensions.register(new Broadcast1());
-}(Scratch));
+})(Scratch);

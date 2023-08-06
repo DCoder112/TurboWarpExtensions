@@ -1,4 +1,4 @@
-(function(Scratch) {
+(function (Scratch) {
   'use strict';
 
   if (!Scratch.extensions.unsandboxed) {
@@ -23,15 +23,15 @@
             arguments: {
               NAME: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'my variable'
+                defaultValue: 'my variable',
               },
               TYPE: {
                 type: Scratch.ArgumentType.STRING,
                 menu: 'TYPE_MENU',
-                defaultValue: 'list'
-              }
-            }
-          }
+                defaultValue: 'list',
+              },
+            },
+          },
         ],
         menus: {
           TYPE_MENU: {
@@ -42,16 +42,16 @@
               // https://github.com/TurboWarp/scratch-vm/blob/20c60193c1c567a65cca87b16d22c51963565a43/src/engine/variable.js#L43-L67
               {
                 text: 'variable',
-                value: ''
+                value: '',
               },
               'list',
               {
                 text: 'broadcast',
-                value: 'broadcast_msg'
-              }
-            ]
-          }
-        }
+                value: 'broadcast_msg',
+              },
+            ],
+          },
+        },
       };
     }
     // highlight-start
@@ -59,7 +59,10 @@
       return util.target.getName();
     }
     doesVariableExist(args, util) {
-      const variable = util.target.lookupVariableByNameAndType(args.NAME.toString(), args.TYPE);
+      const variable = util.target.lookupVariableByNameAndType(
+        args.NAME.toString(),
+        args.TYPE
+      );
       // Remember: Boolean blocks need to explicitly return a boolean on their own
       return !!variable;
     }

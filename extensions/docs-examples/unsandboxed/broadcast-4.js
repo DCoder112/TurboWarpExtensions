@@ -1,4 +1,4 @@
-(function(Scratch) {
+(function (Scratch) {
   'use strict';
   class Broadcast4 {
     getInfo() {
@@ -14,9 +14,9 @@
             arguments: {
               EVENT_OPTION: {
                 type: Scratch.ArgumentType.STRING,
-                menu: 'EVENT_FIELD'
-              }
-            }
+                menu: 'EVENT_FIELD',
+              },
+            },
           },
           {
             opcode: 'broadcast',
@@ -25,48 +25,45 @@
             arguments: {
               EVENT: {
                 type: Scratch.ArgumentType.STRING,
-                menu: 'EVENT_FIELD'
+                menu: 'EVENT_FIELD',
               },
               TARGET: {
                 type: Scratch.ArgumentType.STRING,
-                menu: 'TARGET_MENU'
-              }
-            }
-          }
+                menu: 'TARGET_MENU',
+              },
+            },
+          },
         ],
         menus: {
           EVENT_FIELD: {
             acceptReporters: false,
-            items: [
-              'Event 1',
-              'Event 2',
-              'Event 3'
-            ]
+            items: ['Event 1', 'Event 2', 'Event 3'],
           },
           TARGET_MENU: {
             acceptReporters: true,
-            items: [
-              'all sprites',
-              'this sprite',
-              'the stage'
-            ]
-          }
-        }
+            items: ['all sprites', 'this sprite', 'the stage'],
+          },
+        },
       };
     }
     // highlight-start
-    broadcast({EVENT, TARGET}, util) {
+    broadcast({ EVENT, TARGET }, util) {
       const argumentFilter = {
-        EVENT_OPTION: EVENT
+        EVENT_OPTION: EVENT,
       };
 
       let targetFilter = null;
       if (TARGET === 'this sprite') targetFilter = util.target;
-      if (TARGET === 'the stage') targetFilter = util.runtime.getTargetForStage();
+      if (TARGET === 'the stage')
+        targetFilter = util.runtime.getTargetForStage();
 
-      util.startHats('broadcast4example_whenReceived', argumentFilter, targetFilter);
+      util.startHats(
+        'broadcast4example_whenReceived',
+        argumentFilter,
+        targetFilter
+      );
     }
     // highlight-end
   }
   Scratch.extensions.register(new Broadcast4());
-}(Scratch));
+})(Scratch);

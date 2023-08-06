@@ -1,4 +1,4 @@
-(function(Scratch) {
+(function (Scratch) {
   'use strict';
 
   if (!Scratch.extensions.unsandboxed) {
@@ -8,7 +8,11 @@
   const MODE_MODAL = 'modal';
   const MODE_IMMEDIATELY_SHOW_SELECTOR = 'selector';
   const MODE_ONLY_SELECTOR = 'only-selector';
-  const ALL_MODES = [MODE_MODAL, MODE_IMMEDIATELY_SHOW_SELECTOR, MODE_ONLY_SELECTOR];
+  const ALL_MODES = [
+    MODE_MODAL,
+    MODE_IMMEDIATELY_SHOW_SELECTOR,
+    MODE_ONLY_SELECTOR,
+  ];
   let openFileSelectorMode = MODE_MODAL;
 
   const AS_TEXT = 'text';
@@ -19,150 +23,154 @@
    * @param {string} as See AS_ constants above
    * @returns {Promise<string>} format given by as parameter
    */
-  const showFilePrompt = (accept, as) => new Promise((_resolve) => {
-    // We can't reliably show an <input> picker without "user interaction" in all environments,
-    // so we have to show our own UI anyways. We may as well use this to implement some nice features
-    // that native file pickers don't have:
-    //  - Easy drag+drop
-    //  - Reliable cancel button (input cancel event is still basically nonexistent)
-    //    This is important so we can make this just a reporter instead of a command+hat block.
-    //    Without an interface, the script would be stalled if the prompt was just cancelled.
+  const showFilePrompt = (accept, as) =>
+    new Promise((_resolve) => {
+      // We can't reliably show an <input> picker without "user interaction" in all environments,
+      // so we have to show our own UI anyways. We may as well use this to implement some nice features
+      // that native file pickers don't have:
+      //  - Easy drag+drop
+      //  - Reliable cancel button (input cancel event is still basically nonexistent)
+      //    This is important so we can make this just a reporter instead of a command+hat block.
+      //    Without an interface, the script would be stalled if the prompt was just cancelled.
 
-    /** @param {string} text */
-    const callback = (text) => {
-      _resolve(text);
-      outer.remove();
-      document.body.removeEventListener('keydown', handleKeyDown);
-    };
-
-    let isReadingFile = false;
-
-    /** @param {File} file */
-    const readFile = (file) => {
-      if (isReadingFile) {
-        return;
-      }
-      isReadingFile = true;
-
-      const reader = new FileReader();
-      reader.onload = () => {
-        callback(/** @type {string} */ (reader.result));
+      /** @param {string} text */
+      const callback = (text) => {
+        _resolve(text);
+        outer.remove();
+        document.body.removeEventListener('keydown', handleKeyDown);
       };
-      reader.onerror = () => {
-        console.error('Failed to read file as text', reader.error);
-        callback('');
+
+      let isReadingFile = false;
+
+      /** @param {File} file */
+      const readFile = (file) => {
+        if (isReadingFile) {
+          return;
+        }
+        isReadingFile = true;
+
+        const reader = new FileReader();
+        reader.onload = () => {
+          callback(/** @type {string} */ (reader.result));
+        };
+        reader.onerror = () => {
+          console.error('Failed to read file as text', reader.error);
+          callback('');
+        };
+        if (as === AS_TEXT) {
+          reader.readAsText(file);
+        } else {
+          reader.readAsDataURL(file);
+        }
       };
-      if (as === AS_TEXT) {
-        reader.readAsText(file);
-      } else {
-        reader.readAsDataURL(file);
-      }
-    };
 
-    /** @param {KeyboardEvent} e */
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') {
-        e.stopPropagation();
-        e.preventDefault();
-        callback('');
-      }
-    };
-    document.body.addEventListener('keydown', handleKeyDown, {
-      capture: true
-    });
-
-    const INITIAL_BORDER_COLOR = '#888';
-    const DROPPING_BORDER_COLOR = '#03a9fc';
-
-    const outer = document.createElement('div');
-    outer.className = 'extension-content';
-    outer.style.position = 'fixed';
-    outer.style.top = '0';
-    outer.style.left = '0';
-    outer.style.width = '100%';
-    outer.style.height = '100%';
-    outer.style.display = 'flex';
-    outer.style.alignItems = 'center';
-    outer.style.justifyContent = 'center';
-    outer.style.background = 'rgba(0, 0, 0, 0.5)';
-    outer.style.zIndex = '20000';
-    outer.style.color = 'black';
-    outer.style.colorScheme = 'light';
-    outer.addEventListener('dragover', (e) => {
-      if (e.dataTransfer.types.includes('Files')) {
-        e.preventDefault();
-        e.dataTransfer.dropEffect = 'copy';
-        modal.style.borderColor = DROPPING_BORDER_COLOR;
-      }
-    });
-    outer.addEventListener('dragleave', () => {
-      modal.style.borderColor = INITIAL_BORDER_COLOR;
-    });
-    outer.addEventListener('drop', (e) => {
-      const file = e.dataTransfer.files[0];
-      if (file) {
-        e.preventDefault();
-        readFile(file);
-      }
-    });
-    outer.addEventListener('click', (e) => {
-      if (e.target === outer) {
-        callback('');
-      }
-    });
-
-    const modal = document.createElement('button');
-    modal.style.boxShadow = '0 0 10px -5px currentColor';
-    modal.style.cursor = 'pointer';
-    modal.style.font = 'inherit';
-    modal.style.background = 'white';
-    modal.style.padding = '16px';
-    modal.style.borderRadius = '16px';
-    modal.style.border = `8px dashed ${INITIAL_BORDER_COLOR}`;
-    modal.style.position = 'relative';
-    modal.style.textAlign = 'center';
-    modal.addEventListener('click', () => {
-      input.click();
-    });
-    modal.focus();
-    outer.appendChild(modal);
-
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = accept;
-    input.addEventListener('change', (e) => {
-      // @ts-expect-error
-      const file = e.target.files[0];
-      if (file) {
-        readFile(file);
-      }
-    });
-
-    const title = document.createElement('div');
-    title.textContent = 'Select or drop file';
-    title.style.fontSize = '1.5em';
-    title.style.marginBottom = '8px';
-    modal.appendChild(title);
-
-    const subtitle = document.createElement('div');
-    const formattedAccept = accept || 'any';
-    subtitle.textContent = `Accepted formats: ${formattedAccept}`;
-    modal.appendChild(subtitle);
-
-    document.body.appendChild(outer);
-
-    if (openFileSelectorMode === MODE_IMMEDIATELY_SHOW_SELECTOR || openFileSelectorMode === MODE_ONLY_SELECTOR) {
-      input.click();
-    }
-
-    if (openFileSelectorMode === MODE_ONLY_SELECTOR) {
-      // Note that browser support for cancel is currently quite bad
-      input.addEventListener('cancel', () => {
-        callback('');
+      /** @param {KeyboardEvent} e */
+      const handleKeyDown = (e) => {
+        if (e.key === 'Escape') {
+          e.stopPropagation();
+          e.preventDefault();
+          callback('');
+        }
+      };
+      document.body.addEventListener('keydown', handleKeyDown, {
+        capture: true,
       });
-      outer.remove();
-    }
-  });
+
+      const INITIAL_BORDER_COLOR = '#888';
+      const DROPPING_BORDER_COLOR = '#03a9fc';
+
+      const outer = document.createElement('div');
+      outer.className = 'extension-content';
+      outer.style.position = 'fixed';
+      outer.style.top = '0';
+      outer.style.left = '0';
+      outer.style.width = '100%';
+      outer.style.height = '100%';
+      outer.style.display = 'flex';
+      outer.style.alignItems = 'center';
+      outer.style.justifyContent = 'center';
+      outer.style.background = 'rgba(0, 0, 0, 0.5)';
+      outer.style.zIndex = '20000';
+      outer.style.color = 'black';
+      outer.style.colorScheme = 'light';
+      outer.addEventListener('dragover', (e) => {
+        if (e.dataTransfer.types.includes('Files')) {
+          e.preventDefault();
+          e.dataTransfer.dropEffect = 'copy';
+          modal.style.borderColor = DROPPING_BORDER_COLOR;
+        }
+      });
+      outer.addEventListener('dragleave', () => {
+        modal.style.borderColor = INITIAL_BORDER_COLOR;
+      });
+      outer.addEventListener('drop', (e) => {
+        const file = e.dataTransfer.files[0];
+        if (file) {
+          e.preventDefault();
+          readFile(file);
+        }
+      });
+      outer.addEventListener('click', (e) => {
+        if (e.target === outer) {
+          callback('');
+        }
+      });
+
+      const modal = document.createElement('button');
+      modal.style.boxShadow = '0 0 10px -5px currentColor';
+      modal.style.cursor = 'pointer';
+      modal.style.font = 'inherit';
+      modal.style.background = 'white';
+      modal.style.padding = '16px';
+      modal.style.borderRadius = '16px';
+      modal.style.border = `8px dashed ${INITIAL_BORDER_COLOR}`;
+      modal.style.position = 'relative';
+      modal.style.textAlign = 'center';
+      modal.addEventListener('click', () => {
+        input.click();
+      });
+      modal.focus();
+      outer.appendChild(modal);
+
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = accept;
+      input.addEventListener('change', (e) => {
+        // @ts-expect-error
+        const file = e.target.files[0];
+        if (file) {
+          readFile(file);
+        }
+      });
+
+      const title = document.createElement('div');
+      title.textContent = 'Select or drop file';
+      title.style.fontSize = '1.5em';
+      title.style.marginBottom = '8px';
+      modal.appendChild(title);
+
+      const subtitle = document.createElement('div');
+      const formattedAccept = accept || 'any';
+      subtitle.textContent = `Accepted formats: ${formattedAccept}`;
+      modal.appendChild(subtitle);
+
+      document.body.appendChild(outer);
+
+      if (
+        openFileSelectorMode === MODE_IMMEDIATELY_SHOW_SELECTOR ||
+        openFileSelectorMode === MODE_ONLY_SELECTOR
+      ) {
+        input.click();
+      }
+
+      if (openFileSelectorMode === MODE_ONLY_SELECTOR) {
+        // Note that browser support for cancel is currently quite bad
+        input.addEventListener('cancel', () => {
+          callback('');
+        });
+        outer.remove();
+      }
+    });
 
   /**
    * @param {string} url a data:, blob:, or same-origin URL
@@ -210,15 +218,15 @@
       downloadURL(url, file);
     } else {
       return Scratch.fetch(url)
-        .then(res => res.blob())
-        .then(blob => {
+        .then((res) => res.blob())
+        .then((blob) => {
           downloadBlob(blob, file);
         });
     }
   };
 
   class Files {
-    getInfo () {
+    getInfo() {
       return {
         id: 'files',
         name: 'Files',
@@ -231,7 +239,7 @@
             blockType: Scratch.BlockType.REPORTER,
             text: 'open a file',
             disableMonitor: true,
-            hideFromPalette: true
+            hideFromPalette: true,
           },
           {
             opcode: 'showPickerExtensions',
@@ -240,10 +248,10 @@
             arguments: {
               extension: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: '.txt'
-              }
+                defaultValue: '.txt',
+              },
             },
-            hideFromPalette: true
+            hideFromPalette: true,
           },
 
           {
@@ -253,9 +261,9 @@
             arguments: {
               as: {
                 type: Scratch.ArgumentType.STRING,
-                menu: 'encoding'
-              }
-            }
+                menu: 'encoding',
+              },
+            },
           },
           {
             opcode: 'showPickerExtensionsAs',
@@ -264,13 +272,13 @@
             arguments: {
               extension: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: '.txt'
+                defaultValue: '.txt',
               },
               as: {
                 type: Scratch.ArgumentType.STRING,
-                menu: 'encoding'
-              }
-            }
+                menu: 'encoding',
+              },
+            },
           },
 
           '---',
@@ -282,13 +290,13 @@
             arguments: {
               text: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'Hello, world!'
+                defaultValue: 'Hello, world!',
               },
               file: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'save.txt'
-              }
-            }
+                defaultValue: 'save.txt',
+              },
+            },
           },
           {
             opcode: 'downloadURL',
@@ -297,13 +305,13 @@
             arguments: {
               url: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'data:text/plain;base64,SGVsbG8sIHdvcmxkIQ=='
+                defaultValue: 'data:text/plain;base64,SGVsbG8sIHdvcmxkIQ==',
               },
               file: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'save.txt'
-              }
-            }
+                defaultValue: 'save.txt',
+              },
+            },
           },
 
           '---',
@@ -316,10 +324,10 @@
               mode: {
                 type: Scratch.ArgumentType.STRING,
                 defaultValue: MODE_MODAL,
-                menu: 'automaticallyOpen'
-              }
-            }
-          }
+                menu: 'automaticallyOpen',
+              },
+            },
+          },
         ],
         menus: {
           encoding: {
@@ -327,56 +335,62 @@
             items: [
               {
                 text: 'text',
-                value: AS_TEXT
+                value: AS_TEXT,
               },
               {
                 text: 'data: URL',
-                value: AS_DATA_URL
-              }
-            ]
+                value: AS_DATA_URL,
+              },
+            ],
           },
           automaticallyOpen: {
             acceptReporters: true,
             items: [
               {
                 text: 'show modal',
-                value: MODE_MODAL
+                value: MODE_MODAL,
               },
               {
                 text: 'open selector immediately',
-                value: MODE_IMMEDIATELY_SHOW_SELECTOR
-              }
-            ]
-          }
-        }
+                value: MODE_IMMEDIATELY_SHOW_SELECTOR,
+              },
+            ],
+          },
+        },
       };
     }
 
-    showPicker () {
+    showPicker() {
       return showFilePrompt('', AS_TEXT);
     }
 
-    showPickerExtensions (args) {
+    showPickerExtensions(args) {
       return showFilePrompt(args.extension, AS_TEXT);
     }
 
-    showPickerAs (args) {
+    showPickerAs(args) {
       return showFilePrompt('', args.as);
     }
 
-    showPickerExtensionsAs (args) {
+    showPickerExtensionsAs(args) {
       return showFilePrompt(args.extension, args.as);
     }
 
-    download (args) {
-      downloadBlob(new Blob([Scratch.Cast.toString(args.text)]), Scratch.Cast.toString(args.file));
+    download(args) {
+      downloadBlob(
+        new Blob([Scratch.Cast.toString(args.text)]),
+        Scratch.Cast.toString(args.file)
+      );
     }
 
-    downloadURL (args) {
-      return downloadUntrustedURL(Scratch.Cast.toString(args.url), Scratch.Cast.toString(args.file));
+    downloadURL(args) {
+      return downloadUntrustedURL(
+        Scratch.Cast.toString(args.url),
+        Scratch.Cast.toString(args.file)
+      );
     }
 
-    setOpenMode (args) {
+    setOpenMode(args) {
       if (ALL_MODES.includes(args.mode)) {
         openFileSelectorMode = args.mode;
       } else {

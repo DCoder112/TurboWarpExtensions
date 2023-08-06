@@ -1,8 +1,8 @@
-(function(Scratch) {
+(function (Scratch) {
   'use strict';
 
   class Fetch {
-    getInfo () {
+    getInfo() {
       return {
         id: 'fetch',
         name: 'Fetch',
@@ -14,17 +14,17 @@
             arguments: {
               URL: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'https://extensions.turbowarp.org/hello.txt'
-              }
-            }
-          }
-        ]
+                defaultValue: 'https://extensions.turbowarp.org/hello.txt',
+              },
+            },
+          },
+        ],
       };
     }
 
-    get (args) {
+    get(args) {
       return Scratch.fetch(args.URL)
-        .then(r => r.text())
+        .then((r) => r.text())
         .catch(() => '');
     }
   }

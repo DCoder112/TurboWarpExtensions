@@ -1,251 +1,251 @@
-(function(Scratch) {
-  "use strict";
+(function (Scratch) {
+  'use strict';
   class codegioExtension {
-    getInfo () {
+    getInfo() {
       return {
-        id: "utilitiesCodegio",
-        name: "Utilities",
-        color1: "#0fbd8c",
+        id: 'utilitiesCodegio',
+        name: 'Utilities',
+        color1: '#0fbd8c',
 
         blocks: [
           {
-            opcode: "newline",
+            opcode: 'newline',
             blockType: Scratch.BlockType.REPORTER,
-            text: "New Line"
+            text: 'New Line',
           },
 
           {
-            opcode: "strict_equality",
+            opcode: 'strict_equality',
             blockType: Scratch.BlockType.BOOLEAN,
-            text: "Strict Equality | [one]=[two]",
+            text: 'Strict Equality | [one]=[two]',
             arguments: {
               one: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ""
+                defaultValue: '',
               },
               two: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ""
-              }
-            }
+                defaultValue: '',
+              },
+            },
           },
 
           {
-            opcode: "returntrue",
+            opcode: 'returntrue',
             blockType: Scratch.BlockType.BOOLEAN,
-            text: "true"
+            text: 'true',
           },
 
           {
-            opcode: "returnfalse",
+            opcode: 'returnfalse',
             blockType: Scratch.BlockType.BOOLEAN,
-            text: "false"
+            text: 'false',
           },
 
           {
-            opcode: "exponent",
+            opcode: 'exponent',
             blockType: Scratch.BlockType.REPORTER,
-            text: "[one] ^ [two]",
+            text: '[one] ^ [two]',
             arguments: {
               one: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: ""
+                defaultValue: '',
               },
               two: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: ""
-              }
-            }
+                defaultValue: '',
+              },
+            },
           },
 
           {
-            opcode: "color",
+            opcode: 'color',
             blockType: Scratch.BlockType.REPORTER,
-            text: "Hex [color]",
+            text: 'Hex [color]',
             arguments: {
               color: {
                 type: Scratch.ArgumentType.COLOR,
-                defaultValue: "#96ccff"
-              }
-            }
+                defaultValue: '#96ccff',
+              },
+            },
           },
 
           {
-            opcode: "monitor_width",
+            opcode: 'monitor_width',
             blockType: Scratch.BlockType.REPORTER,
-            text: "Screen | Width"
+            text: 'Screen | Width',
           },
 
           {
-            opcode: "monitor_height",
+            opcode: 'monitor_height',
             blockType: Scratch.BlockType.REPORTER,
-            text: "Screen | Height"
+            text: 'Screen | Height',
           },
 
           {
-            opcode: "window_width",
+            opcode: 'window_width',
             blockType: Scratch.BlockType.REPORTER,
-            text: "Window | Width"
+            text: 'Window | Width',
           },
 
           {
-            opcode: "window_height",
+            opcode: 'window_height',
             blockType: Scratch.BlockType.REPORTER,
-            text: "Window | Height"
+            text: 'Window | Height',
           },
 
           {
-            opcode: "alert_ext",
+            opcode: 'alert_ext',
             blockType: Scratch.BlockType.COMMAND,
-            text: "Alert | Text: [one]",
+            text: 'Alert | Text: [one]',
             arguments: {
               one: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "Alert..."
-              }
-            }
+                defaultValue: 'Alert...',
+              },
+            },
           },
 
           {
-            opcode: "confirm_ext",
+            opcode: 'confirm_ext',
             blockType: Scratch.BlockType.BOOLEAN,
-            text: "Confirm | Text: [one]",
+            text: 'Confirm | Text: [one]',
             arguments: {
               one: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "Confirm..."
-              }
-            }
+                defaultValue: 'Confirm...',
+              },
+            },
           },
 
           {
-            opcode: "prompt_ext",
+            opcode: 'prompt_ext',
             blockType: Scratch.BlockType.REPORTER,
-            text: "Prompt | Text: [one] Default: [two]",
+            text: 'Prompt | Text: [one] Default: [two]',
             arguments: {
               one: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "Enter Username:"
+                defaultValue: 'Enter Username:',
               },
               two: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "griffpatch"
+                defaultValue: 'griffpatch',
               },
-            }
+            },
           },
 
           {
-            opcode: "open_link",
+            opcode: 'open_link',
             blockType: Scratch.BlockType.COMMAND,
-            text: "Open | Link: [one]",
+            text: 'Open | Link: [one]',
             arguments: {
               one: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "https://turbowarp.org/"
-              }
-            }
+                defaultValue: 'https://turbowarp.org/',
+              },
+            },
           },
 
           {
-            opcode: "redirect",
+            opcode: 'redirect',
             blockType: Scratch.BlockType.COMMAND,
-            text: "Redirect | Link: [one]",
+            text: 'Redirect | Link: [one]',
             arguments: {
               one: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "https://turbowarp.org/"
-              }
-            }
+                defaultValue: 'https://turbowarp.org/',
+              },
+            },
           },
 
           {
-            opcode: "get_current_url",
+            opcode: 'get_current_url',
             blockType: Scratch.BlockType.REPORTER,
-            text: "Current URL"
+            text: 'Current URL',
           },
 
           {
-            opcode: "get_current_url_hash",
+            opcode: 'get_current_url_hash',
             blockType: Scratch.BlockType.REPORTER,
-            text: "Current URL hash (#)"
+            text: 'Current URL hash (#)',
           },
 
           {
-            opcode: "set_clipboard",
+            opcode: 'set_clipboard',
             blockType: Scratch.BlockType.COMMAND,
-            text: "Set clipboard | Text: [one]",
+            text: 'Set clipboard | Text: [one]',
             arguments: {
               one: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: ""
-              }
-            }
+                defaultValue: '',
+              },
+            },
           },
 
           {
-            opcode: "get_clipboard",
+            opcode: 'get_clipboard',
             blockType: Scratch.BlockType.REPORTER,
-            text: "Clipboard"
+            text: 'Clipboard',
           },
 
           {
-            opcode: "get_browser",
+            opcode: 'get_browser',
             blockType: Scratch.BlockType.REPORTER,
-            text: "Browser"
+            text: 'Browser',
           },
 
           {
-            opcode: "get_os",
+            opcode: 'get_os',
             blockType: Scratch.BlockType.REPORTER,
-            text: "Operating System"
+            text: 'Operating System',
           },
 
           {
-            opcode: "consoleLog",
+            opcode: 'consoleLog',
             blockType: Scratch.BlockType.COMMAND,
-            text: "Console | Log: [input] Font: [font] Size [size] Color [color]",
+            text: 'Console | Log: [input] Font: [font] Size [size] Color [color]',
             arguments: {
               input: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "Hello World!",
+                defaultValue: 'Hello World!',
               },
               font: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "Monospace",
-                menu: "consoleFonts"
+                defaultValue: 'Monospace',
+                menu: 'consoleFonts',
               },
               size: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: "8",
+                defaultValue: '8',
               },
               color: {
                 type: Scratch.ArgumentType.COLOR,
-                defaultValue: "#000000",
+                defaultValue: '#000000',
               },
-            }
+            },
           },
 
           {
-            opcode: "consoleClear",
+            opcode: 'consoleClear',
             blockType: Scratch.BlockType.COMMAND,
-            text: "Console | Clear"
+            text: 'Console | Clear',
           },
         ],
         menus: {
           consoleFonts: {
             acceptReporters: true,
             items: [
-              {text: "Serif (default)", value: "serif"},
-              {text: "Monospace", value: "monospace"},
-              {text: "Sans-serif", value: "sans-serif"}
-            ]
-          }
-        }
+              { text: 'Serif (default)', value: 'serif' },
+              { text: 'Monospace', value: 'monospace' },
+              { text: 'Sans-serif', value: 'sans-serif' },
+            ],
+          },
+        },
       };
     }
 
     newline() {
-      return "\n";
+      return '\n';
     }
 
     returntrue() {
@@ -257,7 +257,7 @@
     }
 
     strict_equality(args) {
-      return (args.one == args.two);
+      return args.one == args.two;
     }
 
     exponent(args) {
@@ -298,8 +298,8 @@
 
     prompt_ext(args) {
       let userInput = prompt(args.one, args.two);
-      if (userInput == null || userInput == "") {
-        return "";
+      if (userInput == null || userInput == '') {
+        return '';
       } else {
         return userInput;
       }
@@ -321,7 +321,7 @@
       if (window.location.hash) {
         return window.location.hash.substring(1);
       } else {
-        return "";
+        return '';
       }
     }
 
@@ -333,7 +333,7 @@
 
     get_clipboard() {
       if (navigator.clipboard && navigator.clipboard.readText) {
-        return Scratch.canReadClipboard().then(allowed => {
+        return Scratch.canReadClipboard().then((allowed) => {
           if (allowed) {
             return navigator.clipboard.readText();
           }
@@ -346,18 +346,18 @@
     get_browser() {
       let userAgent = navigator.userAgent;
 
-      if (userAgent.match(/chrome|chromium|crios/i)){
-        return "Chrome";
-      } else if (userAgent.match(/firefox|fxios/i)){
-        return "Firefox";
-      } else if (userAgent.match(/safari/i)){
-        return "Safari";
-      } else if (userAgent.match(/opr\//i)){
-        return "Opera";
-      } else if (userAgent.match(/edg/i)){
-        return "Edge";
+      if (userAgent.match(/chrome|chromium|crios/i)) {
+        return 'Chrome';
+      } else if (userAgent.match(/firefox|fxios/i)) {
+        return 'Firefox';
+      } else if (userAgent.match(/safari/i)) {
+        return 'Safari';
+      } else if (userAgent.match(/opr\//i)) {
+        return 'Opera';
+      } else if (userAgent.match(/edg/i)) {
+        return 'Edge';
       } else {
-        return "No browser detection";
+        return 'No browser detection';
       }
     }
 
@@ -366,7 +366,10 @@
     }
 
     consoleLog(args) {
-      console.log(`%c${args.input}`, `color:${args.color}; font-family:${args.font}; font-size: ${args.size}px;`);
+      console.log(
+        `%c${args.input}`,
+        `color:${args.color}; font-family:${args.font}; font-size: ${args.size}px;`
+      );
     }
 
     consoleClear() {

@@ -1,4 +1,4 @@
-(function(Scratch) {
+(function (Scratch) {
   'use strict';
 
   // This extension was created by making projects with https://lab.scratch.mit.edu/text/
@@ -8,7 +8,8 @@
   // This extension's code is not based on the source code of Scratch Labs.
 
   // by @LilyMakesThings
-  const blockIconURI = 'data:image/svg+xml;,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22284.242%22%20height%3D%22284.242%22%3E%3Cg%20fill-rule%3D%22evenodd%22%20stroke-miterlimit%3D%2210%22%20data-paper-data%3D%22%7B%26quot%3BisPaintingLayer%26quot%3B%3Atrue%7D%22%20style%3D%22mix-blend-mode%3Anormal%22%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M188.894%20119.459c-.706%202.378-1.43%204.69-2.172%206.933-1.05%203.15-2.21%206.445-3.48%209.888a1671.47%201671.47%200%200%200-4.174%2011.462l-5.73%2015.528h30.833l-5.73-15.528a522.83%20522.83%200%200%201-4.065-11.242%20408.343%20408.343%200%200%201-3.37-10.108%20350.767%20350.767%200%200%201-2.112-6.933zm18.519-56.092%2062.329%20157.508H225.43l-9.636-26.111h-54.08l-9.636%2026.11h-43.432l62.768-157.507Z%22%2F%3E%3Cpath%20fill%3D%22%2396f%22%20stroke%3D%22%237240d6%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%2229%22%20d%3D%22M188.894%20119.459c-.706%202.378-1.43%204.69-2.172%206.933-1.05%203.15-2.21%206.445-3.48%209.888a1671.47%201671.47%200%200%200-4.174%2011.462l-5.73%2015.528h30.833l-5.73-15.528a522.83%20522.83%200%200%201-4.065-11.242%20408.343%20408.343%200%200%201-3.37-10.108%20350.767%20350.767%200%200%201-2.112-6.933zm18.519-56.092%2062.329%20157.508H225.43l-9.636-26.111h-54.08l-9.636%2026.11h-43.432l62.768-157.507Z%22%2F%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M188.894%20119.459c-.706%202.378-1.43%204.69-2.172%206.933-1.05%203.15-2.21%206.445-3.48%209.888a1671.47%201671.47%200%200%200-4.174%2011.462l-5.73%2015.528h30.833l-5.73-15.528a522.827%20522.827%200%200%201-4.065-11.242%20408.302%20408.302%200%200%201-3.37-10.108%20350.767%20350.767%200%200%201-2.112-6.933zm18.519-56.092%2062.329%20157.508H225.43l-9.636-26.111h-54.08l-9.636%2026.11h-43.432l62.768-157.507Z%22%2F%3E%3Cpath%20fill%3D%22%23ffa24d%22%20stroke%3D%22%23fff%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%229%22%20d%3D%22M188.894%20119.459c-.706%202.378-1.43%204.69-2.172%206.933-1.05%203.15-2.21%206.445-3.48%209.888a1671.47%201671.47%200%200%200-4.174%2011.462l-5.73%2015.528h30.833l-5.73-15.528a522.827%20522.827%200%200%201-4.065-11.242%20408.302%20408.302%200%200%201-3.37-10.108%20350.767%20350.767%200%200%201-2.112-6.933zm18.519-56.092%2062.329%20157.508H225.43l-9.636-26.111h-54.08l-9.636%2026.11h-43.432l62.768-157.507Z%22%2F%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M143.696%20119.459c-.706%202.378-1.43%204.69-2.172%206.933-1.05%203.15-2.21%206.445-3.479%209.888a1671.47%201671.47%200%200%200-4.175%2011.462l-5.73%2015.528h30.833l-5.73-15.528a522.827%20522.827%200%200%201-4.065-11.242%20408.343%20408.343%200%200%201-3.37-10.108%20350.767%20350.767%200%200%201-2.112-6.933zm18.519-56.092%2062.33%20157.508h-44.312l-9.637-26.111h-54.08l-9.636%2026.11H63.448l62.768-157.507Z%22%2F%3E%3Cpath%20fill%3D%22%2396f%22%20stroke%3D%22%237240d6%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%2229%22%20d%3D%22M143.696%20119.459c-.706%202.378-1.43%204.69-2.172%206.933-1.05%203.15-2.21%206.445-3.479%209.888a1671.47%201671.47%200%200%200-4.175%2011.462l-5.73%2015.528h30.833l-5.73-15.528a522.827%20522.827%200%200%201-4.065-11.242%20408.343%20408.343%200%200%201-3.37-10.108%20350.767%20350.767%200%200%201-2.112-6.933zm18.519-56.092%2062.33%20157.508h-44.312l-9.637-26.111h-54.08l-9.636%2026.11H63.448l62.768-157.507Z%22%2F%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M143.696%20119.459c-.706%202.378-1.43%204.69-2.172%206.933-1.05%203.15-2.21%206.445-3.479%209.888a1671.47%201671.47%200%200%200-4.175%2011.462l-5.73%2015.528h30.833l-5.73-15.528a522.827%20522.827%200%200%201-4.065-11.242%20408.343%20408.343%200%200%201-3.37-10.108%20350.767%20350.767%200%200%201-2.112-6.933zm18.519-56.092%2062.33%20157.508h-44.312l-9.637-26.111h-54.08l-9.636%2026.11H63.448l62.768-157.507Z%22%2F%3E%3Cpath%20fill%3D%22%23ff774d%22%20stroke%3D%22%23fff%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%229%22%20d%3D%22M143.696%20119.459c-.706%202.378-1.43%204.69-2.172%206.933-1.05%203.15-2.21%206.445-3.479%209.888a1671.47%201671.47%200%200%200-4.175%2011.462l-5.73%2015.528h30.833l-5.73-15.528a522.827%20522.827%200%200%201-4.065-11.242%20408.343%20408.343%200%200%201-3.37-10.108%20350.767%20350.767%200%200%201-2.112-6.933zm18.519-56.092%2062.33%20157.508h-44.312l-9.637-26.111h-54.08l-9.636%2026.11H63.448l62.768-157.507Z%22%2F%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M94.748%20119.459c-.706%202.378-1.43%204.69-2.172%206.933-1.05%203.15-2.21%206.445-3.479%209.888-1.27%203.442-2.66%207.263-4.175%2011.462l-5.73%2015.528h30.833l-5.73-15.528a522.885%20522.885%200%200%201-4.065-11.242%20408.343%20408.343%200%200%201-3.37-10.108%20350.767%20350.767%200%200%201-2.112-6.933zm18.52-56.092%2062.328%20157.508h-44.311l-9.637-26.111h-54.08l-9.635%2026.11H14.5L77.269%2063.368Z%22%2F%3E%3Cpath%20fill%3D%22%2396f%22%20stroke%3D%22%237240d6%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%2229%22%20d%3D%22M94.748%20119.459c-.706%202.378-1.43%204.69-2.172%206.933-1.05%203.15-2.21%206.445-3.479%209.888-1.27%203.442-2.66%207.263-4.175%2011.462l-5.73%2015.528h30.833l-5.73-15.528a522.885%20522.885%200%200%201-4.065-11.242%20408.343%20408.343%200%200%201-3.37-10.108%20350.767%20350.767%200%200%201-2.112-6.933zm18.52-56.092%2062.328%20157.508h-44.311l-9.637-26.111h-54.08l-9.635%2026.11H14.5L77.269%2063.368Z%22%2F%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M94.748%20119.459c-.706%202.378-1.43%204.69-2.172%206.933-1.05%203.15-2.21%206.445-3.479%209.888-1.27%203.442-2.66%207.263-4.175%2011.462l-5.73%2015.528h30.833l-5.73-15.528a522.885%20522.885%200%200%201-4.065-11.242%20408.302%20408.302%200%200%201-3.37-10.108%20350.767%20350.767%200%200%201-2.112-6.933zm18.52-56.092%2062.328%20157.508h-44.311l-9.637-26.111h-54.08l-9.635%2026.11H14.5L77.269%2063.368Z%22%2F%3E%3Cpath%20fill%3D%22%23ff4c4c%22%20stroke%3D%22%23fff%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%229%22%20d%3D%22M94.748%20119.459c-.706%202.378-1.43%204.69-2.172%206.933-1.05%203.15-2.21%206.445-3.479%209.888-1.27%203.442-2.66%207.263-4.175%2011.462l-5.73%2015.528h30.833l-5.73-15.528a522.885%20522.885%200%200%201-4.065-11.242%20408.302%20408.302%200%200%201-3.37-10.108%20350.767%20350.767%200%200%201-2.112-6.933zm18.52-56.092%2062.328%20157.508h-44.311l-9.637-26.111h-54.08l-9.635%2026.11H14.5L77.269%2063.368Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E';
+  const blockIconURI =
+    'data:image/svg+xml;,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22284.242%22%20height%3D%22284.242%22%3E%3Cg%20fill-rule%3D%22evenodd%22%20stroke-miterlimit%3D%2210%22%20data-paper-data%3D%22%7B%26quot%3BisPaintingLayer%26quot%3B%3Atrue%7D%22%20style%3D%22mix-blend-mode%3Anormal%22%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M188.894%20119.459c-.706%202.378-1.43%204.69-2.172%206.933-1.05%203.15-2.21%206.445-3.48%209.888a1671.47%201671.47%200%200%200-4.174%2011.462l-5.73%2015.528h30.833l-5.73-15.528a522.83%20522.83%200%200%201-4.065-11.242%20408.343%20408.343%200%200%201-3.37-10.108%20350.767%20350.767%200%200%201-2.112-6.933zm18.519-56.092%2062.329%20157.508H225.43l-9.636-26.111h-54.08l-9.636%2026.11h-43.432l62.768-157.507Z%22%2F%3E%3Cpath%20fill%3D%22%2396f%22%20stroke%3D%22%237240d6%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%2229%22%20d%3D%22M188.894%20119.459c-.706%202.378-1.43%204.69-2.172%206.933-1.05%203.15-2.21%206.445-3.48%209.888a1671.47%201671.47%200%200%200-4.174%2011.462l-5.73%2015.528h30.833l-5.73-15.528a522.83%20522.83%200%200%201-4.065-11.242%20408.343%20408.343%200%200%201-3.37-10.108%20350.767%20350.767%200%200%201-2.112-6.933zm18.519-56.092%2062.329%20157.508H225.43l-9.636-26.111h-54.08l-9.636%2026.11h-43.432l62.768-157.507Z%22%2F%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M188.894%20119.459c-.706%202.378-1.43%204.69-2.172%206.933-1.05%203.15-2.21%206.445-3.48%209.888a1671.47%201671.47%200%200%200-4.174%2011.462l-5.73%2015.528h30.833l-5.73-15.528a522.827%20522.827%200%200%201-4.065-11.242%20408.302%20408.302%200%200%201-3.37-10.108%20350.767%20350.767%200%200%201-2.112-6.933zm18.519-56.092%2062.329%20157.508H225.43l-9.636-26.111h-54.08l-9.636%2026.11h-43.432l62.768-157.507Z%22%2F%3E%3Cpath%20fill%3D%22%23ffa24d%22%20stroke%3D%22%23fff%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%229%22%20d%3D%22M188.894%20119.459c-.706%202.378-1.43%204.69-2.172%206.933-1.05%203.15-2.21%206.445-3.48%209.888a1671.47%201671.47%200%200%200-4.174%2011.462l-5.73%2015.528h30.833l-5.73-15.528a522.827%20522.827%200%200%201-4.065-11.242%20408.302%20408.302%200%200%201-3.37-10.108%20350.767%20350.767%200%200%201-2.112-6.933zm18.519-56.092%2062.329%20157.508H225.43l-9.636-26.111h-54.08l-9.636%2026.11h-43.432l62.768-157.507Z%22%2F%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M143.696%20119.459c-.706%202.378-1.43%204.69-2.172%206.933-1.05%203.15-2.21%206.445-3.479%209.888a1671.47%201671.47%200%200%200-4.175%2011.462l-5.73%2015.528h30.833l-5.73-15.528a522.827%20522.827%200%200%201-4.065-11.242%20408.343%20408.343%200%200%201-3.37-10.108%20350.767%20350.767%200%200%201-2.112-6.933zm18.519-56.092%2062.33%20157.508h-44.312l-9.637-26.111h-54.08l-9.636%2026.11H63.448l62.768-157.507Z%22%2F%3E%3Cpath%20fill%3D%22%2396f%22%20stroke%3D%22%237240d6%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%2229%22%20d%3D%22M143.696%20119.459c-.706%202.378-1.43%204.69-2.172%206.933-1.05%203.15-2.21%206.445-3.479%209.888a1671.47%201671.47%200%200%200-4.175%2011.462l-5.73%2015.528h30.833l-5.73-15.528a522.827%20522.827%200%200%201-4.065-11.242%20408.343%20408.343%200%200%201-3.37-10.108%20350.767%20350.767%200%200%201-2.112-6.933zm18.519-56.092%2062.33%20157.508h-44.312l-9.637-26.111h-54.08l-9.636%2026.11H63.448l62.768-157.507Z%22%2F%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M143.696%20119.459c-.706%202.378-1.43%204.69-2.172%206.933-1.05%203.15-2.21%206.445-3.479%209.888a1671.47%201671.47%200%200%200-4.175%2011.462l-5.73%2015.528h30.833l-5.73-15.528a522.827%20522.827%200%200%201-4.065-11.242%20408.343%20408.343%200%200%201-3.37-10.108%20350.767%20350.767%200%200%201-2.112-6.933zm18.519-56.092%2062.33%20157.508h-44.312l-9.637-26.111h-54.08l-9.636%2026.11H63.448l62.768-157.507Z%22%2F%3E%3Cpath%20fill%3D%22%23ff774d%22%20stroke%3D%22%23fff%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%229%22%20d%3D%22M143.696%20119.459c-.706%202.378-1.43%204.69-2.172%206.933-1.05%203.15-2.21%206.445-3.479%209.888a1671.47%201671.47%200%200%200-4.175%2011.462l-5.73%2015.528h30.833l-5.73-15.528a522.827%20522.827%200%200%201-4.065-11.242%20408.343%20408.343%200%200%201-3.37-10.108%20350.767%20350.767%200%200%201-2.112-6.933zm18.519-56.092%2062.33%20157.508h-44.312l-9.637-26.111h-54.08l-9.636%2026.11H63.448l62.768-157.507Z%22%2F%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M94.748%20119.459c-.706%202.378-1.43%204.69-2.172%206.933-1.05%203.15-2.21%206.445-3.479%209.888-1.27%203.442-2.66%207.263-4.175%2011.462l-5.73%2015.528h30.833l-5.73-15.528a522.885%20522.885%200%200%201-4.065-11.242%20408.343%20408.343%200%200%201-3.37-10.108%20350.767%20350.767%200%200%201-2.112-6.933zm18.52-56.092%2062.328%20157.508h-44.311l-9.637-26.111h-54.08l-9.635%2026.11H14.5L77.269%2063.368Z%22%2F%3E%3Cpath%20fill%3D%22%2396f%22%20stroke%3D%22%237240d6%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%2229%22%20d%3D%22M94.748%20119.459c-.706%202.378-1.43%204.69-2.172%206.933-1.05%203.15-2.21%206.445-3.479%209.888-1.27%203.442-2.66%207.263-4.175%2011.462l-5.73%2015.528h30.833l-5.73-15.528a522.885%20522.885%200%200%201-4.065-11.242%20408.343%20408.343%200%200%201-3.37-10.108%20350.767%20350.767%200%200%201-2.112-6.933zm18.52-56.092%2062.328%20157.508h-44.311l-9.637-26.111h-54.08l-9.635%2026.11H14.5L77.269%2063.368Z%22%2F%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M94.748%20119.459c-.706%202.378-1.43%204.69-2.172%206.933-1.05%203.15-2.21%206.445-3.479%209.888-1.27%203.442-2.66%207.263-4.175%2011.462l-5.73%2015.528h30.833l-5.73-15.528a522.885%20522.885%200%200%201-4.065-11.242%20408.302%20408.302%200%200%201-3.37-10.108%20350.767%20350.767%200%200%201-2.112-6.933zm18.52-56.092%2062.328%20157.508h-44.311l-9.637-26.111h-54.08l-9.635%2026.11H14.5L77.269%2063.368Z%22%2F%3E%3Cpath%20fill%3D%22%23ff4c4c%22%20stroke%3D%22%23fff%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%229%22%20d%3D%22M94.748%20119.459c-.706%202.378-1.43%204.69-2.172%206.933-1.05%203.15-2.21%206.445-3.479%209.888-1.27%203.442-2.66%207.263-4.175%2011.462l-5.73%2015.528h30.833l-5.73-15.528a522.885%20522.885%200%200%201-4.065-11.242%20408.302%20408.302%200%200%201-3.37-10.108%20350.767%20350.767%200%200%201-2.112-6.933zm18.52-56.092%2062.328%20157.508h-44.311l-9.637-26.111h-54.08l-9.635%2026.11H14.5L77.269%2063.368Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E';
 
   const CUSTOM_STATE_KEY = Symbol();
 
@@ -70,7 +71,10 @@
    * @param {[number, number, number]} color
    * @returns {string}
    */
-  const formatColor = (color) => `#${formatComponent(color[0])}${formatComponent(color[1])}${formatComponent(color[2])}`;
+  const formatColor = (color) =>
+    `#${formatComponent(color[0])}${formatComponent(color[1])}${formatComponent(
+      color[2]
+    )}`;
 
   /**
    * @param {number} h hue from 0-1
@@ -87,14 +91,26 @@
     var q = v * (1 - f * s);
     var t = v * (1 - (1 - f) * s);
     switch (i % 6) {
-      case 0: r = v, g = t, b = p; break;
-      case 1: r = q, g = v, b = p; break;
-      case 2: r = p, g = v, b = t; break;
-      case 3: r = p, g = q, b = v; break;
-      case 4: r = t, g = p, b = v; break;
-      case 5: r = v, g = p, b = q; break;
+      case 0:
+        (r = v), (g = t), (b = p);
+        break;
+      case 1:
+        (r = q), (g = v), (b = p);
+        break;
+      case 2:
+        (r = p), (g = v), (b = t);
+        break;
+      case 3:
+        (r = p), (g = q), (b = v);
+        break;
+      case 4:
+        (r = t), (g = p), (b = v);
+        break;
+      case 5:
+        (r = v), (g = p), (b = q);
+        break;
     }
-    return [r * 255 | 0, g * 255 | 0, b * 255 | 0];
+    return [(r * 255) | 0, (g * 255) | 0, (b * 255) | 0];
   };
 
   /**
@@ -115,7 +131,7 @@
   };
 
   class TextCostumeSkin extends Skin {
-    constructor (id, drawable) {
+    constructor(id, drawable) {
       super(id, renderer);
 
       /** @type {RenderWebGL.Drawable} */
@@ -169,7 +185,7 @@
     }
 
     // Part of Skin API
-    dispose () {
+    dispose() {
       if (this._texture) {
         gl.deleteTexture(this._texture);
         this._texture = null;
@@ -180,7 +196,7 @@
     }
 
     // Part of Skin API
-    get size () {
+    get size() {
       if (this._needsReflow()) {
         this._reflowText();
       }
@@ -188,11 +204,11 @@
     }
 
     // Part of Skin API
-    useNearest () {
+    useNearest() {
       return false;
     }
 
-    _needsReflow () {
+    _needsReflow() {
       return (
         this._textDirty ||
         (this.isZooming && this._reflowTime !== globalFrameTime) ||
@@ -200,7 +216,7 @@
       );
     }
 
-    _updateFontDimensions () {
+    _updateFontDimensions() {
       this.calculatedFontSize = this.baseFontSize;
       if (this.isZooming) {
         // TODO: it looks like Scratch's animation always starts at least a little visible
@@ -208,18 +224,19 @@
         const progress = Math.max(0, Math.min(1, time / ZOOM_DURATION));
         this.calculatedFontSize *= progress;
       }
-      this.lineHeight = this.baseFontSize * 8 / 7;
+      this.lineHeight = (this.baseFontSize * 8) / 7;
       // Always use the base size for padding. This makes the zoom animation look better.
       this.verticalPadding = this.baseFontSize / 7;
       // Only use horizontal scale for wrap width for compatibility with stretch extension.
-      this.wrapWidth = this.textWidth / (Math.abs(this.drawable.scale[0]) / 100);
+      this.wrapWidth =
+        this.textWidth / (Math.abs(this.drawable.scale[0]) / 100);
     }
 
-    _getFontStyle () {
+    _getFontStyle() {
       return `${this.calculatedFontSize}px "${this.fontFamily}", sans-serif`;
     }
 
-    _reflowText () {
+    _reflowText() {
       this._textDirty = false;
       this._textureDirty = true;
       this._reflowTime = globalFrameTime;
@@ -234,24 +251,26 @@
       const textWrapper = renderer.createTextWrapper(measurementProvider);
 
       const lines = textWrapper.wrapText(this.wrapWidth, this.text);
-      this.lines = lines.map(line => {
+      this.lines = lines.map((line) => {
         const trimmed = line.trimEnd();
         return {
           text: trimmed,
-          width: measurementProvider.measureText(trimmed)
+          width: measurementProvider.measureText(trimmed),
         };
       });
 
       this._size[0] = this.wrapWidth;
-      this._size[1] = this.lines.length * this.lineHeight + 2 * this.verticalPadding;
+      this._size[1] =
+        this.lines.length * this.lineHeight + 2 * this.verticalPadding;
 
       // Centered horizontally
       this._rotationCenter[0] = this._size[0] / 2;
       // Vertical center is roughly below the first line of text
-      this._rotationCenter[1] = this.calculatedFontSize * 0.9 + this.verticalPadding;
+      this._rotationCenter[1] =
+        this.calculatedFontSize * 0.9 + this.verticalPadding;
     }
 
-    _renderAtScale (requestedScale) {
+    _renderAtScale(requestedScale) {
       this._renderedAtScale = requestedScale;
       this._textureDirty = false;
       this._renderTime = globalFrameTime;
@@ -265,7 +284,9 @@
       this.canvas.height = Math.ceil(scratchHeight * requestedScale);
       this.ctx.scale(requestedScale, requestedScale);
 
-      const rainbowOffset = this.isRainbow ? (globalFrameTime - this.rainbowStartTime) / RAINBOW_TIME_PER : 0;
+      const rainbowOffset = this.isRainbow
+        ? (globalFrameTime - this.rainbowStartTime) / RAINBOW_TIME_PER
+        : 0;
       this.ctx.fillStyle = this.color;
       this.ctx.font = this._getFontStyle();
       for (let i = 0; i < this.lines.length; i++) {
@@ -283,7 +304,12 @@
         }
 
         if (this.isRainbow) {
-          const gradient = this.ctx.createLinearGradient(xOffset, 0, xOffset + lineWidth, 0);
+          const gradient = this.ctx.createLinearGradient(
+            xOffset,
+            0,
+            xOffset + lineWidth,
+            0
+          );
           addRainbowStops(gradient, rainbowOffset);
           this.ctx.fillStyle = gradient;
         }
@@ -300,75 +326,75 @@
         // @ts-expect-error - twgl not typed yet
         this._texture = twgl.createTexture(gl, {
           auto: false,
-          wrap: gl.CLAMP_TO_EDGE
+          wrap: gl.CLAMP_TO_EDGE,
         });
       }
       this._setTexture(this.canvas);
     }
 
-    _invalidateTexture () {
+    _invalidateTexture() {
       this._textureDirty = true;
       this._renderTime = 0;
       this.emitWasAltered();
     }
 
-    _invalidateText () {
+    _invalidateText() {
       this._textDirty = true;
       this._textureDirty = true;
       this._reflowTime = 0;
       this.emitWasAltered();
     }
 
-    setText (text) {
+    setText(text) {
       if (text !== this.text) {
         this.text = text;
         this._invalidateText();
       }
     }
 
-    setColor (color) {
+    setColor(color) {
       if (color !== this.color) {
         this.color = color;
         this._invalidateTexture();
       }
     }
 
-    setAlign (align) {
+    setAlign(align) {
       if (align !== this.align) {
         this.align = align;
         this._invalidateTexture();
       }
     }
 
-    setWidth (width) {
+    setWidth(width) {
       if (width !== this.textWidth) {
         this.textWidth = width;
         this._invalidateText();
       }
     }
 
-    setFontFamily (font) {
+    setFontFamily(font) {
       if (font !== this.fontFamily) {
         this.fontFamily = font;
         this._invalidateText();
       }
     }
 
-    getFontFamily () {
+    getFontFamily() {
       return this.fontFamily;
     }
 
-    getColor () {
+    getColor() {
       return this.color;
     }
 
-    getWidth () {
+    getWidth() {
       return this.textWidth;
     }
 
-    _oneAnimationAtATime (newCallback) {
+    _oneAnimationAtATime(newCallback) {
       this.cancelAnimation();
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         this.resolveOngoingAnimation = () => {
           this.resolveOngoingAnimation = null;
           resolve();
@@ -377,8 +403,8 @@
       });
     }
 
-    startTypeAnimation () {
-      return this._oneAnimationAtATime(resolve => {
+    startTypeAnimation() {
+      return this._oneAnimationAtATime((resolve) => {
         const originalText = this.text;
         let i = 1;
         const update = () => {
@@ -397,8 +423,8 @@
       });
     }
 
-    startRainbowAnimation () {
-      return this._oneAnimationAtATime(resolve => {
+    startRainbowAnimation() {
+      return this._oneAnimationAtATime((resolve) => {
         this.isRainbow = true;
         this.rainbowStartTime = Date.now();
         this._invalidateTexture();
@@ -410,8 +436,8 @@
       });
     }
 
-    startZoomAnimation () {
-      return this._oneAnimationAtATime(resolve => {
+    startZoomAnimation() {
+      return this._oneAnimationAtATime((resolve) => {
         this.isZooming = true;
         this.zoomStartTime = Date.now();
         this._invalidateText();
@@ -423,7 +449,7 @@
       });
     }
 
-    cancelAnimation () {
+    cancelAnimation() {
       if (this.resolveOngoingAnimation) {
         this.resolveOngoingAnimation();
         this.resolveOngoingAnimation = null;
@@ -442,15 +468,17 @@
     }
 
     // Part of Skin API
-    updateSilhouette (scale) {
+    updateSilhouette(scale) {
       this.getTexture(scale);
       this._silhouette.unlazy();
     }
 
     // Part of Skin API
-    getTexture (scale) {
+    getTexture(scale) {
       const MAX_SCALE = 10;
-      const upperScale = scale ? Math.max(Math.abs(scale[0]), Math.abs(scale[1])) : 100;
+      const upperScale = scale
+        ? Math.max(Math.abs(scale[0]), Math.abs(scale[1]))
+        : 100;
       const calculatedScale = Math.min(MAX_SCALE, upperScale / 100);
 
       if (this._needsReflow()) {
@@ -487,14 +515,17 @@
 
     for (let i = 0; i < renderer._allSkins.length; i++) {
       const skin = renderer._allSkins[i];
-      if (skin instanceof TextCostumeSkin && (skin.isRainbow || skin.isZooming)) {
+      if (
+        skin instanceof TextCostumeSkin &&
+        (skin.isRainbow || skin.isZooming)
+      ) {
         skin.emitWasAltered();
       }
     }
   });
 
   class AnimatedText {
-    constructor () {
+    constructor() {
       vm.runtime.on('PROJECT_START', () => {
         this._hideAllText();
       });
@@ -517,7 +548,10 @@
           newSkin.setFontFamily(originalSkin.fontFamily);
           newSkin.setWidth(originalSkin.textWidth);
           newSkin.setText(originalSkin.text);
-          if (renderer._allDrawables[this.drawableID].skin instanceof TextCostumeSkin) {
+          if (
+            renderer._allDrawables[this.drawableID].skin instanceof
+            TextCostumeSkin
+          ) {
             renderer.updateDrawableSkinId(newClone.drawableID, newSkin.id);
           }
         }
@@ -545,9 +579,9 @@
             arguments: {
               TEXT: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'Welcome to my project!'
-              }
-            }
+                defaultValue: 'Welcome to my project!',
+              },
+            },
           },
           {
             opcode: 'animateText',
@@ -557,18 +591,18 @@
               ANIMATE: {
                 type: Scratch.ArgumentType.STRING,
                 menu: 'animate',
-                defaultValue: 'rainbow'
+                defaultValue: 'rainbow',
               },
               TEXT: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'Here we go!'
-              }
-            }
+                defaultValue: 'Here we go!',
+              },
+            },
           },
           {
             opcode: 'clearText',
             blockType: Scratch.BlockType.COMMAND,
-            text: 'show sprite'
+            text: 'show sprite',
           },
           '---',
           {
@@ -578,9 +612,9 @@
             arguments: {
               FONT: {
                 type: Scratch.ArgumentType.STRING,
-                menu: 'font'
-              }
-            }
+                menu: 'font',
+              },
+            },
           },
           {
             opcode: 'setColor',
@@ -588,9 +622,9 @@
             text: 'set text color to [COLOR]',
             arguments: {
               COLOR: {
-                type: Scratch.ArgumentType.COLOR
-              }
-            }
+                type: Scratch.ArgumentType.COLOR,
+              },
+            },
           },
           {
             opcode: 'setWidth',
@@ -599,23 +633,23 @@
             arguments: {
               WIDTH: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '200'
+                defaultValue: '200',
               },
               ALIGN: {
                 type: Scratch.ArgumentType.STRING,
-                menu: 'align'
-              }
-            }
+                menu: 'align',
+              },
+            },
           },
           {
             opcode: 'labelNewBlocks',
             blockType: Scratch.BlockType.LABEL,
-            text: 'Incompatible with Scratch Lab:'
+            text: 'Incompatible with Scratch Lab:',
           },
           {
             opcode: 'textActive',
             blockType: Scratch.BlockType.BOOLEAN,
-            text: 'is showing text?'
+            text: 'is showing text?',
           },
           {
             opcode: 'getTextAttribute',
@@ -624,17 +658,17 @@
             arguments: {
               ATTRIBUTE: {
                 type: Scratch.ArgumentType.STRING,
-                menu: 'attribute'
-              }
+                menu: 'attribute',
+              },
             },
-            disableMonitor: true
-          }
+            disableMonitor: true,
+          },
         ],
         menus: {
           // These all need acceptReporters: false for parity with the Scratch Labs version.
           animate: {
             acceptReporters: false,
-            items: ['type', 'rainbow', 'zoom']
+            items: ['type', 'rainbow', 'zoom'],
           },
           font: {
             acceptReporters: false,
@@ -642,27 +676,19 @@
               ...NATIVE_FONTS,
               {
                 text: 'random font',
-                value: 'Random'
-              }
-            ]
+                value: 'Random',
+              },
+            ],
           },
           align: {
             acceptReporters: false,
-            items: [
-              'left',
-              'center',
-              'right'
-            ]
+            items: ['left', 'center', 'right'],
           },
           attribute: {
             acceptReporters: false,
-            items: [
-              'font',
-              'color',
-              'width'
-            ]
-          }
-        }
+            items: ['font', 'color', 'width'],
+          },
+        },
       };
     }
 
@@ -670,12 +696,12 @@
      * @param {VM.Target} target
      * @returns {TextState}
      */
-    _getState (target) {
+    _getState(target) {
       const state = target[CUSTOM_STATE_KEY];
       if (!state) {
         /** @type {TextState} */
         const newState = {
-          skin: createTextCostumeSkin(target)
+          skin: createTextCostumeSkin(target),
         };
         target[CUSTOM_STATE_KEY] = newState;
         return newState;
@@ -687,11 +713,11 @@
      * @param {VM.Target} target
      * @returns {boolean}
      */
-    _hasState (target) {
+    _hasState(target) {
       return !!target[CUSTOM_STATE_KEY];
     }
 
-    _hideAllText () {
+    _hideAllText() {
       for (const target of vm.runtime.targets) {
         if (this._hasState(target)) {
           this._hideText(target, this._getState(target));
@@ -703,7 +729,7 @@
      * @param {VM.Target} target
      * @param {TextState} state
      */
-    _renderText (target, state) {
+    _renderText(target, state) {
       state.skin.cancelAnimation();
       renderer.updateDrawableSkinId(target.drawableID, state.skin.id);
     }
@@ -712,12 +738,12 @@
      * @param {VM.Target} target
      * @param {TextState} state
      */
-    _hideText (target, state) {
+    _hideText(target, state) {
       state.skin.cancelAnimation();
       target.setCostume(target.currentCostume);
     }
 
-    setText ({ TEXT }, util) {
+    setText({ TEXT }, util) {
       const state = this._getState(util.target);
       this._renderText(util.target, state);
       state.skin.setText(Scratch.Cast.toString(TEXT));
@@ -725,7 +751,7 @@
       util.runtime.requestRedraw();
     }
 
-    animateText ({ ANIMATE, TEXT }, util) {
+    animateText({ ANIMATE, TEXT }, util) {
       const state = this._getState(util.target);
       this._renderText(util.target, state);
 
@@ -743,7 +769,7 @@
       }
     }
 
-    clearText (args, util) {
+    clearText(args, util) {
       if (this._hasState(util.target)) {
         const state = this._getState(util.target);
         this._hideText(util.target, state);
@@ -752,23 +778,27 @@
       util.runtime.requestRedraw();
     }
 
-    setFont ({ FONT }, util) {
+    setFont({ FONT }, util) {
       const state = this._getState(util.target);
       if (FONT === 'Random') {
         // Random font always switches to a new font, never the same one
-        const possibleFonts = NATIVE_FONTS.filter(i => i !== state.skin.fontFamily);
-        state.skin.setFontFamily(possibleFonts[Math.floor(Math.random() * possibleFonts.length)]);
+        const possibleFonts = NATIVE_FONTS.filter(
+          (i) => i !== state.skin.fontFamily
+        );
+        state.skin.setFontFamily(
+          possibleFonts[Math.floor(Math.random() * possibleFonts.length)]
+        );
       } else {
         state.skin.setFontFamily(Scratch.Cast.toString(FONT));
       }
     }
 
-    setColor ({ COLOR }, util) {
+    setColor({ COLOR }, util) {
       const state = this._getState(util.target);
       state.skin.setColor(Scratch.Cast.toString(COLOR));
     }
 
-    setWidth ({ WIDTH, ALIGN }, util) {
+    setWidth({ WIDTH, ALIGN }, util) {
       const state = this._getState(util.target);
 
       if (ALIGN === 'center') {
@@ -783,13 +813,13 @@
       state.skin.setWidth(Scratch.Cast.toNumber(WIDTH));
     }
 
-    textActive (args, util) {
+    textActive(args, util) {
       const drawableID = util.target.drawableID;
       const skin = renderer._allDrawables[drawableID].skin;
       return skin instanceof TextCostumeSkin;
     }
 
-    getTextAttribute (args, util) {
+    getTextAttribute(args, util) {
       const state = this._getState(util.target);
       const attrib = args.ATTRIBUTE;
       if (attrib === 'font') {

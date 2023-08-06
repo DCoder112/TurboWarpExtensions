@@ -1,13 +1,14 @@
-(function(Scratch) {
+(function (Scratch) {
   'use strict';
 
   if (!Scratch.extensions.unsandboxed) {
-    throw new Error("Effects extension must be run unsandboxed");
+    throw new Error('Effects extension must be run unsandboxed');
   }
 
-
   // Simplified remake of an icon by True-Fantom
-  const icon = 'data:image/svg+xml,' + encodeURIComponent(`
+  const icon =
+    'data:image/svg+xml,' +
+    encodeURIComponent(`
     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0,0,200,200">
       <circle r="100" cx="100" cy="100" fill="#9966ff"/>
       <path d="M122,61v-4a12,12 0,0,0 -12,-12h-4m-17,0h-16m-17,0h-4a12,12 0,0,0 -12,12v4m0,17v16m0,17v4a12,12 0,0,0 12,12h4" stroke="#ffffff" stroke-width="11" stroke-linecap="round" fill="none"/>
@@ -17,7 +18,6 @@
         <circle r="32" cx="140" cy="137"/>
       </g>
     </svg>`);
-
 
   let toCorrectThing = null;
   let active = false;
@@ -33,7 +33,6 @@
   let scratchUnitWidth = 480;
   let scratchUnitHeight = 360;
   let penDirty = false;
-
 
   renderer._drawThese = function (drawables, drawMode, projection, opts) {
     active = true;
@@ -77,14 +76,14 @@
   function setupModes(clipbox, blendMode, flipY) {
     if (clipbox) {
       gl.enable(gl.SCISSOR_TEST);
-      let x = (clipbox.x_min / scratchUnitWidth + 0.5) * width | 0;
-      let y = (clipbox.y_min / scratchUnitHeight + 0.5) * height | 0;
-      let x2 = (clipbox.x_max / scratchUnitWidth + 0.5) * width | 0;
-      let y2 = (clipbox.y_max / scratchUnitHeight + 0.5) * height | 0;
+      let x = ((clipbox.x_min / scratchUnitWidth + 0.5) * width) | 0;
+      let y = ((clipbox.y_min / scratchUnitHeight + 0.5) * height) | 0;
+      let x2 = ((clipbox.x_max / scratchUnitWidth + 0.5) * width) | 0;
+      let y2 = ((clipbox.y_max / scratchUnitHeight + 0.5) * height) | 0;
       let w = x2 - x;
       let h = y2 - y;
       if (flipY) {
-        y = (-(clipbox.y_max) / scratchUnitHeight + 0.5) * height | 0;
+        y = ((-clipbox.y_max / scratchUnitHeight + 0.5) * height) | 0;
       }
       gl.scissor(x, y, w, h);
     } else {
@@ -128,7 +127,6 @@
     this.blendMode = blendMode;
   };
 
-
   // Expanding renderer
   renderer.updateDrawableClipBox = function (drawableID, clipbox) {
     const drawable = this._allDrawables[drawableID];
@@ -141,7 +139,6 @@
     drawable.updateBlendMode(blendMode);
   };
 
-
   // Reset on stop & clones inherit effects
   const regTargetStuff = function (args) {
     if (args.editingTarget) {
@@ -149,8 +146,16 @@
       const proto = vm.runtime.targets[0].__proto__;
       const osa = proto.onStopAll;
       proto.onStopAll = function () {
-        this.renderer.updateDrawableClipBox.call(renderer, this.drawableID, null);
-        this.renderer.updateDrawableBlendMode.call(renderer, this.drawableID, null);
+        this.renderer.updateDrawableClipBox.call(
+          renderer,
+          this.drawableID,
+          null
+        );
+        this.renderer.updateDrawableBlendMode.call(
+          renderer,
+          this.drawableID,
+          null
+        );
         osa.call(this);
       };
       const mc = proto.makeClone;
@@ -159,8 +164,16 @@
         if (this.clipbox || this.blendMode) {
           newTarget.clipbox = Object.assign({}, this.clipbox);
           newTarget.blendMode = this.blendMode;
-          renderer.updateDrawableClipBox.call(renderer, newTarget.drawableID, this.clipbox);
-          renderer.updateDrawableBlendMode.call(renderer, newTarget.drawableID, this.blendMode);
+          renderer.updateDrawableClipBox.call(
+            renderer,
+            newTarget.drawableID,
+            this.clipbox
+          );
+          renderer.updateDrawableBlendMode.call(
+            renderer,
+            newTarget.drawableID,
+            this.blendMode
+          );
         }
         return newTarget;
       };
@@ -168,12 +181,11 @@
   };
   vm.on('targetsUpdate', regTargetStuff);
 
-
   // Pen lines support
   let emptyObject = {};
   let lastTarget = emptyObject;
   let lastClipbox = {};
-  let lastBlendMode = "default";
+  let lastBlendMode = 'default';
   function patchPen(skin) {
     const ext_pen = runtime.ext_pen;
     skin._lineOnBufferDrawRegionId.exit = () => {
@@ -182,16 +194,22 @@
       gl.disable(gl.SCISSOR_TEST);
       lastTarget = emptyObject;
       lastClipbox = null;
-      lastBlendMode = "default";
+      lastBlendMode = 'default';
     };
-    const willDrawPenWithTarget = function(target) {
+    const willDrawPenWithTarget = function (target) {
       if (!penDirty && target == lastTarget) return;
       penDirty = false;
 
       const clipbox = target.clipbox;
-      if ((!lastClipbox ^ !clipbox) ||
-          (lastBlendMode != target.blendMode) ||
-          (clipbox && (clipbox.x_min != lastClipbox.x_min || clipbox.y_min != lastClipbox.y_min || clipbox.x_max != lastClipbox.x_max || clipbox.y_max != lastClipbox.y_max))) {
+      if (
+        !lastClipbox ^ !clipbox ||
+        lastBlendMode != target.blendMode ||
+        (clipbox &&
+          (clipbox.x_min != lastClipbox.x_min ||
+            clipbox.y_min != lastClipbox.y_min ||
+            clipbox.x_max != lastClipbox.x_max ||
+            clipbox.y_max != lastClipbox.y_max))
+      ) {
         if (skin.a_lineColorIndex) {
           skin._flushLines();
         }
@@ -201,7 +219,7 @@
             x_min: clipbox.x_min,
             y_min: clipbox.y_min,
             x_max: clipbox.x_max,
-            y_max: clipbox.y_max
+            y_max: clipbox.y_max,
           };
         } else {
           lastClipbox = null;
@@ -213,7 +231,7 @@
     // When drawing a line it is important to know the target.
     // This saves target.
     const onTargetMoved = ext_pen._onTargetMoved;
-    ext_pen._onTargetMoved = function(target, oldX, oldY, isForce) {
+    ext_pen._onTargetMoved = function (target, oldX, oldY, isForce) {
       willDrawPenWithTarget(target);
       onTargetMoved.call(this, target, oldX, oldY, isForce);
     };
@@ -226,13 +244,13 @@
     // When drawing a dot it is important to know the target.
     // This saves target.
     const penDown = ext_pen._penDown;
-    ext_pen._penDown = function(target) {
+    ext_pen._penDown = function (target) {
       willDrawPenWithTarget(target);
       penDown.call(this, target);
     };
     // Set up correct clipping/blending before drawing
     const flushLines = skin.__proto__._flushLines;
-    skin.__proto__._flushLines = function() {
+    skin.__proto__._flushLines = function () {
       setupModes(lastClipbox, lastBlendMode, true);
       flushLines.call(this);
     };
@@ -244,7 +262,7 @@
     // If pen skin does not exist, wait until it will,
     // trigger code once, and return everything as it was
     const createPenSkin = renderer.createPenSkin;
-    renderer.createPenSkin = function() {
+    renderer.createPenSkin = function () {
       let skinId = createPenSkin.call(this);
       patchPen(renderer._allSkins[skinId]);
       renderer.createPenSkin = createPenSkin;
@@ -269,28 +287,28 @@
             arguments: {
               X1: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
+                defaultValue: '0',
               },
               Y1: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '0'
+                defaultValue: '0',
               },
               X2: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '100'
+                defaultValue: '100',
               },
               Y2: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '100'
-              }
+                defaultValue: '100',
+              },
             },
-            filter: [Scratch.TargetType.SPRITE]
+            filter: [Scratch.TargetType.SPRITE],
           },
           {
             opcode: 'clearClipbox',
             blockType: Scratch.BlockType.COMMAND,
             text: 'clear clipping box',
-            filter: [Scratch.TargetType.SPRITE]
+            filter: [Scratch.TargetType.SPRITE],
           },
           {
             opcode: 'getClipbox',
@@ -300,10 +318,10 @@
               PROP: {
                 type: Scratch.ArgumentType.STRING,
                 defaultValue: 'width',
-                menu: 'props'
-              }
+                menu: 'props',
+              },
             },
-            filter: [Scratch.TargetType.SPRITE]
+            filter: [Scratch.TargetType.SPRITE],
           },
           '---',
           {
@@ -314,17 +332,17 @@
               BLENDMODE: {
                 type: Scratch.ArgumentType.STRING,
                 defaultValue: 'default',
-                menu: 'blends'
-              }
+                menu: 'blends',
+              },
             },
-            filter: [Scratch.TargetType.SPRITE]
+            filter: [Scratch.TargetType.SPRITE],
           },
           {
             opcode: 'getBlend',
             blockType: Scratch.BlockType.REPORTER,
             text: 'blending',
             filter: [Scratch.TargetType.SPRITE],
-            disableMonitor: true
+            disableMonitor: true,
           },
           '---',
           {
@@ -335,48 +353,52 @@
               STATE: {
                 type: Scratch.ArgumentType.STRING,
                 defaultValue: 'on',
-                menu: 'states'
-              }
+                menu: 'states',
+              },
             },
             filter: [Scratch.TargetType.SPRITE],
-            hideFromPalette: true
+            hideFromPalette: true,
           },
           {
             opcode: 'getAdditiveBlend',
             blockType: Scratch.BlockType.BOOLEAN,
             text: 'is additive blending on?',
             filter: [Scratch.TargetType.SPRITE],
-            hideFromPalette: true
+            hideFromPalette: true,
           },
         ],
         menus: {
           states: {
             acceptReporters: true,
-            items: ['on', 'off']
+            items: ['on', 'off'],
           },
           blends: {
             acceptReporters: true,
-            items: ['default', 'additive', 'subtract', 'multiply', 'invert']
+            items: ['default', 'additive', 'subtract', 'multiply', 'invert'],
           },
           props: {
             acceptReporters: true,
-            items: ['width', 'height', 'min x', 'min y', 'max x', 'max y']
+            items: ['width', 'height', 'min x', 'min y', 'max x', 'max y'],
           },
-        }
+        },
       };
     }
 
-    setClipbox ({X1, Y1, X2, Y2}, {target}) {
+    setClipbox({ X1, Y1, X2, Y2 }, { target }) {
       if (target.isStage) return;
       const newClipbox = {
         x_min: Math.min(X1, X2),
         y_min: Math.min(Y1, Y2),
         x_max: Math.max(X1, X2),
-        y_max: Math.max(Y1, Y2)
+        y_max: Math.max(Y1, Y2),
       };
       penDirty = true;
       target.clipbox = newClipbox;
-      renderer.updateDrawableClipBox.call(renderer, target.drawableID, newClipbox);
+      renderer.updateDrawableClipBox.call(
+        renderer,
+        target.drawableID,
+        newClipbox
+      );
       if (target.visible) {
         renderer.dirty = true;
         target.emitVisualChange();
@@ -385,7 +407,7 @@
       }
     }
 
-    clearClipbox (args, {target}) {
+    clearClipbox(args, { target }) {
       if (target.isStage) return;
       target.clipbox = null;
       penDirty = true;
@@ -398,21 +420,28 @@
       }
     }
 
-    getClipbox ({PROP}, {target}) {
+    getClipbox({ PROP }, { target }) {
       const clipbox = target.clipbox;
       if (!clipbox) return '';
       switch (PROP) {
-        case 'width': return clipbox.x_max - clipbox.x_min;
-        case 'height': return clipbox.y_max - clipbox.y_min;
-        case 'min x': return clipbox.x_min;
-        case 'min y': return clipbox.y_min;
-        case 'max x': return clipbox.x_max;
-        case 'max y': return clipbox.y_max;
-        default: return '';
+        case 'width':
+          return clipbox.x_max - clipbox.x_min;
+        case 'height':
+          return clipbox.y_max - clipbox.y_min;
+        case 'min x':
+          return clipbox.x_min;
+        case 'min y':
+          return clipbox.y_min;
+        case 'max x':
+          return clipbox.x_max;
+        case 'max y':
+          return clipbox.y_max;
+        default:
+          return '';
       }
     }
 
-    setBlend ({BLENDMODE}, {target}) {
+    setBlend({ BLENDMODE }, { target }) {
       let newValue = null;
       switch (BLENDMODE) {
         case 'default':
@@ -428,7 +457,11 @@
       if (target.isStage) return;
       penDirty = true;
       target.blendMode = newValue;
-      renderer.updateDrawableBlendMode.call(renderer, target.drawableID, newValue);
+      renderer.updateDrawableBlendMode.call(
+        renderer,
+        target.drawableID,
+        newValue
+      );
       if (target.visible) {
         renderer.dirty = true;
         target.emitVisualChange();
@@ -437,16 +470,16 @@
       }
     }
 
-    getBlend (args, {target}) {
+    getBlend(args, { target }) {
       return target.blendMode ?? 'default';
     }
 
-    setAdditiveBlend ({STATE}, util) {
-      if (STATE === 'on') this.setBlend ({BLENDMODE: 'additive'}, util);
-      if (STATE === 'off') this.setBlend ({BLENDMODE: 'default'}, util);
+    setAdditiveBlend({ STATE }, util) {
+      if (STATE === 'on') this.setBlend({ BLENDMODE: 'additive' }, util);
+      if (STATE === 'off') this.setBlend({ BLENDMODE: 'default' }, util);
     }
 
-    getAdditiveBlend (args, {target}) {
+    getAdditiveBlend(args, { target }) {
       return target.blendMode === 'additive';
     }
   }

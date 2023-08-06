@@ -1,4 +1,4 @@
-(function(Scratch) {
+(function (Scratch) {
   'use strict';
 
   const menuIconURI = '';
@@ -10,7 +10,7 @@
   const label = (name, hidden) => ({
     blockType: Scratch.BlockType.LABEL,
     text: name,
-    hideFromPalette: hidden
+    hideFromPalette: hidden,
   });
 
   function resetRuntimeVariables() {
@@ -36,7 +36,6 @@
         color2: '#E15D00',
         menuIconURI: menuIconURI, // I intend on making one later
         blocks: [
-
           label('Thread Variables', false),
 
           {
@@ -46,12 +45,12 @@
             arguments: {
               VAR: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'variable'
+                defaultValue: 'variable',
               },
               STRING: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: '0'
-              }
+                defaultValue: '0',
+              },
             },
           },
           {
@@ -61,12 +60,12 @@
             arguments: {
               VAR: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'variable'
+                defaultValue: 'variable',
               },
               NUM: {
                 type: Scratch.ArgumentType.NUMBER,
-                defaultValue: '1'
-              }
+                defaultValue: '1',
+              },
             },
           },
 
@@ -79,9 +78,9 @@
             arguments: {
               VAR: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'variable'
-              }
-            }
+                defaultValue: 'variable',
+              },
+            },
           },
           {
             opcode: 'threadVariableExists',
@@ -90,9 +89,9 @@
             arguments: {
               VAR: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'variable'
-              }
-            }
+                defaultValue: 'variable',
+              },
+            },
           },
 
           '---',
@@ -118,7 +117,7 @@
             opcode: 'listThreadVariables',
             blockType: Scratch.BlockType.REPORTER,
             text: 'list active thread variables',
-            disableMonitor: true
+            disableMonitor: true,
           },
 
           '---',
@@ -132,13 +131,13 @@
             arguments: {
               VAR: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'variable'
+                defaultValue: 'variable',
               },
               STRING: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: '0'
-              }
-            }
+                defaultValue: '0',
+              },
+            },
           },
           {
             opcode: 'changeRuntimeVariable',
@@ -147,13 +146,13 @@
             arguments: {
               VAR: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'variable'
+                defaultValue: 'variable',
               },
               NUM: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: '1'
-              }
-            }
+                defaultValue: '1',
+              },
+            },
           },
 
           '---',
@@ -166,9 +165,9 @@
             arguments: {
               VAR: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'variable'
-              }
-            }
+                defaultValue: 'variable',
+              },
+            },
           },
           {
             opcode: 'runtimeVariableExists',
@@ -177,9 +176,9 @@
             arguments: {
               VAR: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'variable'
-              }
-            }
+                defaultValue: 'variable',
+              },
+            },
           },
 
           '---',
@@ -191,9 +190,9 @@
             arguments: {
               VAR: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'variable'
-              }
-            }
+                defaultValue: 'variable',
+              },
+            },
           },
           {
             opcode: 'deleteAllRuntimeVariables',
@@ -203,9 +202,9 @@
           {
             opcode: 'listRuntimeVariables',
             blockType: Scratch.BlockType.REPORTER,
-            text: 'list active runtime variables'
-          }
-        ]
+            text: 'list active runtime variables',
+          },
+        ],
       };
     }
 
@@ -227,7 +226,7 @@
       vars[args.VAR] = prev + next;
     }
 
-    getThreadVariable (args, util) {
+    getThreadVariable(args, util) {
       const thread = util.thread;
       if (!thread.variables) thread.variables = Object.create(null);
       const vars = thread.variables;
@@ -236,7 +235,7 @@
       return varValue;
     }
 
-    threadVariableExists (args, util) {
+    threadVariableExists(args, util) {
       const thread = util.thread;
       if (!thread.variables) thread.variables = Object.create(null);
       const vars = thread.variables;
@@ -267,34 +266,34 @@
 
     /* RUNTIME VARIABLES */
 
-    setRuntimeVariable (args) {
+    setRuntimeVariable(args) {
       runtimeVariables[args.VAR] = args.STRING;
     }
 
-    changeRuntimeVariable (args) {
+    changeRuntimeVariable(args) {
       const prev = Scratch.Cast.toNumber(runtimeVariables[args.VAR]);
       const next = Scratch.Cast.toNumber(args.NUM);
       runtimeVariables[args.VAR] = prev + next;
     }
 
-    getRuntimeVariable (args) {
+    getRuntimeVariable(args) {
       if (!(args.VAR in runtimeVariables)) return '';
       return runtimeVariables[args.VAR];
     }
 
-    runtimeVariableExists (args) {
-      return (args.VAR in runtimeVariables);
+    runtimeVariableExists(args) {
+      return args.VAR in runtimeVariables;
     }
 
-    listRuntimeVariables (args, util) {
+    listRuntimeVariables(args, util) {
       return Object.keys(runtimeVariables).join(',');
     }
 
-    deleteRuntimeVariable (args) {
+    deleteRuntimeVariable(args) {
       Reflect.deleteProperty(runtimeVariables, args.VAR);
     }
 
-    deleteAllRuntimeVariables () {
+    deleteAllRuntimeVariables() {
       runtimeVariables = Object.create(null);
     }
   }
