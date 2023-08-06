@@ -202,6 +202,7 @@
                   v == o - 1 ? ((v = 0), d.push(n(m)), (m = 0)) : v++,
                   (t >>= 1);
             }
+
             0 == --l && ((l = Math.pow(2, h)), h++), delete u[c];
           } else
             for (t = s[c], e = 0; e < h; e++)
@@ -209,6 +210,63 @@
                 v == o - 1 ? ((v = 0), d.push(n(m)), (m = 0)) : v++,
                 (t >>= 1);
           0 == --l && ((l = Math.pow(2, h)), h++);
+
+        };
+        return i
+    }();
+    // @ts-ignore
+    "function" == typeof define && define.amd ? define(function() {
+        return LZString
+    // @ts-ignore
+    }) : "undefined" != typeof module && null != module ? module.exports = LZString : "undefined" != typeof angular && null != angular && angular.module("LZString", []).factory("LZString", function() {
+        return LZString
+    });
+    /* eslint-enable */
+
+    class lzcompress {
+        getInfo() {
+            return {
+                id: 'shovellzcompress',
+                name: 'LZ Compress',
+                blocks: [{
+                        opcode: 'compress',
+                        blockType: Scratch.BlockType.REPORTER,
+                        text: 'compress [TEXT] to [TYPE]',
+                        arguments: {
+                            TEXT: {
+                                type: Scratch.ArgumentType.STRING,
+                                defaultValue: 'Hello world!'
+                            },
+                            TYPE: {
+                                type: Scratch.ArgumentType.STRING,
+                                menu: 'COMPRESSIONTYPES'
+                            }
+                        }
+                    },
+                    {
+                        opcode: 'decompress',
+                        blockType: Scratch.BlockType.REPORTER,
+                        text: 'decompress [TEXT] from [TYPE]',
+                        arguments: {
+                            TEXT: {
+                                type: Scratch.ArgumentType.STRING,
+                                defaultValue: '҅〶惶@✰Ӏ葀'
+                            },
+                            TYPE: {
+                                type: Scratch.ArgumentType.STRING,
+                                menu: 'COMPRESSIONTYPES'
+                            }
+                        }
+                    }
+                ],
+                menus: {
+                    COMPRESSIONTYPES: {
+                        acceptReporters: true,
+                        items: ['Raw', 'Base64', 'EncodedURIComponent', 'Uint8Array', 'UTF16']
+                    }
+                }
+            };
+
         }
         for (t = 2, e = 0; e < h; e++)
           (m = (m << 1) | (1 & t)),
