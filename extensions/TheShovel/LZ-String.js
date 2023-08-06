@@ -213,7 +213,7 @@
 
         };
         return i
-    }();
+    }()
     // @ts-ignore
     "function" == typeof define && define.amd ? define(function() {
         return LZString
